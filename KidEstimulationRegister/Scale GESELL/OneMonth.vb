@@ -15,14 +15,6 @@ Public Class OneMonth
     Public Sub LabelLoad(Edad As Integer)
         Select Case Edad
             Case 1
-                lbl_adap1.Text = "Arcg. Son: mira únicamente cuando están en línea de visión"
-                lbl_adap2.Text = "Arcg: lo sigue con la mirada hacia la línea media"
-                lbl_adap3.Text = "Son: Cae inmediatamente de la mano"
-                lbl_adap4.Text = "Camp: escucha, actividad disminuye"
-                lbl_adap5.Text = Nothing
-                lbl_adap6.Text = Nothing
-                lbl_adap7.Text = Nothing
-                lbl_adap8.Text = Nothing
         End Select
     End Sub
 
@@ -53,4 +45,22 @@ Public Class OneMonth
         'End If
     End Sub
 
+    Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel1.Paint
+        Dim colorSeparador As Color = Color.LightSkyBlue ' Color celeste suave
+        Dim grosor As Integer = 5 ' Grosor de las líneas
+
+        Using pen As New Pen(colorSeparador, grosor)
+            ' Dibujar líneas verticales (Columnas)
+            For i As Integer = 1 To TableLayoutPanel1.ColumnCount - 1
+                Dim x As Integer = TableLayoutPanel1.GetColumnWidths().Take(i).Sum()
+                e.Graphics.DrawLine(pen, x, 0, x, TableLayoutPanel1.Height)
+            Next
+
+            ' Dibujar líneas horizontales (Filas)
+            For i As Integer = 1 To TableLayoutPanel1.RowCount - 1
+                Dim y As Integer = TableLayoutPanel1.GetRowHeights().Take(i).Sum()
+                e.Graphics.DrawLine(pen, 0, y, TableLayoutPanel1.Width, y)
+            Next
+        End Using
+    End Sub
 End Class

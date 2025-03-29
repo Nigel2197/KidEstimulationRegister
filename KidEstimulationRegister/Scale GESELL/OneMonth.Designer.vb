@@ -24,34 +24,31 @@ Partial Class OneMonth
     Private Sub InitializeComponent()
         Label1 = New Label()
         Label4 = New Label()
-        Label16 = New Label()
-        pnl_Adaptative = New Panel()
-        Label18 = New Label()
-        Label2 = New Label()
-        Label9 = New Label()
+        TableLayoutPanel1 = New TableLayoutPanel()
+        CheckBox2 = New CheckBox()
+        CheckBox1 = New CheckBox()
+        CheckBox3 = New CheckBox()
+        CheckBox4 = New CheckBox()
+        CheckBox5 = New CheckBox()
+        CheckBox6 = New CheckBox()
+        CheckBox7 = New CheckBox()
+        CheckBox8 = New CheckBox()
         Label8 = New Label()
+        Label9 = New Label()
         Label7 = New Label()
         Label6 = New Label()
         Label5 = New Label()
         Label3 = New Label()
-        Label13 = New Label()
-        Label17 = New Label()
-        Label10 = New Label()
-        Label11 = New Label()
-        Label12 = New Label()
-        Label14 = New Label()
-        Label15 = New Label()
-        GroupBox1 = New GroupBox()
+        Label2 = New Label()
         lbl_adap1 = New Label()
-        lbl_adap2 = New Label()
-        lbl_adap3 = New Label()
-        lbl_adap4 = New Label()
-        lbl_adap5 = New Label()
-        lbl_adap6 = New Label()
-        lbl_adap7 = New Label()
-        lbl_adap8 = New Label()
-        pnl_Adaptative.SuspendLayout()
-        GroupBox1.SuspendLayout()
+        ComboBox1 = New ComboBox()
+        Label12 = New Label()
+        Label10 = New Label()
+        Label15 = New Label()
+        Label11 = New Label()
+        TableLayoutPanel2 = New TableLayoutPanel()
+        TableLayoutPanel1.SuspendLayout()
+        TableLayoutPanel2.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label1
@@ -77,336 +74,334 @@ Partial Class OneMonth
         Label4.Text = "3 AÑOS - 6 MESES"
         Label4.TextAlign = ContentAlignment.TopCenter
         ' 
-        ' Label16
+        ' TableLayoutPanel1
         ' 
-        Label16.BackColor = Color.LightSkyBlue
-        Label16.Font = New Font("Segoe UI Light", 8.25F)
-        Label16.Location = New Point(55, 94)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(10, 441)
-        Label16.TabIndex = 56
+        TableLayoutPanel1.BackColor = Color.AliceBlue
+        TableLayoutPanel1.ColumnCount = 3
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 80F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10F))
+        TableLayoutPanel1.Controls.Add(CheckBox2, 2, 0)
+        TableLayoutPanel1.Controls.Add(CheckBox1, 2, 1)
+        TableLayoutPanel1.Controls.Add(CheckBox3, 2, 2)
+        TableLayoutPanel1.Controls.Add(CheckBox4, 2, 3)
+        TableLayoutPanel1.Controls.Add(CheckBox5, 2, 4)
+        TableLayoutPanel1.Controls.Add(CheckBox6, 2, 5)
+        TableLayoutPanel1.Controls.Add(CheckBox7, 2, 6)
+        TableLayoutPanel1.Controls.Add(CheckBox8, 2, 7)
+        TableLayoutPanel1.Controls.Add(Label8, 1, 6)
+        TableLayoutPanel1.Controls.Add(Label9, 1, 7)
+        TableLayoutPanel1.Controls.Add(Label7, 1, 5)
+        TableLayoutPanel1.Controls.Add(Label6, 1, 4)
+        TableLayoutPanel1.Controls.Add(Label5, 1, 3)
+        TableLayoutPanel1.Controls.Add(Label3, 1, 2)
+        TableLayoutPanel1.Controls.Add(Label2, 1, 1)
+        TableLayoutPanel1.Controls.Add(lbl_adap1, 1, 0)
+        TableLayoutPanel1.ForeColor = Color.SkyBlue
+        TableLayoutPanel1.Location = New Point(64, 128)
+        TableLayoutPanel1.Name = "TableLayoutPanel1"
+        TableLayoutPanel1.RowCount = 8
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 14.2857141F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 14.2857141F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 14.2857141F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 14.2857141F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 14.2857141F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 14.2857141F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 14.2857141F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle())
+        TableLayoutPanel1.Size = New Size(666, 407)
+        TableLayoutPanel1.TabIndex = 8
         ' 
-        ' pnl_Adaptative
+        ' CheckBox2
         ' 
-        pnl_Adaptative.Controls.Add(lbl_adap1)
-        pnl_Adaptative.Controls.Add(lbl_adap2)
-        pnl_Adaptative.Controls.Add(Label18)
-        pnl_Adaptative.Controls.Add(lbl_adap3)
-        pnl_Adaptative.Controls.Add(Label2)
-        pnl_Adaptative.Controls.Add(lbl_adap4)
-        pnl_Adaptative.Controls.Add(Label9)
-        pnl_Adaptative.Controls.Add(lbl_adap5)
-        pnl_Adaptative.Controls.Add(Label8)
-        pnl_Adaptative.Controls.Add(lbl_adap6)
-        pnl_Adaptative.Controls.Add(Label7)
-        pnl_Adaptative.Controls.Add(lbl_adap7)
-        pnl_Adaptative.Controls.Add(Label6)
-        pnl_Adaptative.Controls.Add(lbl_adap8)
-        pnl_Adaptative.Controls.Add(Label5)
-        pnl_Adaptative.Controls.Add(Label3)
-        pnl_Adaptative.Controls.Add(Label13)
-        pnl_Adaptative.Controls.Add(Label17)
-        pnl_Adaptative.Location = New Point(0, 48)
-        pnl_Adaptative.Name = "pnl_Adaptative"
-        pnl_Adaptative.Size = New Size(719, 398)
-        pnl_Adaptative.TabIndex = 56
+        CheckBox2.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        CheckBox2.CheckAlign = ContentAlignment.MiddleCenter
+        CheckBox2.Font = New Font("Segoe UI", 72F, FontStyle.Bold)
+        CheckBox2.Location = New Point(601, 3)
+        CheckBox2.Name = "CheckBox2"
+        CheckBox2.Size = New Size(62, 45)
+        CheckBox2.TabIndex = 58
+        CheckBox2.TextAlign = ContentAlignment.MiddleCenter
+        CheckBox2.UseVisualStyleBackColor = True
         ' 
-        ' Label18
+        ' CheckBox1
         ' 
-        Label18.BackColor = Color.LightSkyBlue
-        Label18.Font = New Font("Segoe UI Light", 8.25F)
-        Label18.Location = New Point(-16, 327)
-        Label18.Name = "Label18"
-        Label18.Size = New Size(719, 10)
-        Label18.TabIndex = 63
-        Label18.Text = "Label18"
+        CheckBox1.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        CheckBox1.CheckAlign = ContentAlignment.MiddleCenter
+        CheckBox1.Font = New Font("Segoe UI", 72F, FontStyle.Bold)
+        CheckBox1.Location = New Point(601, 54)
+        CheckBox1.Name = "CheckBox1"
+        CheckBox1.Size = New Size(62, 44)
+        CheckBox1.TabIndex = 57
+        CheckBox1.TextAlign = ContentAlignment.MiddleCenter
+        CheckBox1.UseVisualStyleBackColor = True
         ' 
-        ' Label2
+        ' CheckBox3
         ' 
-        Label2.BackColor = Color.LightSkyBlue
-        Label2.Font = New Font("Segoe UI Light", 8.25F)
-        Label2.Location = New Point(-16, -59)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(719, 10)
-        Label2.TabIndex = 61
-        Label2.Text = "Label2"
+        CheckBox3.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        CheckBox3.CheckAlign = ContentAlignment.MiddleCenter
+        CheckBox3.Font = New Font("Segoe UI", 72F, FontStyle.Bold)
+        CheckBox3.Location = New Point(601, 105)
+        CheckBox3.Name = "CheckBox3"
+        CheckBox3.Size = New Size(62, 44)
+        CheckBox3.TabIndex = 59
+        CheckBox3.TextAlign = ContentAlignment.MiddleCenter
+        CheckBox3.UseVisualStyleBackColor = True
         ' 
-        ' Label9
+        ' CheckBox4
         ' 
-        Label9.BackColor = Color.LightSkyBlue
-        Label9.Font = New Font("Segoe UI Light", 8.25F)
-        Label9.Location = New Point(-16, 230)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(719, 10)
-        Label9.TabIndex = 60
-        Label9.Text = "Label9"
+        CheckBox4.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        CheckBox4.CheckAlign = ContentAlignment.MiddleCenter
+        CheckBox4.Font = New Font("Segoe UI", 72F, FontStyle.Bold)
+        CheckBox4.Location = New Point(601, 156)
+        CheckBox4.Name = "CheckBox4"
+        CheckBox4.Size = New Size(62, 44)
+        CheckBox4.TabIndex = 60
+        CheckBox4.TextAlign = ContentAlignment.MiddleCenter
+        CheckBox4.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox5
+        ' 
+        CheckBox5.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        CheckBox5.CheckAlign = ContentAlignment.MiddleCenter
+        CheckBox5.Font = New Font("Segoe UI", 72F, FontStyle.Bold)
+        CheckBox5.Location = New Point(601, 207)
+        CheckBox5.Name = "CheckBox5"
+        CheckBox5.Size = New Size(62, 44)
+        CheckBox5.TabIndex = 61
+        CheckBox5.TextAlign = ContentAlignment.MiddleCenter
+        CheckBox5.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox6
+        ' 
+        CheckBox6.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        CheckBox6.CheckAlign = ContentAlignment.MiddleCenter
+        CheckBox6.Font = New Font("Segoe UI", 72F, FontStyle.Bold)
+        CheckBox6.Location = New Point(601, 258)
+        CheckBox6.Name = "CheckBox6"
+        CheckBox6.Size = New Size(62, 44)
+        CheckBox6.TabIndex = 62
+        CheckBox6.TextAlign = ContentAlignment.MiddleCenter
+        CheckBox6.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox7
+        ' 
+        CheckBox7.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        CheckBox7.CheckAlign = ContentAlignment.MiddleCenter
+        CheckBox7.Font = New Font("Segoe UI", 72F, FontStyle.Bold)
+        CheckBox7.Location = New Point(601, 309)
+        CheckBox7.Name = "CheckBox7"
+        CheckBox7.Size = New Size(62, 44)
+        CheckBox7.TabIndex = 63
+        CheckBox7.TextAlign = ContentAlignment.MiddleCenter
+        CheckBox7.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox8
+        ' 
+        CheckBox8.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        CheckBox8.CheckAlign = ContentAlignment.MiddleCenter
+        CheckBox8.Font = New Font("Segoe UI", 72F, FontStyle.Bold)
+        CheckBox8.Location = New Point(601, 360)
+        CheckBox8.Name = "CheckBox8"
+        CheckBox8.Size = New Size(62, 44)
+        CheckBox8.TabIndex = 64
+        CheckBox8.TextAlign = ContentAlignment.MiddleCenter
+        CheckBox8.UseVisualStyleBackColor = True
         ' 
         ' Label8
         ' 
-        Label8.BackColor = Color.LightSkyBlue
-        Label8.Font = New Font("Segoe UI Light", 8.25F)
-        Label8.Location = New Point(-16, 182)
+        Label8.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        Label8.Font = New Font("Segoe UI", 12F)
+        Label8.Location = New Point(69, 309)
         Label8.Name = "Label8"
-        Label8.Size = New Size(719, 10)
-        Label8.TabIndex = 59
-        Label8.Text = "Label8"
+        Label8.Size = New Size(526, 44)
+        Label8.TabIndex = 17
+        Label8.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
+        Label8.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label9
+        ' 
+        Label9.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        Label9.Font = New Font("Segoe UI", 12F)
+        Label9.Location = New Point(69, 360)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(526, 44)
+        Label9.TabIndex = 18
+        Label9.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
+        Label9.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label7
         ' 
-        Label7.BackColor = Color.LightSkyBlue
-        Label7.Font = New Font("Segoe UI Light", 8.25F)
-        Label7.Location = New Point(-16, -10)
+        Label7.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        Label7.Font = New Font("Segoe UI", 12F)
+        Label7.Location = New Point(69, 258)
         Label7.Name = "Label7"
-        Label7.Size = New Size(719, 10)
-        Label7.TabIndex = 58
-        Label7.Text = "Label7"
+        Label7.Size = New Size(526, 44)
+        Label7.TabIndex = 16
+        Label7.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
+        Label7.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label6
         ' 
-        Label6.BackColor = Color.LightSkyBlue
-        Label6.Font = New Font("Segoe UI Light", 8.25F)
-        Label6.Location = New Point(-16, 38)
+        Label6.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        Label6.Font = New Font("Segoe UI", 12F)
+        Label6.Location = New Point(69, 207)
         Label6.Name = "Label6"
-        Label6.Size = New Size(719, 10)
-        Label6.TabIndex = 57
-        Label6.Text = "Label6"
+        Label6.Size = New Size(526, 44)
+        Label6.TabIndex = 15
+        Label6.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
+        Label6.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label5
         ' 
-        Label5.BackColor = Color.LightSkyBlue
-        Label5.Font = New Font("Segoe UI Light", 8.25F)
-        Label5.Location = New Point(-16, 86)
+        Label5.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        Label5.Font = New Font("Segoe UI", 12F)
+        Label5.Location = New Point(69, 156)
         Label5.Name = "Label5"
-        Label5.Size = New Size(719, 10)
-        Label5.TabIndex = 56
-        Label5.Text = "Label5"
+        Label5.Size = New Size(526, 44)
+        Label5.TabIndex = 14
+        Label5.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
+        Label5.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label3
         ' 
-        Label3.BackColor = Color.LightSkyBlue
-        Label3.Font = New Font("Segoe UI Light", 8.25F)
-        Label3.Location = New Point(-16, 134)
+        Label3.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        Label3.Font = New Font("Segoe UI", 12F)
+        Label3.Location = New Point(69, 105)
         Label3.Name = "Label3"
-        Label3.Size = New Size(719, 10)
-        Label3.TabIndex = 55
-        Label3.Text = "Label3"
+        Label3.Size = New Size(526, 44)
+        Label3.TabIndex = 13
+        Label3.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
+        Label3.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label13
+        ' Label2
         ' 
-        Label13.BackColor = Color.LightSkyBlue
-        Label13.Font = New Font("Segoe UI Light", 8.25F)
-        Label13.Location = New Point(-16, 278)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(719, 10)
-        Label13.TabIndex = 54
-        Label13.Text = "Label13"
+        Label2.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        Label2.Font = New Font("Segoe UI", 12F)
+        Label2.Location = New Point(69, 54)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(526, 44)
+        Label2.TabIndex = 12
+        Label2.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
+        Label2.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label17
+        ' lbl_adap1
         ' 
-        Label17.BackColor = Color.LightSkyBlue
-        Label17.Font = New Font("Segoe UI Light", 8.25F)
-        Label17.Location = New Point(613, 0)
-        Label17.Name = "Label17"
-        Label17.Size = New Size(10, 377)
-        Label17.TabIndex = 62
+        lbl_adap1.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        lbl_adap1.Font = New Font("Segoe UI", 12F)
+        lbl_adap1.Location = New Point(69, 3)
+        lbl_adap1.Name = "lbl_adap1"
+        lbl_adap1.Size = New Size(526, 44)
+        lbl_adap1.TabIndex = 11
+        lbl_adap1.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
+        lbl_adap1.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label10
+        ' ComboBox1
         ' 
-        Label10.BackColor = Color.LightSkyBlue
-        Label10.Font = New Font("Segoe UI Light", 8.25F)
-        Label10.Location = New Point(0, 434)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(719, 14)
-        Label10.TabIndex = 50
-        Label10.Text = "Label10"
-        ' 
-        ' Label11
-        ' 
-        Label11.BackColor = Color.LightSkyBlue
-        Label11.Font = New Font("Segoe UI Light", 8.25F)
-        Label11.Location = New Point(0, 48)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(719, 10)
-        Label11.TabIndex = 51
-        Label11.Text = "Label11"
+        ComboBox1.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        ComboBox1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
+        ComboBox1.FormattingEnabled = True
+        ComboBox1.Items.AddRange(New Object() {"Adaptativa", "Motriz Gruesa", "Motriz Delgada"})
+        ComboBox1.Location = New Point(3, 3)
+        ComboBox1.Name = "ComboBox1"
+        ComboBox1.Size = New Size(660, 33)
+        ComboBox1.TabIndex = 58
         ' 
         ' Label12
         ' 
         Label12.BackColor = Color.LightSkyBlue
         Label12.Font = New Font("Segoe UI Light", 8.25F)
-        Label12.Location = New Point(0, 0)
+        Label12.Location = New Point(64, 123)
         Label12.Name = "Label12"
-        Label12.Size = New Size(719, 14)
-        Label12.TabIndex = 52
-        Label12.Text = "Label12"
+        Label12.Size = New Size(666, 5)
+        Label12.TabIndex = 59
         ' 
-        ' Label14
+        ' Label10
         ' 
-        Label14.AutoSize = True
-        Label14.BackColor = Color.AliceBlue
-        Label14.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
-        Label14.ForeColor = Color.SkyBlue
-        Label14.Location = New Point(284, 14)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(120, 30)
-        Label14.TabIndex = 54
-        Label14.Text = "Adaptativa"
-        Label14.TextAlign = ContentAlignment.MiddleCenter
+        Label10.BackColor = Color.LightSkyBlue
+        Label10.Font = New Font("Segoe UI Light", 8.25F)
+        Label10.Location = New Point(64, 536)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(666, 5)
+        Label10.TabIndex = 60
         ' 
         ' Label15
         ' 
         Label15.BackColor = Color.LightSkyBlue
         Label15.Font = New Font("Segoe UI Light", 8.25F)
-        Label15.Location = New Point(709, 0)
+        Label15.Location = New Point(730, 123)
         Label15.Name = "Label15"
-        Label15.Size = New Size(10, 441)
-        Label15.TabIndex = 55
+        Label15.Size = New Size(5, 418)
+        Label15.TabIndex = 61
         ' 
-        ' GroupBox1
+        ' Label11
         ' 
-        GroupBox1.BackColor = Color.AliceBlue
-        GroupBox1.Controls.Add(pnl_Adaptative)
-        GroupBox1.Controls.Add(Label15)
-        GroupBox1.Controls.Add(Label14)
-        GroupBox1.Controls.Add(Label12)
-        GroupBox1.Controls.Add(Label11)
-        GroupBox1.Controls.Add(Label10)
-        GroupBox1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
-        GroupBox1.ForeColor = Color.SkyBlue
-        GroupBox1.Location = New Point(55, 89)
-        GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(719, 448)
-        GroupBox1.TabIndex = 6
-        GroupBox1.TabStop = False
+        Label11.BackColor = Color.LightSkyBlue
+        Label11.Font = New Font("Segoe UI Light", 8.25F)
+        Label11.Location = New Point(59, 123)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(5, 418)
+        Label11.TabIndex = 62
         ' 
-        ' lbl_adap1
+        ' TableLayoutPanel2
         ' 
-        lbl_adap1.Font = New Font("Segoe UI", 12.0F)
-        lbl_adap1.Location = New Point(10, 1)
-        lbl_adap1.Name = "lbl_adap1"
-        lbl_adap1.Size = New Size(597, 37)
-        lbl_adap1.TabIndex = 57
-        lbl_adap1.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
-        lbl_adap1.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' lbl_adap2
-        ' 
-        lbl_adap2.Font = New Font("Segoe UI", 12.0F)
-        lbl_adap2.Location = New Point(0, 1)
-        lbl_adap2.Name = "lbl_adap2"
-        lbl_adap2.Size = New Size(570, 37)
-        lbl_adap2.TabIndex = 58
-        lbl_adap2.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
-        lbl_adap2.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' lbl_adap3
-        ' 
-        lbl_adap3.Font = New Font("Segoe UI", 12.0F)
-        lbl_adap3.Location = New Point(0, 1)
-        lbl_adap3.Name = "lbl_adap3"
-        lbl_adap3.Size = New Size(570, 37)
-        lbl_adap3.TabIndex = 59
-        lbl_adap3.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
-        lbl_adap3.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' lbl_adap4
-        ' 
-        lbl_adap4.Font = New Font("Segoe UI", 12.0F)
-        lbl_adap4.Location = New Point(0, 1)
-        lbl_adap4.Name = "lbl_adap4"
-        lbl_adap4.Size = New Size(570, 37)
-        lbl_adap4.TabIndex = 60
-        lbl_adap4.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
-        lbl_adap4.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' lbl_adap5
-        ' 
-        lbl_adap5.Font = New Font("Segoe UI", 12.0F)
-        lbl_adap5.Location = New Point(0, 1)
-        lbl_adap5.Name = "lbl_adap5"
-        lbl_adap5.Size = New Size(570, 37)
-        lbl_adap5.TabIndex = 61
-        lbl_adap5.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
-        lbl_adap5.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' lbl_adap6
-        ' 
-        lbl_adap6.Font = New Font("Segoe UI", 12.0F)
-        lbl_adap6.Location = New Point(0, 1)
-        lbl_adap6.Name = "lbl_adap6"
-        lbl_adap6.Size = New Size(570, 37)
-        lbl_adap6.TabIndex = 62
-        lbl_adap6.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
-        lbl_adap6.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' lbl_adap7
-        ' 
-        lbl_adap7.Font = New Font("Segoe UI", 12.0F)
-        lbl_adap7.Location = New Point(0, 1)
-        lbl_adap7.Name = "lbl_adap7"
-        lbl_adap7.Size = New Size(570, 37)
-        lbl_adap7.TabIndex = 63
-        lbl_adap7.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
-        lbl_adap7.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' lbl_adap8
-        ' 
-        lbl_adap8.Font = New Font("Segoe UI", 12.0F)
-        lbl_adap8.Location = New Point(0, 1)
-        lbl_adap8.Name = "lbl_adap8"
-        lbl_adap8.Size = New Size(570, 37)
-        lbl_adap8.TabIndex = 64
-        lbl_adap8.Text = "Camp: escucha, actividad disminuyeasd asdasd asdasdasdas asdas as dasd asd asd sad asd asd asdasd asd sad as dasd asd asdasdas dasdasd asd asd asd asd asd asd asd asd as"
-        lbl_adap8.TextAlign = ContentAlignment.MiddleCenter
+        TableLayoutPanel2.ColumnCount = 1
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel2.Controls.Add(ComboBox1, 0, 0)
+        TableLayoutPanel2.Location = New Point(64, 89)
+        TableLayoutPanel2.Name = "TableLayoutPanel2"
+        TableLayoutPanel2.RowCount = 1
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        TableLayoutPanel2.Size = New Size(666, 34)
+        TableLayoutPanel2.TabIndex = 63
         ' 
         ' OneMonth
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
-        Controls.Add(Label16)
+        Controls.Add(TableLayoutPanel2)
+        Controls.Add(Label11)
+        Controls.Add(Label15)
+        Controls.Add(Label10)
+        Controls.Add(Label12)
+        Controls.Add(TableLayoutPanel1)
         Controls.Add(Label4)
-        Controls.Add(GroupBox1)
         Controls.Add(Label1)
         Name = "OneMonth"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Kid Stimulation Register"
-        pnl_Adaptative.ResumeLayout(False)
-        GroupBox1.ResumeLayout(False)
-        GroupBox1.PerformLayout()
+        TableLayoutPanel1.ResumeLayout(False)
+        TableLayoutPanel2.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
     Friend WithEvents Label1 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents Label16 As Label
-
-    Friend WithEvents pnl_Adaptative As Panel
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label5 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label18 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox8 As CheckBox
+    Friend WithEvents CheckBox7 As CheckBox
+    Friend WithEvents CheckBox6 As CheckBox
+    Friend WithEvents CheckBox5 As CheckBox
+    Friend WithEvents CheckBox4 As CheckBox
+    Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label11 As Label
     Friend WithEvents lbl_adap1 As Label
-    Friend WithEvents lbl_adap2 As Label
-    Friend WithEvents lbl_adap3 As Label
-    Friend WithEvents lbl_adap4 As Label
-    Friend WithEvents lbl_adap5 As Label
-    Friend WithEvents lbl_adap6 As Label
-    Friend WithEvents lbl_adap7 As Label
-    Friend WithEvents lbl_adap8 As Label
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
 End Class

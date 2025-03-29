@@ -25,6 +25,7 @@ Partial Class Adaptive
         Label1 = New Label()
         Label4 = New Label()
         GroupBox1 = New GroupBox()
+        ComboBox1 = New ComboBox()
         CheckBox1 = New CheckBox()
         Label15 = New Label()
         Label14 = New Label()
@@ -56,7 +57,6 @@ Partial Class Adaptive
         lbl_adap8 = New Label()
         Label13 = New Label()
         Label16 = New Label()
-        ComboBox1 = New ComboBox()
         GroupBox1.SuspendLayout()
         Panel17.SuspendLayout()
         Panel15.SuspendLayout()
@@ -72,9 +72,9 @@ Partial Class Adaptive
         ' 
         Label1.AutoSize = True
         Label1.BackColor = Color.AliceBlue
-        Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label1.ForeColor = Color.SkyBlue
-        Label1.Location = New Point(119, 2)
+        Label1.Location = New Point(115, 20)
         Label1.Name = "Label1"
         Label1.Size = New Size(546, 37)
         Label1.TabIndex = 2
@@ -82,7 +82,7 @@ Partial Class Adaptive
         ' 
         ' Label4
         ' 
-        Label4.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label4.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label4.ForeColor = Color.SkyBlue
         Label4.Location = New Point(12, 89)
         Label4.Name = "Label4"
@@ -116,7 +116,7 @@ Partial Class Adaptive
         GroupBox1.Controls.Add(Panel7)
         GroupBox1.Controls.Add(Panel5)
         GroupBox1.Controls.Add(Panel3)
-        GroupBox1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
+        GroupBox1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold)
         GroupBox1.ForeColor = Color.SkyBlue
         GroupBox1.Location = New Point(55, 89)
         GroupBox1.Name = "GroupBox1"
@@ -124,10 +124,18 @@ Partial Class Adaptive
         GroupBox1.TabIndex = 6
         GroupBox1.TabStop = False
         ' 
+        ' ComboBox1
+        ' 
+        ComboBox1.FormattingEnabled = True
+        ComboBox1.Location = New Point(410, 14)
+        ComboBox1.Name = "ComboBox1"
+        ComboBox1.Size = New Size(263, 33)
+        ComboBox1.TabIndex = 57
+        ' 
         ' CheckBox1
         ' 
         CheckBox1.AutoSize = True
-        CheckBox1.Font = New Font("Segoe UI", 72F, FontStyle.Bold, GraphicsUnit.Point)
+        CheckBox1.Font = New Font("Segoe UI", 72F, FontStyle.Bold)
         CheckBox1.Location = New Point(614, 71)
         CheckBox1.Name = "CheckBox1"
         CheckBox1.Size = New Size(15, 14)
@@ -137,7 +145,7 @@ Partial Class Adaptive
         ' Label15
         ' 
         Label15.BackColor = Color.LightSkyBlue
-        Label15.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label15.Font = New Font("Segoe UI Light", 8.25F)
         Label15.Location = New Point(709, 0)
         Label15.Name = "Label15"
         Label15.Size = New Size(10, 441)
@@ -147,7 +155,7 @@ Partial Class Adaptive
         ' 
         Label14.AutoSize = True
         Label14.BackColor = Color.AliceBlue
-        Label14.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
+        Label14.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
         Label14.ForeColor = Color.SkyBlue
         Label14.Location = New Point(284, 14)
         Label14.Name = "Label14"
@@ -159,7 +167,7 @@ Partial Class Adaptive
         ' Label12
         ' 
         Label12.BackColor = Color.LightSkyBlue
-        Label12.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label12.Font = New Font("Segoe UI Light", 8.25F)
         Label12.Location = New Point(0, -1)
         Label12.Name = "Label12"
         Label12.Size = New Size(719, 14)
@@ -169,7 +177,7 @@ Partial Class Adaptive
         ' Label11
         ' 
         Label11.BackColor = Color.LightSkyBlue
-        Label11.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label11.Font = New Font("Segoe UI Light", 8.25F)
         Label11.Location = New Point(0, 48)
         Label11.Name = "Label11"
         Label11.Size = New Size(719, 10)
@@ -179,7 +187,7 @@ Partial Class Adaptive
         ' Label10
         ' 
         Label10.BackColor = Color.LightSkyBlue
-        Label10.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label10.Font = New Font("Segoe UI Light", 8.25F)
         Label10.Location = New Point(0, 434)
         Label10.Name = "Label10"
         Label10.Size = New Size(719, 14)
@@ -189,7 +197,7 @@ Partial Class Adaptive
         ' Label9
         ' 
         Label9.BackColor = Color.LightSkyBlue
-        Label9.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label9.Font = New Font("Segoe UI Light", 8.25F)
         Label9.Location = New Point(0, 337)
         Label9.Name = "Label9"
         Label9.Size = New Size(719, 10)
@@ -199,7 +207,7 @@ Partial Class Adaptive
         ' Label8
         ' 
         Label8.BackColor = Color.LightSkyBlue
-        Label8.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label8.Font = New Font("Segoe UI Light", 8.25F)
         Label8.Location = New Point(0, 289)
         Label8.Name = "Label8"
         Label8.Size = New Size(719, 10)
@@ -209,7 +217,7 @@ Partial Class Adaptive
         ' Label7
         ' 
         Label7.BackColor = Color.LightSkyBlue
-        Label7.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label7.Font = New Font("Segoe UI Light", 8.25F)
         Label7.Location = New Point(0, 97)
         Label7.Name = "Label7"
         Label7.Size = New Size(719, 10)
@@ -219,7 +227,7 @@ Partial Class Adaptive
         ' Label6
         ' 
         Label6.BackColor = Color.LightSkyBlue
-        Label6.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label6.Font = New Font("Segoe UI Light", 8.25F)
         Label6.Location = New Point(0, 145)
         Label6.Name = "Label6"
         Label6.Size = New Size(719, 10)
@@ -229,7 +237,7 @@ Partial Class Adaptive
         ' Label5
         ' 
         Label5.BackColor = Color.LightSkyBlue
-        Label5.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label5.Font = New Font("Segoe UI Light", 8.25F)
         Label5.Location = New Point(0, 193)
         Label5.Name = "Label5"
         Label5.Size = New Size(719, 10)
@@ -239,7 +247,7 @@ Partial Class Adaptive
         ' Label3
         ' 
         Label3.BackColor = Color.LightSkyBlue
-        Label3.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label3.Font = New Font("Segoe UI Light", 8.25F)
         Label3.Location = New Point(0, 241)
         Label3.Name = "Label3"
         Label3.Size = New Size(719, 10)
@@ -249,7 +257,7 @@ Partial Class Adaptive
         ' Label2
         ' 
         Label2.BackColor = Color.LightSkyBlue
-        Label2.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label2.Font = New Font("Segoe UI Light", 8.25F)
         Label2.Location = New Point(0, 385)
         Label2.Name = "Label2"
         Label2.Size = New Size(719, 10)
@@ -266,7 +274,7 @@ Partial Class Adaptive
         ' 
         ' lbl_adap1
         ' 
-        lbl_adap1.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_adap1.Font = New Font("Segoe UI", 12F)
         lbl_adap1.Location = New Point(11, 3)
         lbl_adap1.Name = "lbl_adap1"
         lbl_adap1.Size = New Size(527, 42)
@@ -284,7 +292,7 @@ Partial Class Adaptive
         ' 
         ' lbl_adap2
         ' 
-        lbl_adap2.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_adap2.Font = New Font("Segoe UI", 12F)
         lbl_adap2.Location = New Point(11, 3)
         lbl_adap2.Name = "lbl_adap2"
         lbl_adap2.Size = New Size(527, 42)
@@ -302,7 +310,7 @@ Partial Class Adaptive
         ' 
         ' lbl_adap3
         ' 
-        lbl_adap3.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_adap3.Font = New Font("Segoe UI", 12F)
         lbl_adap3.Location = New Point(11, 3)
         lbl_adap3.Name = "lbl_adap3"
         lbl_adap3.Size = New Size(527, 42)
@@ -320,7 +328,7 @@ Partial Class Adaptive
         ' 
         ' lbl_adap4
         ' 
-        lbl_adap4.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_adap4.Font = New Font("Segoe UI", 12F)
         lbl_adap4.Location = New Point(11, 3)
         lbl_adap4.Name = "lbl_adap4"
         lbl_adap4.Size = New Size(527, 42)
@@ -338,7 +346,7 @@ Partial Class Adaptive
         ' 
         ' lbl_adap5
         ' 
-        lbl_adap5.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_adap5.Font = New Font("Segoe UI", 12F)
         lbl_adap5.Location = New Point(11, 3)
         lbl_adap5.Name = "lbl_adap5"
         lbl_adap5.Size = New Size(527, 42)
@@ -356,7 +364,7 @@ Partial Class Adaptive
         ' 
         ' lbl_adap6
         ' 
-        lbl_adap6.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_adap6.Font = New Font("Segoe UI", 12F)
         lbl_adap6.Location = New Point(11, 3)
         lbl_adap6.Name = "lbl_adap6"
         lbl_adap6.Size = New Size(527, 42)
@@ -374,7 +382,7 @@ Partial Class Adaptive
         ' 
         ' lbl_adap7
         ' 
-        lbl_adap7.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_adap7.Font = New Font("Segoe UI", 12F)
         lbl_adap7.Location = New Point(11, 3)
         lbl_adap7.Name = "lbl_adap7"
         lbl_adap7.Size = New Size(527, 42)
@@ -392,7 +400,7 @@ Partial Class Adaptive
         ' 
         ' lbl_adap8
         ' 
-        lbl_adap8.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbl_adap8.Font = New Font("Segoe UI", 12F)
         lbl_adap8.Location = New Point(11, 3)
         lbl_adap8.Name = "lbl_adap8"
         lbl_adap8.Size = New Size(527, 42)
@@ -403,7 +411,7 @@ Partial Class Adaptive
         ' Label13
         ' 
         Label13.BackColor = Color.LightSkyBlue
-        Label13.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label13.Font = New Font("Segoe UI Light", 8.25F)
         Label13.Location = New Point(592, 142)
         Label13.Name = "Label13"
         Label13.Size = New Size(10, 395)
@@ -412,19 +420,11 @@ Partial Class Adaptive
         ' Label16
         ' 
         Label16.BackColor = Color.LightSkyBlue
-        Label16.Font = New Font("Segoe UI Light", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label16.Font = New Font("Segoe UI Light", 8.25F)
         Label16.Location = New Point(55, 94)
         Label16.Name = "Label16"
         Label16.Size = New Size(10, 441)
         Label16.TabIndex = 56
-        ' 
-        ' ComboBox1
-        ' 
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(410, 14)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(263, 33)
-        ComboBox1.TabIndex = 57
         ' 
         ' Adaptive
         ' 
