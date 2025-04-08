@@ -43,9 +43,9 @@ Partial Class ScreenRegister
         Tb_TutorName = New TextBox()
         btn_Save = New Button()
         btn_Clean = New Button()
-        Label5 = New Label()
         Ckb_Allergic = New CheckBox()
         Dtp_DayBirth = New DateTimePicker()
+        Label5 = New Label()
         TableLayoutPanel1.SuspendLayout()
         CType(Nud_WeeksAge, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -144,9 +144,9 @@ Partial Class ScreenRegister
         Label3.ForeColor = SystemColors.Window
         Label3.Location = New Point(450, 221)
         Label3.Name = "Label3"
-        Label3.Size = New Size(176, 30)
+        Label3.Size = New Size(60, 30)
         Label3.TabIndex = 3
-        Label3.Text = "Edad (en semanas):"
+        Label3.Text = "Edad:"
         ' 
         ' Nud_WeeksAge
         ' 
@@ -299,19 +299,6 @@ Partial Class ScreenRegister
         btn_Clean.TabIndex = 45
         btn_Clean.UseVisualStyleBackColor = True
         ' 
-        ' Label5
-        ' 
-        Label5.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom
-        Label5.BackColor = Color.Transparent
-        Label5.Font = New Font("Baloo", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label5.ForeColor = SystemColors.Window
-        Label5.Location = New Point(533, 258)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(93, 23)
-        Label5.TabIndex = 46
-        Label5.Text = "Semanas"
-        Label5.TextAlign = ContentAlignment.MiddleLeft
-        ' 
         ' Ckb_Allergic
         ' 
         Ckb_Allergic.BackColor = Color.LightSteelBlue
@@ -341,6 +328,19 @@ Partial Class ScreenRegister
         Dtp_DayBirth.Size = New Size(255, 33)
         Dtp_DayBirth.TabIndex = 3
         Dtp_DayBirth.Value = New Date(2025, 4, 6, 0, 0, 0, 0)
+        ' 
+        ' Label5
+        ' 
+        Label5.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom
+        Label5.BackColor = Color.Transparent
+        Label5.Font = New Font("Baloo", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label5.ForeColor = SystemColors.Window
+        Label5.Location = New Point(533, 258)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(93, 23)
+        Label5.TabIndex = 46
+        Label5.Text = "Semanas"
+        Label5.TextAlign = ContentAlignment.MiddleLeft
         ' 
         ' ScreenRegister
         ' 
@@ -403,8 +403,8 @@ Partial Class ScreenRegister
     Friend WithEvents Tb_TutorName As TextBox
     Friend WithEvents btn_Save As Button
     Friend WithEvents btn_Clean As Button
-    Friend WithEvents Label5 As Label
     Friend WithEvents Ckb_Allergic As CheckBox
     Friend WithEvents Label8 As Label
     Private WithEvents Dtp_DayBirth As DateTimePicker
+    Friend WithEvents Label5 As Label
 End Class

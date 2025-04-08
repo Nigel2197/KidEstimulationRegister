@@ -47,9 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="KidList.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -60,6 +57,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="ScreenList.vb" />
   </ItemGroup>
 
   <ItemGroup>
