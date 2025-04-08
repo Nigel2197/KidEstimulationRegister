@@ -1,0 +1,8 @@
+--DELETE FROM Areas;
+--DELETE FROM sqlite_sequence WHERE name='Areas';
+
+INSERT INTO Ages (WeeksAge)
+VALUES (8), (12), (16), (20), (24), (28), (32), (36), (40), (44), (48), (52), (56), (60), (72), (84), (96), (120), (144), (168), (192)
+
+INSERT INTO Areas (Area)
+VALUES ('Adaptativa'), ('Motriz Gruesa'), ('Motriz Fina'), ('Lenguaje'), ('Personal Social')

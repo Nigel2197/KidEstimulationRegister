@@ -32,45 +32,45 @@ Partial Class ScreenEvaluation
         ' 
         Label1.AutoSize = True
         Label1.BackColor = Color.Transparent
-        Label1.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Font = New Font("Baloo", 26.2499962F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.AliceBlue
         Label1.Location = New Point(295, 144)
         Label1.Name = "Label1"
-        Label1.Size = New Size(195, 47)
+        Label1.Size = New Size(207, 55)
         Label1.TabIndex = 1
         Label1.Text = "Evaluación"
         ' 
         ' Tb_Name
         ' 
         Tb_Name.BackColor = Color.LightSteelBlue
-        Tb_Name.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Tb_Name.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Tb_Name.ForeColor = SystemColors.Window
-        Tb_Name.Location = New Point(241, 296)
+        Tb_Name.Location = New Point(216, 296)
         Tb_Name.Name = "Tb_Name"
-        Tb_Name.Size = New Size(300, 29)
+        Tb_Name.Size = New Size(358, 33)
         Tb_Name.TabIndex = 4
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
         Label2.BackColor = Color.Transparent
-        Label2.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
+        Label2.Font = New Font("Baloo", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label2.ForeColor = Color.AliceBlue
-        Label2.Location = New Point(279, 249)
+        Label2.Location = New Point(216, 249)
         Label2.Name = "Label2"
-        Label2.Size = New Size(225, 30)
+        Label2.Size = New Size(358, 33)
         Label2.TabIndex = 3
-        Label2.Text = "Introduzca el nombre"
+        Label2.Text = "Introduzca el nombre del infante"
         ' 
         ' btn_Evaluation
         ' 
         btn_Evaluation.BackColor = Color.SteelBlue
         btn_Evaluation.Cursor = Cursors.Hand
-        btn_Evaluation.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        btn_Evaluation.Font = New Font("Baloo", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btn_Evaluation.ForeColor = Color.White
-        btn_Evaluation.Location = New Point(295, 386)
+        btn_Evaluation.Location = New Point(320, 374)
         btn_Evaluation.Name = "btn_Evaluation"
-        btn_Evaluation.Size = New Size(195, 65)
+        btn_Evaluation.Size = New Size(160, 60)
         btn_Evaluation.TabIndex = 5
         btn_Evaluation.Text = "Evaluar"
         btn_Evaluation.UseVisualStyleBackColor = False

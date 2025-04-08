@@ -9,7 +9,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\db\**" />
+    <Compile Remove="Resources\documents\**" />
+    <EmbeddedResource Remove="Resources\db\**" />
+    <EmbeddedResource Remove="Resources\documents\**" />
+    <None Remove="Resources\db\**" />
+    <None Remove="Resources\documents\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="ApplicationEvents.vb" />
+    <Compile Remove="OneMonth.Designer.vb" />
+    <Compile Remove="OneMonth.vb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="OneMonth.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Escala de Gessell.pdf" />
+    <None Remove="Resources\Escala de Gessell.pdf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,11 +39,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExcelDataReader" Version="3.7.0" />
-    <PackageReference Include="ExcelDataReader.DataSet" Version="3.7.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="KidList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -34,9 +60,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Scale GESELL\OneMonth.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -44,9 +67,6 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Scale GESELL\OneMonth.resx">
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
 
