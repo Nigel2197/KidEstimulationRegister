@@ -26,12 +26,12 @@ Partial Class ScreenList
         Label8 = New Label()
         Dgv_KidList = New DataGridView()
         Cb_Gender = New ComboBox()
-        Tb_Name = New TextBox()
         Label2 = New Label()
         Label1 = New Label()
         Nud_WeeksAge = New NumericUpDown()
         Label3 = New Label()
         TableLayoutPanel2 = New TableLayoutPanel()
+        Cb_Name = New ComboBox()
         Btn_FindKids = New Button()
         TableLayoutPanel3 = New TableLayoutPanel()
         TableLayoutPanel4 = New TableLayoutPanel()
@@ -77,7 +77,7 @@ Partial Class ScreenList
         Dgv_KidList.Location = New Point(3, 3)
         Dgv_KidList.Name = "Dgv_KidList"
         Dgv_KidList.Size = New Size(670, 302)
-        Dgv_KidList.TabIndex = 67
+        Dgv_KidList.TabIndex = 5
         ' 
         ' Cb_Gender
         ' 
@@ -89,17 +89,7 @@ Partial Class ScreenList
         Cb_Gender.Location = New Point(388, 28)
         Cb_Gender.Name = "Cb_Gender"
         Cb_Gender.Size = New Size(164, 29)
-        Cb_Gender.TabIndex = 70
-        ' 
-        ' Tb_Name
-        ' 
-        Tb_Name.BackColor = Color.LightSteelBlue
-        Tb_Name.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Tb_Name.ForeColor = Color.WhiteSmoke
-        Tb_Name.Location = New Point(3, 28)
-        Tb_Name.Name = "Tb_Name"
-        Tb_Name.Size = New Size(241, 28)
-        Tb_Name.TabIndex = 68
+        Cb_Gender.TabIndex = 3
         ' 
         ' Label2
         ' 
@@ -134,7 +124,7 @@ Partial Class ScreenList
         Nud_WeeksAge.Location = New Point(250, 28)
         Nud_WeeksAge.Name = "Nud_WeeksAge"
         Nud_WeeksAge.Size = New Size(88, 28)
-        Nud_WeeksAge.TabIndex = 73
+        Nud_WeeksAge.TabIndex = 2
         ' 
         ' Label3
         ' 
@@ -155,12 +145,12 @@ Partial Class ScreenList
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle())
+        TableLayoutPanel2.Controls.Add(Cb_Name, 0, 1)
         TableLayoutPanel2.Controls.Add(Cb_Gender, 2, 1)
-        TableLayoutPanel2.Controls.Add(Nud_WeeksAge, 1, 1)
         TableLayoutPanel2.Controls.Add(Label1, 2, 0)
-        TableLayoutPanel2.Controls.Add(Tb_Name, 0, 1)
         TableLayoutPanel2.Controls.Add(Label3, 1, 0)
         TableLayoutPanel2.Controls.Add(Label2, 0, 0)
+        TableLayoutPanel2.Controls.Add(Nud_WeeksAge, 1, 1)
         TableLayoutPanel2.Location = New Point(55, 162)
         TableLayoutPanel2.Name = "TableLayoutPanel2"
         TableLayoutPanel2.RowCount = 2
@@ -168,6 +158,22 @@ Partial Class ScreenList
         TableLayoutPanel2.RowStyles.Add(New RowStyle())
         TableLayoutPanel2.Size = New Size(556, 65)
         TableLayoutPanel2.TabIndex = 74
+        ' 
+        ' Cb_Name
+        ' 
+        Cb_Name.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Cb_Name.AutoCompleteMode = AutoCompleteMode.Suggest
+        Cb_Name.AutoCompleteSource = AutoCompleteSource.ListItems
+        Cb_Name.BackColor = Color.LightSteelBlue
+        Cb_Name.Cursor = Cursors.Hand
+        Cb_Name.DrawMode = DrawMode.OwnerDrawVariable
+        Cb_Name.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Cb_Name.ForeColor = SystemColors.Window
+        Cb_Name.FormattingEnabled = True
+        Cb_Name.Location = New Point(3, 28)
+        Cb_Name.Name = "Cb_Name"
+        Cb_Name.Size = New Size(241, 29)
+        Cb_Name.TabIndex = 1
         ' 
         ' Btn_FindKids
         ' 
@@ -179,7 +185,7 @@ Partial Class ScreenList
         Btn_FindKids.Location = New Point(3, 3)
         Btn_FindKids.Name = "Btn_FindKids"
         Btn_FindKids.Size = New Size(116, 59)
-        Btn_FindKids.TabIndex = 75
+        Btn_FindKids.TabIndex = 4
         Btn_FindKids.Text = "Buscar"
         Btn_FindKids.UseVisualStyleBackColor = False
         ' 
@@ -221,6 +227,7 @@ Partial Class ScreenList
         Controls.Add(TableLayoutPanel3)
         Controls.Add(TableLayoutPanel2)
         Controls.Add(TableLayoutPanel1)
+        MaximizeBox = False
         Name = "ScreenList"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Kid Stimulation Register"
@@ -238,7 +245,6 @@ Partial Class ScreenList
     Friend WithEvents Label8 As Label
     Friend WithEvents Dgv_KidList As DataGridView
     Friend WithEvents Cb_Gender As ComboBox
-    Friend WithEvents Tb_Name As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Nud_WeeksAge As NumericUpDown
@@ -247,4 +253,5 @@ Partial Class ScreenList
     Friend WithEvents Btn_FindKids As Button
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
+    Friend WithEvents Cb_Name As ComboBox
 End Class

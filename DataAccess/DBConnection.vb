@@ -14,14 +14,14 @@ Public Module DBConnection
     End Function
 
     ' 1. Función para obtener datos desde una Vista
-    Public Function GetData(viewQuery As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As DataTable
+    Public Function GetData(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As DataTable
         Dim dataTable As New DataTable() ' Crea un DataTable donde se guardarán los resultados
 
         Try
             Using connection As SqliteConnection = SetConnection() ' Crea y abre la conexión a la base de datos
                 connection.Open()
 
-                Using command As New SqliteCommand(viewQuery, connection) ' Crea el comando con la consulta a ejecutar
+                Using command As New SqliteCommand(query, connection) ' Crea el comando con la consulta a ejecutar
                     ' Si hay parámetros, se agregan al comando
                     If parameters IsNot Nothing Then
                         For Each param In parameters
@@ -44,12 +44,12 @@ Public Module DBConnection
     End Function
 
     ' 2. Función para ejecutar un procedimiento almacenado o instrucción compleja
-    Public Function WriteData(procQuery As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As Boolean
+    Public Function WriteData(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As Boolean
         Try
             Using connection As SqliteConnection = SetConnection() ' Crea y abre la conexión
                 connection.Open()
 
-                Using command As New SqliteCommand(procQuery, connection) ' Crea el comando con la instrucción
+                Using command As New SqliteCommand(query, connection) ' Crea el comando con la instrucción
                     ' Agrega los parámetros si los hay
                     If parameters IsNot Nothing Then
                         For Each param In parameters
@@ -69,12 +69,12 @@ Public Module DBConnection
     End Function
 
     ' 3. Función para ejecutar una vista que devuelve un solo valor
-    Public Function ExecuteScalar(viewQuery As String, ByRef result As Object, Optional parameters As Dictionary(Of String, Object) = Nothing) As Boolean
+    Public Function ExecuteScalar(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As Object
         Try
             Using connection As SqliteConnection = SetConnection() ' Abre la conexión a la base de datos
                 connection.Open()
 
-                Using command As New SqliteCommand(viewQuery, connection) ' Prepara el comando
+                Using command As New SqliteCommand(query, connection) ' Prepara el comando
                     ' Agrega los parámetros si existen
                     If parameters IsNot Nothing Then
                         For Each param In parameters
@@ -82,14 +82,15 @@ Public Module DBConnection
                         Next
                     End If
 
-                    result = command.ExecuteScalar() ' Ejecuta la consulta y obtiene el primer valor del primer registro
+                    ' Ejecuta la consulta y obtiene el primer valor del primer registro
+                    Dim result As Object = command.ExecuteScalar()
+                    Return result ' Devuelve el resultado de la consulta
                 End Using
             End Using
 
             Return True ' Se obtuvo correctamente el valor
 
         Catch ex As Exception
-            result = Nothing ' En caso de error, se asigna Nothing al resultado
             Return False ' Indica que hubo un error
         End Try
     End Function

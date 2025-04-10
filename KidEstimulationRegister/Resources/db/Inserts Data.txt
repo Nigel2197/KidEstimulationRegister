@@ -1,8 +1,35 @@
+--BEGIN TRANSACTION;
+--PRAGMA foreign_keys = OFF;
+
 --DELETE FROM Areas;
 --DELETE FROM sqlite_sequence WHERE name='Areas';
 
-INSERT INTO Ages (WeeksAge)
-VALUES (8), (12), (16), (20), (24), (28), (32), (36), (40), (44), (48), (52), (56), (60), (72), (84), (96), (120), (144), (168), (192)
+--PRAGMA foreign_keys = ON;
+--COMMIT;
+
+INSERT INTO Ages (WeeksAge, Age)
+VALUES (4, '1 MES')
+     , (8, '2 MESES')
+     , (12, '3 MESES')
+     , (16, '4 MESES')
+     , (20, '5 MESES')
+     , (24, '6 MESES')
+     , (28, '7 MESES')
+     , (32, '8 MESES')
+     , (36, '9 MESES')
+     , (40, '10 MESES')
+     , (44, '11 MESES')
+     , (48, '1 AÑO')
+     , (52, '1 AÑO Y 1 MES')
+     , (56, '1 AÑO Y 2 MESES')
+     , (60, '1 AÑO Y 4 MESES')
+     , (72, '1 AÑO Y 6 MESES')
+     , (84, '1 AÑO Y 9 MESES')
+     , (96, '2 AÑOS')
+     , (120, '2 AÑOS Y 6 MESES')
+     , (144, '3 AÑOS')
+     , (168, '3 AÑOS Y 6 MESES')
+     , (192, '4 AÑOS')
 
 INSERT INTO Areas (Area)
 VALUES ('Adaptativa'), ('Motriz Gruesa'), ('Motriz Fina'), ('Lenguaje'), ('Personal Social')

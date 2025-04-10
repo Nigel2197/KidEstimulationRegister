@@ -30,7 +30,6 @@ Partial Class ScreenRegister
         Tb_Name = New TextBox()
         Label10 = New Label()
         Label3 = New Label()
-        Nud_WeeksAge = New NumericUpDown()
         Label4 = New Label()
         Cb_Gender = New ComboBox()
         Tb_Address = New TextBox()
@@ -46,8 +45,8 @@ Partial Class ScreenRegister
         Ckb_Allergic = New CheckBox()
         Dtp_DayBirth = New DateTimePicker()
         Label5 = New Label()
+        Cb_WeeksAge = New ComboBox()
         TableLayoutPanel1.SuspendLayout()
-        CType(Nud_WeeksAge, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' TableLayoutPanel1
@@ -117,6 +116,7 @@ Partial Class ScreenRegister
         ' Tb_Name
         ' 
         Tb_Name.BackColor = Color.LightSteelBlue
+        Tb_Name.Cursor = Cursors.Hand
         Tb_Name.Font = New Font("Baloo", 11.999999F)
         Tb_Name.ForeColor = Color.WhiteSmoke
         Tb_Name.Location = New Point(167, 176)
@@ -148,16 +148,6 @@ Partial Class ScreenRegister
         Label3.TabIndex = 3
         Label3.Text = "Edad:"
         ' 
-        ' Nud_WeeksAge
-        ' 
-        Nud_WeeksAge.BackColor = Color.LightSteelBlue
-        Nud_WeeksAge.Font = New Font("Baloo", 11.999999F)
-        Nud_WeeksAge.ForeColor = SystemColors.Window
-        Nud_WeeksAge.Location = New Point(450, 255)
-        Nud_WeeksAge.Name = "Nud_WeeksAge"
-        Nud_WeeksAge.Size = New Size(77, 33)
-        Nud_WeeksAge.TabIndex = 20
-        ' 
         ' Label4
         ' 
         Label4.AutoSize = True
@@ -173,6 +163,7 @@ Partial Class ScreenRegister
         ' Cb_Gender
         ' 
         Cb_Gender.BackColor = Color.LightSteelBlue
+        Cb_Gender.Cursor = Cursors.Hand
         Cb_Gender.Font = New Font("Baloo", 11.999999F)
         Cb_Gender.ForeColor = SystemColors.Window
         Cb_Gender.FormattingEnabled = True
@@ -185,6 +176,7 @@ Partial Class ScreenRegister
         ' Tb_Address
         ' 
         Tb_Address.BackColor = Color.LightSteelBlue
+        Tb_Address.Cursor = Cursors.Hand
         Tb_Address.Font = New Font("Baloo", 11.999999F)
         Tb_Address.ForeColor = SystemColors.Window
         Tb_Address.Location = New Point(167, 332)
@@ -207,6 +199,7 @@ Partial Class ScreenRegister
         ' Cb_BloodType
         ' 
         Cb_BloodType.BackColor = Color.LightSteelBlue
+        Cb_BloodType.Cursor = Cursors.Hand
         Cb_BloodType.Font = New Font("Baloo", 11.999999F)
         Cb_BloodType.ForeColor = SystemColors.Window
         Cb_BloodType.FormattingEnabled = True
@@ -243,6 +236,7 @@ Partial Class ScreenRegister
         ' Tb_WhatAllergy
         ' 
         Tb_WhatAllergy.BackColor = Color.LightSteelBlue
+        Tb_WhatAllergy.Cursor = Cursors.Hand
         Tb_WhatAllergy.Enabled = False
         Tb_WhatAllergy.Font = New Font("Baloo", 11.999999F)
         Tb_WhatAllergy.ForeColor = SystemColors.Window
@@ -266,6 +260,7 @@ Partial Class ScreenRegister
         ' Tb_TutorName
         ' 
         Tb_TutorName.BackColor = Color.LightSteelBlue
+        Tb_TutorName.Cursor = Cursors.Hand
         Tb_TutorName.Font = New Font("Baloo", 11.999999F)
         Tb_TutorName.ForeColor = SystemColors.Window
         Tb_TutorName.Location = New Point(167, 489)
@@ -303,6 +298,7 @@ Partial Class ScreenRegister
         ' 
         Ckb_Allergic.BackColor = Color.LightSteelBlue
         Ckb_Allergic.CheckAlign = ContentAlignment.MiddleCenter
+        Ckb_Allergic.Cursor = Cursors.Hand
         Ckb_Allergic.Font = New Font("Baloo", 11.999999F)
         Ckb_Allergic.ForeColor = SystemColors.Window
         Ckb_Allergic.Location = New Point(330, 411)
@@ -342,6 +338,21 @@ Partial Class ScreenRegister
         Label5.Text = "Semanas"
         Label5.TextAlign = ContentAlignment.MiddleLeft
         ' 
+        ' Cb_WeeksAge
+        ' 
+        Cb_WeeksAge.AutoCompleteSource = AutoCompleteSource.ListItems
+        Cb_WeeksAge.BackColor = Color.LightSteelBlue
+        Cb_WeeksAge.Cursor = Cursors.Hand
+        Cb_WeeksAge.DropDownStyle = ComboBoxStyle.DropDownList
+        Cb_WeeksAge.Font = New Font("Baloo", 11.999999F)
+        Cb_WeeksAge.ForeColor = SystemColors.Window
+        Cb_WeeksAge.FormattingEnabled = True
+        Cb_WeeksAge.Items.AddRange(New Object() {"Masculino", "Femenino"})
+        Cb_WeeksAge.Location = New Point(450, 254)
+        Cb_WeeksAge.Name = "Cb_WeeksAge"
+        Cb_WeeksAge.Size = New Size(77, 33)
+        Cb_WeeksAge.TabIndex = 47
+        ' 
         ' ScreenRegister
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -349,6 +360,7 @@ Partial Class ScreenRegister
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
+        Controls.Add(Cb_WeeksAge)
         Controls.Add(Dtp_DayBirth)
         Controls.Add(Ckb_Allergic)
         Controls.Add(Label5)
@@ -366,7 +378,6 @@ Partial Class ScreenRegister
         Controls.Add(Tb_Address)
         Controls.Add(Cb_Gender)
         Controls.Add(Label4)
-        Controls.Add(Nud_WeeksAge)
         Controls.Add(Label3)
         Controls.Add(Label10)
         Controls.Add(Tb_Name)
@@ -379,7 +390,6 @@ Partial Class ScreenRegister
         Text = "Kid Stimulation Register"
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
-        CType(Nud_WeeksAge, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -390,7 +400,6 @@ Partial Class ScreenRegister
     Friend WithEvents Tb_Name As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents Nud_WeeksAge As NumericUpDown
     Friend WithEvents Label4 As Label
     Friend WithEvents Cb_Gender As ComboBox
     Friend WithEvents Tb_Address As TextBox
@@ -407,4 +416,5 @@ Partial Class ScreenRegister
     Friend WithEvents Label8 As Label
     Private WithEvents Dtp_DayBirth As DateTimePicker
     Friend WithEvents Label5 As Label
+    Friend WithEvents Cb_WeeksAge As ComboBox
 End Class

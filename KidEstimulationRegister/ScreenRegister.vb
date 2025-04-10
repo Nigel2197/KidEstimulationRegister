@@ -1,12 +1,24 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
-Imports DataAccess
+﻿Imports DataAccess
 
 Public Class ScreenRegister
+    Dim dt As DataTable
+
+    ''Variables para las consultas a las bases de datos
+    Dim query As String
+    Dim where As New List(Of String)()
+    Dim parameters As New Dictionary(Of String, Object)()
+    Dim clauses As String
+
+    ' Variables para el calculo de edad
     Dim today As Date = Date.Today 'Establece la fecha del dia actual
+    Dim selectedDate As Date
+    Dim totalDays As Double
+    Dim weeksPassed As Integer
 
     Private Sub ScreenRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dtp_DayBirth.MaxDate = today
-        Dtp_DayBirth.MinDate = today.AddYears(-5)
+        GetListWeeksAge()
+        LoadListWeeksAge()
+        LoadCalendar()
     End Sub
 
     Private Sub btn_Save_Click(sender As Object, e As EventArgs) Handles btn_Save.Click
@@ -43,27 +55,76 @@ Public Class ScreenRegister
             Return
         End If
 
-
     End Sub
 
     Private Sub Dtp_DayBirth_ValueChanged(sender As Object, e As EventArgs) Handles Dtp_DayBirth.ValueChanged
-        Dim selectedDate As Date = Dtp_DayBirth.Value
-        Dim totalDays As Double = (today - selectedDate).TotalDays
-        Dim weeksPassed As Integer = Math.Floor(totalDays / 7)
 
-        Nud_WeeksAge.Value = weeksPassed
+        ' Si el combobox fue seleccionado avanza con la busqueda
+        If Dtp_DayBirth.Focused Then
+            Dtp_DayBirth.Format = DateTimePickerFormat.Custom
+            Dtp_DayBirth.CustomFormat = "dd/MM/yyyy" ' Cambia al formato dia/mes/año
+            GetWeeksAgeKid()
+        Else
+            Exit Sub
+        End If
 
-        Dtp_DayBirth.Format = DateTimePickerFormat.Custom
-        Dtp_DayBirth.CustomFormat = "dd/MM/yyyy" ' Cambia al formato dia/mes/año
+    End Sub
+
+    Private Sub Ckb_Allergic_CheckedChanged(sender As Object, e As EventArgs) Handles Ckb_Allergic.CheckedChanged
+
+        If Ckb_Allergic.Checked Then
+            Tb_WhatAllergy.Enabled = True
+        Else
+            Tb_WhatAllergy.Enabled = False
+        End If
+
+    End Sub
+
+    Private Sub GetListWeeksAge()
+        query = "SELECT WeeksAge FROM Ages"
+        dt = GetData(query)
+    End Sub
+
+    Private Sub LoadListWeeksAge()
+        Cb_WeeksAge.DataSource = dt
+        Cb_WeeksAge.DisplayMember = "WeeksAge"
+        Cb_WeeksAge.SelectedIndex = -1
+    End Sub
+
+    Private Sub LoadCalendar()
+        Dtp_DayBirth.MaxDate = today
+        Dtp_DayBirth.MinDate = today.AddYears(-5)
+    End Sub
+
+    Private Sub GetWeeksAgeKid()
+        selectedDate = Dtp_DayBirth.Value
+        totalDays = (today - selectedDate).TotalDays ' Trae el total de dias de nacimiento
+        weeksPassed = Math.Floor(totalDays / 7) ' Calcula las semanas de nacimiento
+
+        'query = "SELECT WeeksAge FROM Ages "
+        'where.Add("WHERE WeeksAge <= @weeksage ")
+        'If parameters.ContainsKey("@weeksage") Then
+        '    parameters("@weeksage") = weeksPassed ' Actualiza el valor existente
+        'Else
+        '    parameters.Add("@weeksage", weeksPassed) ' Agrega una nueva entrada
+        'End If
+        'clauses = ("ORDER BY WeeksAge DESC LIMIT 1;")
+        'query &= String.Join(" ", where) & clauses
+
+        Cb_WeeksAge.Text = ExecuteScalar("SELECT WeeksAge FROM Ages WHERE WeeksAge <= @weeksage ORDER BY WeeksAge DESC LIMIT 1",
+                                           New Dictionary(Of String, Object) From {{"@weeksage", weeksPassed}})
     End Sub
 
     Private Sub KidRegister()
-        Dim success As Boolean = WriteData("INSERT INTO Kids (Name, Gender, DayBirth, WeeksAge, Address, BloodType, Allergic, WhatAllergy, TutorName, Status)
-                                            VALUES (@name, @gender, @daybirth, @weeksage, @address, @bloodtype, @allergic, @whatallergy, @tutorname, @status)",
+        Dim agedID As Integer = ExecuteScalar("SELECT ID FROM Ages WHERE WeeksAge = @weeksage",
+                                           New Dictionary(Of String, Object) From {{"@weeksage", Cb_WeeksAge.Text}})
+
+        Dim success As Boolean = WriteData("INSERT INTO Kids (Name, Gender, DayBirth, Age_ID, Address, BloodType, Allergic, WhatAllergy, TutorName, Status)
+                                            VALUES (@name, @gender, @daybirth, @ageid, @address, @bloodtype, @allergic, @whatallergy, @tutorname, @status)",
                                            New Dictionary(Of String, Object) From {{"@name", Tb_Name.Text},
                                                                                    {"@gender", Cb_Gender.Text},
                                                                                    {"@daybirth", Dtp_DayBirth.Text},
-                                                                                   {"@weeksage", Nud_WeeksAge.Text},
+                                                                                   {"@ageid", agedID},
                                                                                    {"@address", Tb_Address.Text},
                                                                                    {"@bloodtype", Cb_BloodType.Text},
                                                                                    {"@allergic", Ckb_Allergic.Checked},
@@ -79,11 +140,4 @@ Public Class ScreenRegister
 
     End Sub
 
-    Private Sub Ckb_Allergic_CheckedChanged(sender As Object, e As EventArgs) Handles Ckb_Allergic.CheckedChanged
-        If Ckb_Allergic.Checked Then
-            Tb_WhatAllergy.Enabled = True
-        Else
-            Tb_WhatAllergy.Enabled = False
-        End If
-    End Sub
 End Class
