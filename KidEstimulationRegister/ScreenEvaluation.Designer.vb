@@ -23,9 +23,9 @@ Partial Class ScreenEvaluation
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Label1 = New Label()
-        Tb_Name = New TextBox()
         Label2 = New Label()
-        btn_Evaluation = New Button()
+        Btn_Evaluation = New Button()
+        Cb_Name = New ComboBox()
         SuspendLayout()
         ' 
         ' Label1
@@ -40,16 +40,6 @@ Partial Class ScreenEvaluation
         Label1.TabIndex = 1
         Label1.Text = "Evaluación"
         ' 
-        ' Tb_Name
-        ' 
-        Tb_Name.BackColor = Color.LightSteelBlue
-        Tb_Name.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Tb_Name.ForeColor = SystemColors.Window
-        Tb_Name.Location = New Point(216, 296)
-        Tb_Name.Name = "Tb_Name"
-        Tb_Name.Size = New Size(358, 33)
-        Tb_Name.TabIndex = 4
-        ' 
         ' Label2
         ' 
         Label2.AutoSize = True
@@ -62,18 +52,34 @@ Partial Class ScreenEvaluation
         Label2.TabIndex = 3
         Label2.Text = "Introduzca el nombre del infante"
         ' 
-        ' btn_Evaluation
+        ' Btn_Evaluation
         ' 
-        btn_Evaluation.BackColor = Color.SteelBlue
-        btn_Evaluation.Cursor = Cursors.Hand
-        btn_Evaluation.Font = New Font("Baloo", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btn_Evaluation.ForeColor = Color.White
-        btn_Evaluation.Location = New Point(320, 374)
-        btn_Evaluation.Name = "btn_Evaluation"
-        btn_Evaluation.Size = New Size(160, 60)
-        btn_Evaluation.TabIndex = 5
-        btn_Evaluation.Text = "Evaluar"
-        btn_Evaluation.UseVisualStyleBackColor = False
+        Btn_Evaluation.BackColor = Color.SteelBlue
+        Btn_Evaluation.Cursor = Cursors.Hand
+        Btn_Evaluation.Font = New Font("Baloo", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Btn_Evaluation.ForeColor = Color.White
+        Btn_Evaluation.Location = New Point(320, 374)
+        Btn_Evaluation.Name = "Btn_Evaluation"
+        Btn_Evaluation.Size = New Size(160, 60)
+        Btn_Evaluation.TabIndex = 5
+        Btn_Evaluation.Text = "Evaluar"
+        Btn_Evaluation.UseVisualStyleBackColor = False
+        ' 
+        ' Cb_Name
+        ' 
+        Cb_Name.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Cb_Name.AutoCompleteMode = AutoCompleteMode.Suggest
+        Cb_Name.AutoCompleteSource = AutoCompleteSource.ListItems
+        Cb_Name.BackColor = Color.LightSteelBlue
+        Cb_Name.Cursor = Cursors.Hand
+        Cb_Name.DrawMode = DrawMode.OwnerDrawVariable
+        Cb_Name.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Cb_Name.ForeColor = SystemColors.Window
+        Cb_Name.FormattingEnabled = True
+        Cb_Name.Location = New Point(214, 296)
+        Cb_Name.Name = "Cb_Name"
+        Cb_Name.Size = New Size(358, 34)
+        Cb_Name.TabIndex = 6
         ' 
         ' ScreenEvaluation
         ' 
@@ -82,10 +88,11 @@ Partial Class ScreenEvaluation
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
-        Controls.Add(btn_Evaluation)
-        Controls.Add(Tb_Name)
+        Controls.Add(Cb_Name)
+        Controls.Add(Btn_Evaluation)
         Controls.Add(Label2)
         Controls.Add(Label1)
+        MaximizeBox = False
         Name = "ScreenEvaluation"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Kid Stimulation Register"
@@ -94,7 +101,7 @@ Partial Class ScreenEvaluation
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents Tb_Name As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents btn_Evaluation As Button
+    Friend WithEvents Btn_Evaluation As Button
+    Friend WithEvents Cb_Name As ComboBox
 End Class

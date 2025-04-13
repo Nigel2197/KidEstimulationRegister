@@ -116,7 +116,7 @@ Public Class ScreenRegister
     End Sub
 
     Private Sub KidRegister()
-        Dim agedID As Integer = ExecuteScalar("SELECT ID FROM Ages WHERE WeeksAge = @weeksage",
+        Dim ageID As Integer = ExecuteScalar("SELECT ID FROM Ages WHERE WeeksAge = @weeksage",
                                            New Dictionary(Of String, Object) From {{"@weeksage", Cb_WeeksAge.Text}})
 
         Dim success As Boolean = WriteData("INSERT INTO Kids (Name, Gender, DayBirth, Age_ID, Address, BloodType, Allergic, WhatAllergy, TutorName, Status)
@@ -124,7 +124,7 @@ Public Class ScreenRegister
                                            New Dictionary(Of String, Object) From {{"@name", Tb_Name.Text},
                                                                                    {"@gender", Cb_Gender.Text},
                                                                                    {"@daybirth", Dtp_DayBirth.Text},
-                                                                                   {"@ageid", agedID},
+                                                                                   {"@ageid", ageID},
                                                                                    {"@address", Tb_Address.Text},
                                                                                    {"@bloodtype", Cb_BloodType.Text},
                                                                                    {"@allergic", Ckb_Allergic.Checked},

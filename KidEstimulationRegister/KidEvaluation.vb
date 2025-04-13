@@ -1,14 +1,96 @@
-﻿Imports System.Data
-Imports System.IO
-Imports System.Windows.Forms
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+﻿Imports DataAccess
 
 Public Class KidEvaluation
-    Private Sub OneMonth_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim MesesEdad As Integer = 1
+    Private NameKid As String
+    Private KidID As Integer
+    Private AgeID As Integer
+    Private BehaviourID As Integer
+
+    Private Sub KidEvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        FindKidData()
+        LoadKidData()
+        LoadFormAdaptive()
     End Sub
 
-    Private Sub cb_Conducta_DrawItem(sender As Object, e As DrawItemEventArgs) Handles cb_Conducta.DrawItem
+    Public Sub New(Name As String)
+        InitializeComponent()
+        NameKid = Name
+    End Sub
+
+    Private Sub Cb_Behavior_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Behavior.SelectedIndexChanged
+        Select Case Cb_Behavior.SelectedIndex
+            Case 1
+                LoadFormAdaptive()
+        End Select
+    End Sub
+
+    Private Sub FindKidData()
+        query = "SELECT K.ID AS Kid_ID, A.ID AS Age_ID, A.WeeksAge, A.Age, K.BloodType, K.WhatAllergy
+                 FROM Kids K
+                 JOIN Ages A ON K.Age_ID = A.ID "
+
+        where.Add("Name = @name")
+        parameters.Add("@name", NameKid)
+
+        query &= "WHERE " & String.Join("", where)
+
+        dt = GetData(query, parameters)
+    End Sub
+
+    Private Sub LoadKidData()
+        If dt.Rows.Count > 0 Then
+            Lbl_Age.Text = dt.Rows(0)("Age").ToString().ToUpper
+            Lbl_WeeksAge.Text = dt.Rows(0)("WeeksAge").ToString() & " Semanas"
+            Lbl_Allergy.Text = "Es alérgico a: " & dt.Rows(0)("WhatAllergy").ToString()
+            Lbl_BloodType.Text = dt.Rows(0)("BloodType").ToString()
+            Lbl_Name.Text = NameKid
+            KidID = dt.Rows(0)("Kid_ID")
+            AgeID = dt.Rows(0)("Age_ID")
+        Else
+            MessageBox.Show("Error al consultar los datos del infante")
+        End If
+    End Sub
+
+    Private Sub FindBehaviour()
+
+    Private Sub LoadFormAdaptive()
+
+
+        Dim result As Object = ExecuteScalar("SELECT 1 FROM Registers WHERE Kid_ID = @kidid AND AgeID = @ageid",
+                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
+                                                                                   {"@ageid", AgeID}})
+
+        If result IsNot Nothing Then
+
+        Else
+            query = "SELECT ID, Description FROM Behaviors "
+
+            where.Add("Area_ID = @areaid")
+            parameters.Add("@areaid", 1)
+
+            where.Add("Age_ID = @ageid")
+            parameters.Add("@ageid", AgeID)
+
+            query &= "WHERE " & String.Join(" AND ", where)
+
+            dt = GetData(query, parameters)
+        End If
+
+
+    End Sub
+
+    Private Sub LoadLabelForm()
+        Select Case Cb_Behavior.SelectedIndex
+            Case 1
+                LoadFormAdaptive()
+        End Select
+    End Sub
+
+    Private Sub LoadStatusForm()
+
+    End Sub
+
+    Private Sub cb_Conducta_DrawItem(sender As Object, e As DrawItemEventArgs) Handles Cb_Behavior.DrawItem
         If e.Index < 0 Then Exit Sub ' Evita errores si el ComboBox está vacío
 
         ' Definir colores
@@ -26,8 +108,8 @@ Public Class KidEvaluation
         End Using
 
         ' Obtener el texto y calcular su posición para centrarlo
-        Dim text As String = cb_Conducta.Items(e.Index).ToString()
-        Dim textFont As Font = cb_Conducta.Font
+        Dim text As String = Cb_Behavior.Items(e.Index).ToString()
+        Dim textFont As Font = Cb_Behavior.Font
         Dim textSize As SizeF = e.Graphics.MeasureString(text, textFont)
 
         ' Calcular la posición correcta para cada ítem
@@ -42,8 +124,4 @@ Public Class KidEvaluation
         e.DrawFocusRectangle() ' Dibuja el rectángulo de selección si es necesario
     End Sub
 
-    Private Sub cb_Conducta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cb_Conducta.SelectedIndexChanged
-        Me.ActiveControl = Nothing ' Quita el foco del ComboBox
-
-    End Sub
 End Class

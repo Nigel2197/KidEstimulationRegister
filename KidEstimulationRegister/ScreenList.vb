@@ -1,17 +1,19 @@
 ﻿Imports DataAccess
 
 Public Class ScreenList
-    Dim dt As DataTable
+    'Dim dt As DataTable
 
-    ''Variables para las consultas a las bases de datos
-    Dim query As String
-    Dim where As New List(Of String)()
-    Dim parameters As New Dictionary(Of String, Object)()
-    Dim clauses As String
+    '''Variables para las consultas a las bases de datos
+    'Dim query As String
+    'Dim where As New List(Of String)()
+    'Dim parameters As New Dictionary(Of String, Object)()
+    'Dim clauses As String
 
     Private Sub ScreenList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetListKidName()
         LoadListKidName()
+        GetListWeeksAge()
+        LoadListWeeksAge()
         'Cb_Name.Focus()
     End Sub
 
@@ -39,8 +41,24 @@ Public Class ScreenList
         Cb_Name.SelectedIndex = -1
     End Sub
 
+    Private Sub GetListWeeksAge()
+        query = "SELECT WeeksAge FROM Ages"
+        dt = GetData(query)
+    End Sub
+
+    Private Sub LoadListWeeksAge()
+        Cb_WeeksAge.DataSource = dt
+        Cb_WeeksAge.DisplayMember = "WeeksAge"
+        Cb_WeeksAge.SelectedIndex = -1
+    End Sub
+
     Private Sub FindKid()
-        query = "SELECT Name AS Nombre, Gender AS Sexo, WeeksAge AS [Edad (Semanas)], Address AS Dirección FROM Kids"
+        query = "SELECT Name AS Nombre, Gender AS Sexo, A.WeeksAge AS Semanas, A.Age AS Años, Address AS Dirección, BloodType AS [Tipo de Sangre] 
+                 FROM Kids K
+                 JOIN Ages A ON K.Age_ID = A.ID "
+
+        where = New List(Of String)() ' Se vacian los filtros utilizados
+        parameters = New Dictionary(Of String, Object)() ' Se vacian los parametros utilizados
 
         ' Verifica si el parámetro @name tiene un valor y añade la condición correspondiente
         If Not String.IsNullOrEmpty(Cb_Name.Text) Then
@@ -49,9 +67,9 @@ Public Class ScreenList
         End If
 
         ' Verifica si el parámetro @weeksage tiene un valor mayor a 0 y añade la condición correspondiente
-        If Nud_WeeksAge.Value > 0 Then
+        If Not String.IsNullOrEmpty(Cb_WeeksAge.Text) Then
             where.Add("WeeksAge = @weeksage")
-            parameters.Add("@weeksage", Nud_WeeksAge.Value)
+            parameters.Add("@weeksage", Cb_WeeksAge.Text)
         End If
 
         ' Verifica si el parámetro @gender tiene un valor y añade la condición correspondiente
@@ -61,7 +79,7 @@ Public Class ScreenList
         End If
 
         If where.Count > 0 Then
-            query &= " WHERE " & String.Join(" AND ", where)
+            query &= "WHERE " & String.Join(" AND ", where)
         End If
 
         'dt = GetData("SELECT Name AS Nombre, Gender AS Sexo, WeeksAge AS [Edad (Semanas)], Address AS Dirección FROM Kids
@@ -75,11 +93,23 @@ Public Class ScreenList
         dt = GetData(query, parameters)
 
         If dt IsNot Nothing Then
-            Dgv_KidList.DataSource = Nothing
-            Dgv_KidList.DataSource = dt
+            LoadDataListKid()
         Else
-            MessageBox.Show("Error al consultar la vista.")
+            MessageBox.Show("Error al consultar la vista")
         End If
+    End Sub
+
+    Private Sub LoadDataListKid()
+        Dgv_KidList.DataSource = Nothing
+
+        If dt IsNot Nothing Then
+            MessageBox.Show("No se encontraron resultados")
+        Else
+
+            Dgv_KidList.DataSource = dt
+        End If
+
+
     End Sub
 
 
@@ -112,6 +142,11 @@ Public Class ScreenList
         End Using
 
         e.DrawFocusRectangle()
+    End Sub
+
+    Private Sub Dgv_KidList_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles Dgv_KidList.DataBindingComplete
+        'Dgv_KidList.DefaultCellStyle.BackColor = Color.White
+        'Dgv_KidList.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSteelBlue
     End Sub
 
     'Private Sub Cb_Name_KeyDown(sender As Object, e As KeyEventArgs) Handles Cb_Name.KeyDown

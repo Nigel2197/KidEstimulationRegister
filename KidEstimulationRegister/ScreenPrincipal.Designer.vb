@@ -74,7 +74,7 @@ Partial Class ScreenPrincipal
         Label1.AutoSize = True
         Label1.BackColor = Color.Transparent
         Label1.Font = New Font("Baloo", 26.2499962F, FontStyle.Bold)
-        Label1.ForeColor = Color.Plum
+        Label1.ForeColor = Color.Orchid
         Label1.Location = New Point(225, 183)
         Label1.Name = "Label1"
         Label1.Size = New Size(370, 55)
@@ -134,6 +134,7 @@ Partial Class ScreenPrincipal
         Controls.Add(Btn_ScreenRegister)
         Controls.Add(Btn_ScreenEvaluation)
         Controls.Add(Label2)
+        MaximizeBox = False
         Name = "ScreenPrincipal"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Kid Stimulation Register"
