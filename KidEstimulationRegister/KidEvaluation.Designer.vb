@@ -22,12 +22,13 @@ Partial Class KidEvaluation
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dgv_Adaptative = New DataGridView()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Label1 = New Label()
         Lbl_WeeksAge = New Label()
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
-        Cb_Behavior = New ComboBox()
+        Cb_Area = New ComboBox()
         Label13 = New Label()
         Label11 = New Label()
         Label15 = New Label()
@@ -37,17 +38,11 @@ Partial Class KidEvaluation
         Lbl_Name = New Label()
         Lbl_Allergy = New Label()
         Lbl_BloodType = New Label()
-        CType(Dgv_Adaptative, ComponentModel.ISupportInitialize).BeginInit()
+        Dgv_Adaptative = New DataGridView()
+        Btn_Save = New Button()
         TableLayoutPanel1.SuspendLayout()
+        CType(Dgv_Adaptative, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
-        ' 
-        ' Dgv_Adaptative
-        ' 
-        Dgv_Adaptative.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Dgv_Adaptative.Location = New Point(85, 188)
-        Dgv_Adaptative.Name = "Dgv_Adaptative"
-        Dgv_Adaptative.Size = New Size(666, 347)
-        Dgv_Adaptative.TabIndex = 78
         ' 
         ' Label1
         ' 
@@ -96,21 +91,21 @@ Partial Class KidEvaluation
         Label8.Text = "Escala de Desarrollo Psicomotor"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Cb_Behavior
+        ' Cb_Area
         ' 
-        Cb_Behavior.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
-        Cb_Behavior.BackColor = Color.AliceBlue
-        Cb_Behavior.Cursor = Cursors.Hand
-        Cb_Behavior.DrawMode = DrawMode.OwnerDrawVariable
-        Cb_Behavior.DropDownStyle = ComboBoxStyle.DropDownList
-        Cb_Behavior.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Cb_Behavior.ForeColor = Color.SkyBlue
-        Cb_Behavior.FormattingEnabled = True
-        Cb_Behavior.Items.AddRange(New Object() {"Adaptativa", "Motriz Gruesa", "Motriz Delgada"})
-        Cb_Behavior.Location = New Point(85, 149)
-        Cb_Behavior.Name = "Cb_Behavior"
-        Cb_Behavior.Size = New Size(327, 34)
-        Cb_Behavior.TabIndex = 69
+        Cb_Area.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        Cb_Area.BackColor = Color.AliceBlue
+        Cb_Area.Cursor = Cursors.Hand
+        Cb_Area.DrawMode = DrawMode.OwnerDrawVariable
+        Cb_Area.DropDownStyle = ComboBoxStyle.DropDownList
+        Cb_Area.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Cb_Area.ForeColor = Color.SkyBlue
+        Cb_Area.FormattingEnabled = True
+        Cb_Area.Items.AddRange(New Object() {"Adaptativa", "Motriz Gruesa", "Motriz Fina", "Lenguaje", "Personal Social"})
+        Cb_Area.Location = New Point(85, 149)
+        Cb_Area.Name = "Cb_Area"
+        Cb_Area.Size = New Size(327, 34)
+        Cb_Area.TabIndex = 69
         ' 
         ' Label13
         ' 
@@ -174,7 +169,7 @@ Partial Class KidEvaluation
         Lbl_Name.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom
         Lbl_Name.Font = New Font("Baloo", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Lbl_Name.ForeColor = Color.SkyBlue
-        Lbl_Name.Location = New Point(131, 673)
+        Lbl_Name.Location = New Point(37, 674)
         Lbl_Name.Name = "Lbl_Name"
         Lbl_Name.Size = New Size(317, 37)
         Lbl_Name.TabIndex = 79
@@ -186,7 +181,7 @@ Partial Class KidEvaluation
         Lbl_Allergy.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom
         Lbl_Allergy.Font = New Font("Baloo", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Lbl_Allergy.ForeColor = Color.SkyBlue
-        Lbl_Allergy.Location = New Point(418, 673)
+        Lbl_Allergy.Location = New Point(325, 675)
         Lbl_Allergy.Name = "Lbl_Allergy"
         Lbl_Allergy.Size = New Size(317, 37)
         Lbl_Allergy.TabIndex = 80
@@ -205,6 +200,53 @@ Partial Class KidEvaluation
         Lbl_BloodType.Text = "A+"
         Lbl_BloodType.TextAlign = ContentAlignment.MiddleCenter
         ' 
+        ' Dgv_Adaptative
+        ' 
+        Dgv_Adaptative.AllowUserToAddRows = False
+        Dgv_Adaptative.AllowUserToDeleteRows = False
+        Dgv_Adaptative.AllowUserToOrderColumns = True
+        Dgv_Adaptative.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        Dgv_Adaptative.BackgroundColor = Color.SlateGray
+        Dgv_Adaptative.BorderStyle = BorderStyle.Fixed3D
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = Color.LightSkyBlue
+        DataGridViewCellStyle1.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = SystemColors.Window
+        DataGridViewCellStyle1.SelectionBackColor = Color.LightSkyBlue
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.Window
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+        Dgv_Adaptative.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Dgv_Adaptative.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = SystemColors.Window
+        DataGridViewCellStyle2.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
+        Dgv_Adaptative.DefaultCellStyle = DataGridViewCellStyle2
+        Dgv_Adaptative.EnableHeadersVisualStyles = False
+        Dgv_Adaptative.GridColor = Color.Black
+        Dgv_Adaptative.Location = New Point(85, 188)
+        Dgv_Adaptative.Name = "Dgv_Adaptative"
+        Dgv_Adaptative.RowHeadersVisible = False
+        Dgv_Adaptative.ShowEditingIcon = False
+        Dgv_Adaptative.Size = New Size(666, 347)
+        Dgv_Adaptative.TabIndex = 82
+        ' 
+        ' Btn_Save
+        ' 
+        Btn_Save.BackgroundImage = My.Resources.Resources.guardar
+        Btn_Save.BackgroundImageLayout = ImageLayout.Stretch
+        Btn_Save.Cursor = Cursors.Hand
+        Btn_Save.FlatStyle = FlatStyle.Flat
+        Btn_Save.ForeColor = SystemColors.ControlText
+        Btn_Save.Location = New Point(683, 678)
+        Btn_Save.Name = "Btn_Save"
+        Btn_Save.Size = New Size(97, 35)
+        Btn_Save.TabIndex = 83
+        Btn_Save.UseVisualStyleBackColor = True
+        ' 
         ' KidEvaluation
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -212,14 +254,15 @@ Partial Class KidEvaluation
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
+        Controls.Add(Btn_Save)
+        Controls.Add(Dgv_Adaptative)
         Controls.Add(Lbl_BloodType)
         Controls.Add(Lbl_Allergy)
         Controls.Add(Lbl_Name)
-        Controls.Add(Dgv_Adaptative)
         Controls.Add(Label1)
         Controls.Add(Lbl_WeeksAge)
         Controls.Add(TableLayoutPanel1)
-        Controls.Add(Cb_Behavior)
+        Controls.Add(Cb_Area)
         Controls.Add(Label13)
         Controls.Add(Label11)
         Controls.Add(Label15)
@@ -229,18 +272,16 @@ Partial Class KidEvaluation
         Name = "KidEvaluation"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Kid Stimulation Register"
-        CType(Dgv_Adaptative, ComponentModel.ISupportInitialize).EndInit()
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
+        CType(Dgv_Adaptative, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
-
-    Friend WithEvents Dgv_Adaptative As DataGridView
     Friend WithEvents Label1 As Label
     Friend WithEvents Lbl_WeeksAge As Label
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Label8 As Label
-    Friend WithEvents Cb_Behavior As ComboBox
+    Friend WithEvents Cb_Area As ComboBox
     Friend WithEvents Label13 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label15 As Label
@@ -250,4 +291,6 @@ Partial Class KidEvaluation
     Friend WithEvents Lbl_Name As Label
     Friend WithEvents Lbl_Allergy As Label
     Friend WithEvents Lbl_BloodType As Label
+    Friend WithEvents Dgv_Adaptative As DataGridView
+    Friend WithEvents Btn_Save As Button
 End Class

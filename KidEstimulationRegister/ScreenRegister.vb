@@ -23,7 +23,7 @@ Public Class ScreenRegister
 
     Private Sub btn_Save_Click(sender As Object, e As EventArgs) Handles btn_Save.Click
         Dim validation As Boolean = True
-        Dim result As DialogResult
+        Dim confirmation As DialogResult
 
         If String.IsNullOrWhiteSpace(Tb_Name.Text) Then
             MessageBox.Show("Falta indicar el nombre del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -44,8 +44,8 @@ Public Class ScreenRegister
         End If
 
         If validation Then
-            result = MessageBox.Show("¿Estás seguro de que deseas registrar los datos del infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If result = DialogResult.Yes Then
+            confirmation = MessageBox.Show("¿Estás seguro de que deseas registrar los datos del infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If confirmation = DialogResult.Yes Then
                 KidRegister()
             Else
                 Return

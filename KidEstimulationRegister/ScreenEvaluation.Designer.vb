@@ -58,7 +58,7 @@ Partial Class ScreenEvaluation
         Btn_Evaluation.Cursor = Cursors.Hand
         Btn_Evaluation.Font = New Font("Baloo", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Btn_Evaluation.ForeColor = Color.White
-        Btn_Evaluation.Location = New Point(320, 374)
+        Btn_Evaluation.Location = New Point(315, 374)
         Btn_Evaluation.Name = "Btn_Evaluation"
         Btn_Evaluation.Size = New Size(160, 60)
         Btn_Evaluation.TabIndex = 5

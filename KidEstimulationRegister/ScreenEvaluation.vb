@@ -17,9 +17,13 @@ Public Class ScreenEvaluation
     End Sub
 
     Private Sub Btn_Evaluation_Click(sender As Object, e As EventArgs) Handles Btn_Evaluation.Click
-        Dim frm As New KidEvaluation(Cb_Name.Text) ' Pasa el valor directamente a la pantalla de Evaluacion de Infante
-        Hide()
-        frm.Show()
+        If Not String.IsNullOrEmpty(Cb_Name.Text) Then
+            Dim frm As New KidEvaluation(Cb_Name.Text) ' Pasa el valor directamente a la pantalla de Evaluacion de Infante
+            Hide()
+            frm.Show()
+        Else
+            MessageBox.Show("Favor seleccionar el Infante que va a evaluar")
+        End If
     End Sub
 
     Private Sub GetListKidName()
