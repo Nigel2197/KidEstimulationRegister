@@ -6,7 +6,7 @@ Public Class KidEvaluation
     Private KidID As Integer
     Private AgeID As Integer
     Private AreaID As Integer
-
+    Private FoundKidRegister As Boolean
     Private AreaSelection As New HashSet(Of Integer)() ' Almacenar los índices de las areas seleccionadas
 
     Private Sub KidEvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -33,6 +33,19 @@ Public Class KidEvaluation
         Me.ActiveControl = Nothing ' Le quita el focus al ComboBox
     End Sub
 
+    Private Sub Btn_Save_Click(sender As Object, e As EventArgs) Handles Btn_Save.Click
+        Dim confirmation As DialogResult
+
+        confirmation = MessageBox.Show("¿Estás seguro de que deseas registrar las conductas realizadas por el infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            KidEvaluationRegister()
+        Else
+            Return
+        End If
+
+    End Sub
+
     Private Sub FindKidData() ' Busca los datos personales del infante
         where = New List(Of String)() ' Se vacian los filtros utilizados
         parameters = New Dictionary(Of String, Object)() ' Se vacian los parametros utilizados
@@ -52,7 +65,6 @@ Public Class KidEvaluation
     Private Sub LoadKidData() ' Muestra en pantalla los datos personales del infante
         If dt.Rows.Count > 0 Then
             Lbl_Age.Text = dt.Rows(0)("Age").ToString().ToUpper
-            Lbl_WeeksAge.Text = dt.Rows(0)("WeeksAge").ToString() & " Semanas"
             Lbl_Allergy.Text = "Es alérgico a: " & dt.Rows(0)("WhatAllergy").ToString()
             Lbl_BloodType.Text = dt.Rows(0)("BloodType").ToString()
             Lbl_Name.Text = NameKid
@@ -63,17 +75,15 @@ Public Class KidEvaluation
         End If
     End Sub
 
-    Private Sub LoadFormRegister() ' Carga el formulario completo donde se registran las actividades del infante
-        'Select Case Cb_Behavior.SelectedIndex
-        '    Case 1
-        '        If Dgv_Adaptative.DataSource Is Nothing Then
-
-        '        End If
-        'End Select
+    Private Sub LoadFormRegister() ' Carga el formulario completo donde se registran las conductas del infante
 
         FindBehaviors()
         LoadBehaviors()
-        LoadStatusForm()
+
+        If FoundKidRegister Then
+            LoadStatusForm()
+        End If
+
     End Sub
 
     Private Sub FindBehaviors()
@@ -94,21 +104,55 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub LoadBehaviors()
-        Dgv_Adaptative.DataSource = Nothing
         If dt.Rows.Count > 0 Then
-            Dgv_Adaptative.DataSource = dt
-            Dgv_Adaptative.Columns("ID").Visible = False ' Oculta la columna ID
-
-            ' Crear una nueva columna de tipo CheckBox para guardar el registro del infante
+            ' Crear una nueva columna de tipo CheckBox para guardar el indicador de la conducta del infante
             Dim CheckBoxColumn As New DataGridViewCheckBoxColumn()
             CheckBoxColumn.Name = "Indicador"
             CheckBoxColumn.HeaderText = "Indicador"
-            'checkBoxColumn.TrueValue = True
-            'checkBoxColumn.FalseValue = False
-            'checkBoxColumn.ThreeState = False
 
-            ' Insertar la columna en la posición deseada (por ejemplo, al inicio)
-            Dgv_Adaptative.Columns.Insert(2, CheckBoxColumn)
+            Select Case AreaID
+                Case 1
+                    If Dgv_Adaptative.DataSource Is Nothing Then
+                        Dgv_Adaptative.AutoGenerateColumns = False
+                        Dgv_Adaptative.DataSource = dt
+                        'Dgv_Adaptative.Columns("ID").Visible = False ' Oculta la columna ID
+                        'Dgv_Adaptative.Columns.Insert(2, CheckBoxColumn)
+                    End If
+                    Dgv_Adaptative.BringToFront()
+
+                Case 2
+                    If Dgv_GrossMotor.DataSource Is Nothing Then
+                        Dgv_GrossMotor.DataSource = dt
+                        Dgv_GrossMotor.Columns("ID").Visible = False ' Oculta la columna ID
+                        Dgv_GrossMotor.Columns.Insert(2, CheckBoxColumn)
+                    End If
+                    Dgv_GrossMotor.BringToFront()
+
+                Case 3
+                    If Dgv_FineMotor.DataSource Is Nothing Then
+                        Dgv_FineMotor.DataSource = dt
+                        Dgv_FineMotor.Columns("ID").Visible = False ' Oculta la columna ID
+                        Dgv_FineMotor.Columns.Insert(2, CheckBoxColumn)
+                    End If
+                    Dgv_FineMotor.BringToFront()
+
+                Case 4
+                    If Dgv_Language.DataSource Is Nothing Then
+                        Dgv_Language.DataSource = dt
+                        Dgv_Language.Columns("ID").Visible = False ' Oculta la columna ID
+                        Dgv_Language.Columns.Insert(2, CheckBoxColumn)
+                    End If
+                    Dgv_Language.BringToFront()
+
+                Case 5
+                    If Dgv_SocialPerson.DataSource Is Nothing Then
+                        Dgv_SocialPerson.DataSource = dt
+                        Dgv_SocialPerson.Columns("ID").Visible = False ' Oculta la columna ID
+                        Dgv_SocialPerson.Columns.Insert(2, CheckBoxColumn)
+                    End If
+                    Dgv_SocialPerson.BringToFront()
+
+            End Select
         Else
             MessageBox.Show("Error al consultar las conductas del sistema")
         End If
@@ -118,22 +162,14 @@ Public Class KidEvaluation
         Dim result As Object = ExecuteScalar("SELECT 1 FROM Registers WHERE Kid_ID = @kidid AND AgeID = @ageid",
                                            New Dictionary(Of String, Object) From {{"@kidid", KidID},
                                                                                    {"@ageid", AgeID}})
+        If result Then
+            FoundKidRegister = True
+        Else
+            FoundKidRegister = False
+        End If
     End Sub
 
     Private Sub LoadStatusForm()
-
-    End Sub
-
-    Private Sub Btn_Save_Click(sender As Object, e As EventArgs) Handles Btn_Save.Click
-        Dim confirmation As DialogResult
-
-        confirmation = MessageBox.Show("¿Estás seguro de que deseas registrar las conductas realizadas por el infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-        If confirmation = DialogResult.Yes Then
-            KidEvaluationRegister()
-        Else
-            Return
-        End If
 
     End Sub
 
@@ -145,7 +181,7 @@ Public Class KidEvaluation
         If AreaSelection.Count = Cb_Area.Items.Count Then
 
             'If success Then
-            MessageBox.Show("Se registraron las actividades del infante correctamente", "Registro aceptado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Se registraron las conductas del infante correctamente", "Registro aceptado", MessageBoxButtons.OK, MessageBoxIcon.Information)
             'Else
             '    MessageBox.Show("Error al ejecutar procedimiento.", "Registro rechazado", MessageBoxButtons.OK, MessageBoxIcon.Error)
 

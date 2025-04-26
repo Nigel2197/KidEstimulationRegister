@@ -53,7 +53,7 @@ Public Class ScreenList
     End Sub
 
     Private Sub FindKid()
-        query = "SELECT Name AS Nombre, Gender AS Sexo, A.WeeksAge AS Semanas, A.Age AS Años, Address AS Dirección, BloodType AS [Tipo de Sangre] 
+        query = "SELECT Name AS Nombre, Gender AS Sexo, A.Age AS Años, Address AS Direccion, BloodType AS Sangre
                  FROM Kids K
                  JOIN Ages A ON K.Age_ID = A.ID "
 
@@ -102,14 +102,12 @@ Public Class ScreenList
     Private Sub LoadDataListKid()
         Dgv_KidList.DataSource = Nothing
 
-        If dt IsNot Nothing Then
-            MessageBox.Show("No se encontraron resultados")
-        Else
-
+        If dt.Rows.Count > 0 Then
+            Dgv_KidList.AutoGenerateColumns = False
             Dgv_KidList.DataSource = dt
+        Else
+            MessageBox.Show("No se encontraron resultados")
         End If
-
-
     End Sub
 
 

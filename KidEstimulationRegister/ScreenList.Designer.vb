@@ -36,6 +36,11 @@ Partial Class ScreenList
         Btn_FindKids = New Button()
         TableLayoutPanel4 = New TableLayoutPanel()
         Btn_Limpiar = New Button()
+        Nombre = New DataGridViewTextBoxColumn()
+        Sexo = New DataGridViewTextBoxColumn()
+        Años = New DataGridViewTextBoxColumn()
+        Direccion = New DataGridViewTextBoxColumn()
+        Sangre = New DataGridViewTextBoxColumn()
         TableLayoutPanel1.SuspendLayout()
         CType(Dgv_KidList, ComponentModel.ISupportInitialize).BeginInit()
         TableLayoutPanel4.SuspendLayout()
@@ -72,9 +77,8 @@ Partial Class ScreenList
         ' 
         Dgv_KidList.AllowUserToAddRows = False
         Dgv_KidList.AllowUserToDeleteRows = False
-        Dgv_KidList.AllowUserToOrderColumns = True
         Dgv_KidList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-        Dgv_KidList.BackgroundColor = Color.SlateGray
+        Dgv_KidList.BackgroundColor = Color.AliceBlue
         Dgv_KidList.BorderStyle = BorderStyle.Fixed3D
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = Color.LightSkyBlue
@@ -85,6 +89,7 @@ Partial Class ScreenList
         DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
         Dgv_KidList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Dgv_KidList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Dgv_KidList.Columns.AddRange(New DataGridViewColumn() {Nombre, Sexo, Años, Direccion, Sangre})
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = SystemColors.Window
         DataGridViewCellStyle2.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -97,9 +102,10 @@ Partial Class ScreenList
         Dgv_KidList.GridColor = Color.Black
         Dgv_KidList.Location = New Point(3, 3)
         Dgv_KidList.Name = "Dgv_KidList"
+        Dgv_KidList.ReadOnly = True
         Dgv_KidList.RowHeadersVisible = False
         Dgv_KidList.ShowEditingIcon = False
-        Dgv_KidList.Size = New Size(670, 302)
+        Dgv_KidList.Size = New Size(670, 300)
         Dgv_KidList.TabIndex = 5
         ' 
         ' Cb_Gender
@@ -160,7 +166,6 @@ Partial Class ScreenList
         Cb_WeeksAge.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Cb_WeeksAge.ForeColor = SystemColors.Window
         Cb_WeeksAge.FormattingEnabled = True
-        Cb_WeeksAge.Items.AddRange(New Object() {"Masculino", "Femenino"})
         Cb_WeeksAge.Location = New Point(302, 186)
         Cb_WeeksAge.Name = "Cb_WeeksAge"
         Cb_WeeksAge.Size = New Size(77, 29)
@@ -223,6 +228,63 @@ Partial Class ScreenList
         Btn_Limpiar.Text = "Limpiar"
         Btn_Limpiar.UseVisualStyleBackColor = False
         ' 
+        ' Nombre
+        ' 
+        Nombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Nombre.DataPropertyName = "Nombre"
+        Nombre.DividerWidth = 1
+        Nombre.Frozen = True
+        Nombre.HeaderText = "Nombre"
+        Nombre.Name = "Nombre"
+        Nombre.ReadOnly = True
+        Nombre.Width = 200
+        ' 
+        ' Sexo
+        ' 
+        Sexo.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Sexo.DataPropertyName = "Sexo"
+        Sexo.DividerWidth = 1
+        Sexo.Frozen = True
+        Sexo.HeaderText = "Sexo"
+        Sexo.MaxInputLength = 9
+        Sexo.Name = "Sexo"
+        Sexo.ReadOnly = True
+        Sexo.Width = 75
+        ' 
+        ' Años
+        ' 
+        Años.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Años.DataPropertyName = "Años"
+        Años.DividerWidth = 1
+        Años.Frozen = True
+        Años.HeaderText = "Años"
+        Años.Name = "Años"
+        Años.ReadOnly = True
+        Años.Width = 105
+        ' 
+        ' Direccion
+        ' 
+        Direccion.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Direccion.DataPropertyName = "Direccion"
+        Direccion.DividerWidth = 1
+        Direccion.Frozen = True
+        Direccion.HeaderText = "Dirección"
+        Direccion.Name = "Direccion"
+        Direccion.ReadOnly = True
+        Direccion.Width = 230
+        ' 
+        ' Sangre
+        ' 
+        Sangre.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Sangre.DataPropertyName = "Sangre"
+        Sangre.DividerWidth = 1
+        Sangre.Frozen = True
+        Sangre.HeaderText = "Sangre"
+        Sangre.MaxInputLength = 3
+        Sangre.Name = "Sangre"
+        Sangre.ReadOnly = True
+        Sangre.Width = 60
+        ' 
         ' ScreenList
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -263,4 +325,9 @@ Partial Class ScreenList
     Friend WithEvents Cb_Name As ComboBox
     Friend WithEvents Cb_WeeksAge As ComboBox
     Friend WithEvents Btn_Limpiar As Button
+    Friend WithEvents Nombre As DataGridViewTextBoxColumn
+    Friend WithEvents Sexo As DataGridViewTextBoxColumn
+    Friend WithEvents Años As DataGridViewTextBoxColumn
+    Friend WithEvents Direccion As DataGridViewTextBoxColumn
+    Friend WithEvents Sangre As DataGridViewTextBoxColumn
 End Class
