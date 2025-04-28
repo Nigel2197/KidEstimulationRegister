@@ -38,14 +38,11 @@ Partial Class ScreenRegister
         Label7 = New Label()
         Label9 = New Label()
         Tb_WhatAllergy = New TextBox()
-        Label12 = New Label()
-        Tb_TutorName = New TextBox()
         btn_Save = New Button()
         btn_Clean = New Button()
         Ckb_Allergic = New CheckBox()
         Dtp_DayBirth = New DateTimePicker()
-        Label5 = New Label()
-        Cb_WeeksAge = New ComboBox()
+        Tb_Age = New TextBox()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -95,7 +92,7 @@ Partial Class ScreenRegister
         Label11.BackColor = Color.Transparent
         Label11.Font = New Font("Baloo", 14.2499981F)
         Label11.ForeColor = SystemColors.Window
-        Label11.Location = New Point(450, 143)
+        Label11.Location = New Point(450, 170)
         Label11.Name = "Label11"
         Label11.Size = New Size(59, 30)
         Label11.TabIndex = 20
@@ -107,7 +104,7 @@ Partial Class ScreenRegister
         Label2.BackColor = Color.Transparent
         Label2.Font = New Font("Baloo", 14.2499981F)
         Label2.ForeColor = SystemColors.Window
-        Label2.Location = New Point(167, 143)
+        Label2.Location = New Point(167, 170)
         Label2.Name = "Label2"
         Label2.Size = New Size(87, 30)
         Label2.TabIndex = 1
@@ -119,7 +116,7 @@ Partial Class ScreenRegister
         Tb_Name.Cursor = Cursors.Hand
         Tb_Name.Font = New Font("Baloo", 11.999999F)
         Tb_Name.ForeColor = Color.WhiteSmoke
-        Tb_Name.Location = New Point(167, 176)
+        Tb_Name.Location = New Point(167, 203)
         Tb_Name.Name = "Tb_Name"
         Tb_Name.Size = New Size(255, 33)
         Tb_Name.TabIndex = 1
@@ -130,7 +127,7 @@ Partial Class ScreenRegister
         Label10.BackColor = Color.Transparent
         Label10.Font = New Font("Baloo", 14.2499981F)
         Label10.ForeColor = SystemColors.Window
-        Label10.Location = New Point(167, 221)
+        Label10.Location = New Point(167, 261)
         Label10.Name = "Label10"
         Label10.Size = New Size(193, 30)
         Label10.TabIndex = 19
@@ -142,7 +139,7 @@ Partial Class ScreenRegister
         Label3.BackColor = Color.Transparent
         Label3.Font = New Font("Baloo", 14.2499981F)
         Label3.ForeColor = SystemColors.Window
-        Label3.Location = New Point(450, 221)
+        Label3.Location = New Point(450, 261)
         Label3.Name = "Label3"
         Label3.Size = New Size(60, 30)
         Label3.TabIndex = 3
@@ -154,7 +151,7 @@ Partial Class ScreenRegister
         Label4.BackColor = Color.Transparent
         Label4.Font = New Font("Baloo", 14.2499981F)
         Label4.ForeColor = SystemColors.Window
-        Label4.Location = New Point(167, 299)
+        Label4.Location = New Point(167, 351)
         Label4.Name = "Label4"
         Label4.Size = New Size(99, 30)
         Label4.TabIndex = 7
@@ -168,7 +165,7 @@ Partial Class ScreenRegister
         Cb_Gender.ForeColor = SystemColors.Window
         Cb_Gender.FormattingEnabled = True
         Cb_Gender.Items.AddRange(New Object() {"Masculino", "Femenino"})
-        Cb_Gender.Location = New Point(450, 176)
+        Cb_Gender.Location = New Point(450, 203)
         Cb_Gender.Name = "Cb_Gender"
         Cb_Gender.Size = New Size(165, 33)
         Cb_Gender.TabIndex = 2
@@ -179,7 +176,7 @@ Partial Class ScreenRegister
         Tb_Address.Cursor = Cursors.Hand
         Tb_Address.Font = New Font("Baloo", 11.999999F)
         Tb_Address.ForeColor = SystemColors.Window
-        Tb_Address.Location = New Point(167, 332)
+        Tb_Address.Location = New Point(167, 384)
         Tb_Address.Name = "Tb_Address"
         Tb_Address.Size = New Size(448, 33)
         Tb_Address.TabIndex = 4
@@ -190,7 +187,7 @@ Partial Class ScreenRegister
         Label6.BackColor = Color.Transparent
         Label6.Font = New Font("Baloo", 14.2499981F)
         Label6.ForeColor = SystemColors.Window
-        Label6.Location = New Point(167, 378)
+        Label6.Location = New Point(167, 441)
         Label6.Name = "Label6"
         Label6.Size = New Size(144, 30)
         Label6.TabIndex = 33
@@ -204,7 +201,7 @@ Partial Class ScreenRegister
         Cb_BloodType.ForeColor = SystemColors.Window
         Cb_BloodType.FormattingEnabled = True
         Cb_BloodType.Items.AddRange(New Object() {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"})
-        Cb_BloodType.Location = New Point(167, 411)
+        Cb_BloodType.Location = New Point(167, 474)
         Cb_BloodType.Name = "Cb_BloodType"
         Cb_BloodType.Size = New Size(87, 33)
         Cb_BloodType.TabIndex = 5
@@ -215,7 +212,7 @@ Partial Class ScreenRegister
         Label7.BackColor = Color.Transparent
         Label7.Font = New Font("Baloo", 14.2499981F)
         Label7.ForeColor = SystemColors.Window
-        Label7.Location = New Point(330, 378)
+        Label7.Location = New Point(330, 441)
         Label7.Name = "Label7"
         Label7.Size = New Size(88, 30)
         Label7.TabIndex = 37
@@ -227,7 +224,7 @@ Partial Class ScreenRegister
         Label9.BackColor = Color.Transparent
         Label9.Font = New Font("Baloo", 14.2499981F)
         Label9.ForeColor = SystemColors.Window
-        Label9.Location = New Point(450, 378)
+        Label9.Location = New Point(450, 441)
         Label9.Name = "Label9"
         Label9.Size = New Size(162, 30)
         Label9.TabIndex = 38
@@ -240,33 +237,10 @@ Partial Class ScreenRegister
         Tb_WhatAllergy.Enabled = False
         Tb_WhatAllergy.Font = New Font("Baloo", 11.999999F)
         Tb_WhatAllergy.ForeColor = SystemColors.Window
-        Tb_WhatAllergy.Location = New Point(450, 411)
+        Tb_WhatAllergy.Location = New Point(450, 474)
         Tb_WhatAllergy.Name = "Tb_WhatAllergy"
         Tb_WhatAllergy.Size = New Size(165, 33)
         Tb_WhatAllergy.TabIndex = 7
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.BackColor = Color.Transparent
-        Label12.Font = New Font("Baloo", 14.2499981F)
-        Label12.ForeColor = SystemColors.Window
-        Label12.Location = New Point(167, 456)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(208, 30)
-        Label12.TabIndex = 41
-        Label12.Text = "Nombre del Acudiente:"
-        ' 
-        ' Tb_TutorName
-        ' 
-        Tb_TutorName.BackColor = Color.LightSteelBlue
-        Tb_TutorName.Cursor = Cursors.Hand
-        Tb_TutorName.Font = New Font("Baloo", 11.999999F)
-        Tb_TutorName.ForeColor = SystemColors.Window
-        Tb_TutorName.Location = New Point(167, 489)
-        Tb_TutorName.Name = "Tb_TutorName"
-        Tb_TutorName.Size = New Size(255, 33)
-        Tb_TutorName.TabIndex = 8
         ' 
         ' btn_Save
         ' 
@@ -301,7 +275,7 @@ Partial Class ScreenRegister
         Ckb_Allergic.Cursor = Cursors.Hand
         Ckb_Allergic.Font = New Font("Baloo", 11.999999F)
         Ckb_Allergic.ForeColor = SystemColors.Window
-        Ckb_Allergic.Location = New Point(330, 411)
+        Ckb_Allergic.Location = New Point(330, 474)
         Ckb_Allergic.Name = "Ckb_Allergic"
         Ckb_Allergic.Size = New Size(88, 33)
         Ckb_Allergic.TabIndex = 6
@@ -318,40 +292,23 @@ Partial Class ScreenRegister
         Dtp_DayBirth.CustomFormat = " "
         Dtp_DayBirth.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0), True)
         Dtp_DayBirth.Format = DateTimePickerFormat.Custom
-        Dtp_DayBirth.Location = New Point(167, 255)
+        Dtp_DayBirth.Location = New Point(167, 295)
         Dtp_DayBirth.MaxDate = New Date(2110, 12, 31, 0, 0, 0, 0)
         Dtp_DayBirth.Name = "Dtp_DayBirth"
         Dtp_DayBirth.Size = New Size(255, 33)
         Dtp_DayBirth.TabIndex = 3
         Dtp_DayBirth.Value = New Date(2025, 4, 6, 0, 0, 0, 0)
         ' 
-        ' Label5
+        ' Tb_Age
         ' 
-        Label5.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom
-        Label5.BackColor = Color.Transparent
-        Label5.Font = New Font("Baloo", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label5.ForeColor = SystemColors.Window
-        Label5.Location = New Point(533, 258)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(93, 23)
-        Label5.TabIndex = 46
-        Label5.Text = "Semanas"
-        Label5.TextAlign = ContentAlignment.MiddleLeft
-        ' 
-        ' Cb_WeeksAge
-        ' 
-        Cb_WeeksAge.AutoCompleteSource = AutoCompleteSource.ListItems
-        Cb_WeeksAge.BackColor = Color.LightSteelBlue
-        Cb_WeeksAge.Cursor = Cursors.Hand
-        Cb_WeeksAge.DropDownStyle = ComboBoxStyle.DropDownList
-        Cb_WeeksAge.Font = New Font("Baloo", 11.999999F)
-        Cb_WeeksAge.ForeColor = SystemColors.Window
-        Cb_WeeksAge.FormattingEnabled = True
-        Cb_WeeksAge.Items.AddRange(New Object() {"Masculino", "Femenino"})
-        Cb_WeeksAge.Location = New Point(450, 254)
-        Cb_WeeksAge.Name = "Cb_WeeksAge"
-        Cb_WeeksAge.Size = New Size(77, 33)
-        Cb_WeeksAge.TabIndex = 47
+        Tb_Age.BackColor = SystemColors.Window
+        Tb_Age.Font = New Font("Baloo", 11.999999F)
+        Tb_Age.ForeColor = SystemColors.ActiveCaptionText
+        Tb_Age.Location = New Point(450, 295)
+        Tb_Age.Name = "Tb_Age"
+        Tb_Age.ReadOnly = True
+        Tb_Age.Size = New Size(165, 33)
+        Tb_Age.TabIndex = 48
         ' 
         ' ScreenRegister
         ' 
@@ -360,16 +317,13 @@ Partial Class ScreenRegister
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
-        Controls.Add(Cb_WeeksAge)
+        Controls.Add(Tb_Age)
         Controls.Add(Dtp_DayBirth)
         Controls.Add(Ckb_Allergic)
-        Controls.Add(Label5)
         Controls.Add(btn_Clean)
         Controls.Add(btn_Save)
         Controls.Add(TableLayoutPanel1)
         Controls.Add(btn_Exit)
-        Controls.Add(Tb_TutorName)
-        Controls.Add(Label12)
         Controls.Add(Tb_WhatAllergy)
         Controls.Add(Label9)
         Controls.Add(Label7)
@@ -408,13 +362,10 @@ Partial Class ScreenRegister
     Friend WithEvents Label7 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Tb_WhatAllergy As TextBox
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Tb_TutorName As TextBox
     Friend WithEvents btn_Save As Button
     Friend WithEvents btn_Clean As Button
     Friend WithEvents Ckb_Allergic As CheckBox
     Friend WithEvents Label8 As Label
     Private WithEvents Dtp_DayBirth As DateTimePicker
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Cb_WeeksAge As ComboBox
+    Friend WithEvents Tb_Age As TextBox
 End Class

@@ -3,10 +3,13 @@ Imports DataAccess
 
 Public Class KidEvaluation
     Private NameKid As String
+    Private AgeKid As String
     Private KidID As Integer
     Private AgeID As Integer
     Private AreaID As Integer
+    Private BehaviorID As Integer
     Private FoundKidRegister As Boolean
+    Private isChecked As Boolean
     Private AreaSelection As New HashSet(Of Integer)() ' Almacenar los índices de las areas seleccionadas
 
     Private Sub KidEvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -23,7 +26,8 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub Cb_Area_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Area.SelectedIndexChanged
-        AreaID = Cb_Area.SelectedIndex + 1
+        'AreaID = Cb_Area.SelectedIndex + 1
+        FindAreaID(Cb_Area.Text)
         LoadFormRegister()
     End Sub
 
@@ -50,7 +54,7 @@ Public Class KidEvaluation
         where = New List(Of String)() ' Se vacian los filtros utilizados
         parameters = New Dictionary(Of String, Object)() ' Se vacian los parametros utilizados
 
-        query = "SELECT K.ID AS Kid_ID, A.ID AS Age_ID, A.WeeksAge, A.Age, K.BloodType, K.WhatAllergy
+        query = "SELECT K.ID AS Kid_ID, A.ID AS Age_ID, A.WeeksAge, A.Age, K.BloodType, CASE WHEN K.WhatAllergy = '' THEN 'No tiene' ELSE K.WhatAllergy END WhatAllergy
                  FROM Kids K
                  JOIN Ages A ON K.Age_ID = A.ID "
 
@@ -65,25 +69,24 @@ Public Class KidEvaluation
     Private Sub LoadKidData() ' Muestra en pantalla los datos personales del infante
         If dt.Rows.Count > 0 Then
             Lbl_Age.Text = dt.Rows(0)("Age").ToString().ToUpper
-            Lbl_Allergy.Text = "Es alérgico a: " & dt.Rows(0)("WhatAllergy").ToString()
+            Lbl_Allergy.Text = "Alergias: " & dt.Rows(0)("WhatAllergy").ToString()
             Lbl_BloodType.Text = dt.Rows(0)("BloodType").ToString()
             Lbl_Name.Text = NameKid
             KidID = dt.Rows(0)("Kid_ID")
             AgeID = dt.Rows(0)("Age_ID")
+            'AgeKid = dt.Rows(0)("Age").ToString().ToUpper
         Else
             MessageBox.Show("Error al consultar los datos del infante")
         End If
     End Sub
 
     Private Sub LoadFormRegister() ' Carga el formulario completo donde se registran las conductas del infante
-
         FindBehaviors()
         LoadBehaviors()
 
         If FoundKidRegister Then
             LoadStatusForm()
         End If
-
     End Sub
 
     Private Sub FindBehaviors()
@@ -105,16 +108,12 @@ Public Class KidEvaluation
 
     Private Sub LoadBehaviors()
         If dt.Rows.Count > 0 Then
-            ' Crear una nueva columna de tipo CheckBox para guardar el indicador de la conducta del infante
-            Dim CheckBoxColumn As New DataGridViewCheckBoxColumn()
-            CheckBoxColumn.Name = "Indicador"
-            CheckBoxColumn.HeaderText = "Indicador"
-
             Select Case AreaID
                 Case 1
                     If Dgv_Adaptative.DataSource Is Nothing Then
                         Dgv_Adaptative.AutoGenerateColumns = False
                         Dgv_Adaptative.DataSource = dt
+                        'Dgv_Adaptative.Columns("Conducta").HeaderText = "Conductas " + " (" + AgeKid + ")"
                         'Dgv_Adaptative.Columns("ID").Visible = False ' Oculta la columna ID
                         'Dgv_Adaptative.Columns.Insert(2, CheckBoxColumn)
                     End If
@@ -122,36 +121,31 @@ Public Class KidEvaluation
 
                 Case 2
                     If Dgv_GrossMotor.DataSource Is Nothing Then
+                        Dgv_GrossMotor.AutoGenerateColumns = False
                         Dgv_GrossMotor.DataSource = dt
-                        Dgv_GrossMotor.Columns("ID").Visible = False ' Oculta la columna ID
-                        Dgv_GrossMotor.Columns.Insert(2, CheckBoxColumn)
                     End If
                     Dgv_GrossMotor.BringToFront()
 
                 Case 3
                     If Dgv_FineMotor.DataSource Is Nothing Then
+                        Dgv_FineMotor.AutoGenerateColumns = False
                         Dgv_FineMotor.DataSource = dt
-                        Dgv_FineMotor.Columns("ID").Visible = False ' Oculta la columna ID
-                        Dgv_FineMotor.Columns.Insert(2, CheckBoxColumn)
                     End If
                     Dgv_FineMotor.BringToFront()
 
                 Case 4
                     If Dgv_Language.DataSource Is Nothing Then
+                        Dgv_Language.AutoGenerateColumns = False
                         Dgv_Language.DataSource = dt
-                        Dgv_Language.Columns("ID").Visible = False ' Oculta la columna ID
-                        Dgv_Language.Columns.Insert(2, CheckBoxColumn)
                     End If
                     Dgv_Language.BringToFront()
 
                 Case 5
                     If Dgv_SocialPerson.DataSource Is Nothing Then
+                        Dgv_SocialPerson.AutoGenerateColumns = False
                         Dgv_SocialPerson.DataSource = dt
-                        Dgv_SocialPerson.Columns("ID").Visible = False ' Oculta la columna ID
-                        Dgv_SocialPerson.Columns.Insert(2, CheckBoxColumn)
                     End If
                     Dgv_SocialPerson.BringToFront()
-
             End Select
         Else
             MessageBox.Show("Error al consultar las conductas del sistema")
@@ -174,38 +168,117 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub KidEvaluationRegister()
-
-        RegisterAreaAdaptive()
-
         ' Verificar si todos los elementos han sido seleccionados
-        If AreaSelection.Count = Cb_Area.Items.Count Then
-
-            'If success Then
-            MessageBox.Show("Se registraron las conductas del infante correctamente", "Registro aceptado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            'Else
-            '    MessageBox.Show("Error al ejecutar procedimiento.", "Registro rechazado", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-        End If
-
+        'If AreaSelection.Count = Cb_Area.Items.Count Then
+        RegisterAreaAdaptive()
+        'If success Then
+        '    MessageBox.Show("Se registraron las conductas del infante correctamente", "Evaluación guardada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'Else
+        '    MessageBox.Show("No se han evaluado todas las areas de conductas del infante", "Evaluación incompleta", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        'End If
     End Sub
 
     Private Sub RegisterAreaAdaptive()
-        AreaID = 1 ' El area Adaptativa su ID es 1 a nivel de base de datos
+        FindAreaID("Adaptativa")
         For Each index As DataGridViewRow In Dgv_Adaptative.Rows
             ' Obtener el valor de la columna "ID"
-            Dim BehaviorID As Integer = index.Cells("ID").Value
-            Dim status As Integer = Convert.ToInt32(index.Cells("Indicador").Value)
+            BehaviorID = index.Cells("ID_A").Value
+            'Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_Adaptative.Columns("Indicador").Index).Value)
+            ''isChecked As Boolean = False
+            'If index.Cells("Indicador").Value IsNot Nothing AndAlso index.Cells("Indicador").Value IsNot DBNull.Value Then
+            '    isChecked = Convert.ToBoolean(index.Cells("Indicador").Value)
+            'End If
+            'Dim status As Integer = If(isChecked, 1, 0)
+
+            Dim cellValue As Object = index.Cells("Indicador_A").Value
+            Dim valor As Integer = 0 ' Valor predeterminado para desmarcado
+
+            If cellValue IsNot Nothing AndAlso cellValue IsNot DBNull.Value Then
+                valor = Convert.ToInt32(cellValue)
+            End If
 
             Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
                                                 VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
                                            New Dictionary(Of String, Object) From {{"@kidid", KidID},
                                                                                    {"@ageid", AgeID},
                                                                                    {"@areaid", AreaID},
-                                                                                   {"@behaviorid", BehaviorID}, {"@status", status}})
+                                                                                   {"@behaviorid", BehaviorID},
+                                                                                   {"@status", cellValue}})
         Next
     End Sub
 
+    Private Sub RegisterAreaGrossMotor()
+        FindAreaID("Motriz Gruesa")
+        For Each index As DataGridViewRow In Dgv_GrossMotor.Rows
+            ' Obtener el valor de la columna "ID"
+            Dim BehaviorID As Integer = index.Cells(Dgv_GrossMotor.Columns("ID").Index).Value
+            Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_GrossMotor.Columns("Indicador").Index).Value)
 
+            Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
+                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
+                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
+                                                                                   {"@ageid", AgeID},
+                                                                                   {"@areaid", AreaID},
+                                                                                   {"@behaviorid", BehaviorID},
+                                                                                   {"@status", status}})
+        Next
+    End Sub
+
+    Private Sub RegisterAreaFineMotor()
+        FindAreaID("Motriz Fina")
+        For Each index As DataGridViewRow In Dgv_FineMotor.Rows
+            ' Obtener el valor de la columna "ID"
+            Dim BehaviorID As Integer = index.Cells(Dgv_FineMotor.Columns("ID").Index).Value
+            Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_FineMotor.Columns("Indicador").Index).Value)
+
+            Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
+                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
+                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
+                                                                                   {"@ageid", AgeID},
+                                                                                   {"@areaid", AreaID},
+                                                                                   {"@behaviorid", BehaviorID},
+                                                                                   {"@status", status}})
+        Next
+    End Sub
+
+    Private Sub RegisterAreaLanguage()
+        FindAreaID("Lenguaje")
+        For Each index As DataGridViewRow In Dgv_Language.Rows
+            ' Obtener el valor de la columna "ID"
+            Dim BehaviorID As Integer = index.Cells(Dgv_Language.Columns("ID").Index).Value
+            Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_Language.Columns("Indicador").Index).Value)
+
+            Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
+                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
+                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
+                                                                                   {"@ageid", AgeID},
+                                                                                   {"@areaid", AreaID},
+                                                                                   {"@behaviorid", BehaviorID},
+                                                                                   {"@status", status}})
+        Next
+    End Sub
+
+    Private Sub RegisterAreaSocialPerson()
+        FindAreaID("Personal Social")
+        For Each index As DataGridViewRow In Dgv_SocialPerson.Rows
+            ' Obtener el valor de la columna "ID"
+            Dim BehaviorID As Integer = index.Cells(Dgv_SocialPerson.Columns("ID").Index).Value
+            Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_SocialPerson.Columns("Indicador").Index).Value)
+
+            Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
+                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
+                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
+                                                                                   {"@ageid", AgeID},
+                                                                                   {"@areaid", AreaID},
+                                                                                   {"@behaviorid", BehaviorID},
+                                                                                   {"@status", status}})
+        Next
+    End Sub
+
+    Private Sub FindAreaID(Area As String)
+        AreaID = ExecuteScalar("SELECT ID FROM Areas WHERE Name = @name",
+                                           New Dictionary(Of String, Object) From {{"@name", Area}})
+    End Sub
 
     Private Sub Cb_Area_DrawItem(sender As Object, e As DrawItemEventArgs) Handles Cb_Area.DrawItem
         'If e.Index < 0 Then Exit Sub
@@ -250,4 +323,5 @@ Public Class KidEvaluation
         e.Graphics.DrawString(text, e.Font, ColorText, e.Bounds)
         e.DrawFocusRectangle()
     End Sub
+
 End Class

@@ -17,7 +17,6 @@ Public Class ScreenRegister
 
     Private Sub ScreenRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetListWeeksAge()
-        LoadListWeeksAge()
         LoadCalendar()
     End Sub
 
@@ -81,14 +80,8 @@ Public Class ScreenRegister
     End Sub
 
     Private Sub GetListWeeksAge()
-        query = "SELECT WeeksAge FROM Ages"
+        query = "SELECT Age FROM Ages"
         dt = GetData(query)
-    End Sub
-
-    Private Sub LoadListWeeksAge()
-        Cb_WeeksAge.DataSource = dt
-        Cb_WeeksAge.DisplayMember = "WeeksAge"
-        Cb_WeeksAge.SelectedIndex = -1
     End Sub
 
     Private Sub LoadCalendar()
@@ -97,30 +90,20 @@ Public Class ScreenRegister
     End Sub
 
     Private Sub GetWeeksAgeKid()
-        selectedDate = Dtp_DayBirth.Value
+        selectedDate = Dtp_DayBirth.Value ' Toma la fecha seleccionada
         totalDays = (today - selectedDate).TotalDays ' Trae el total de dias de nacimiento
         weeksPassed = Math.Floor(totalDays / 7) ' Calcula las semanas de nacimiento
 
-        'query = "SELECT WeeksAge FROM Ages "
-        'where.Add("WHERE WeeksAge <= @weeksage ")
-        'If parameters.ContainsKey("@weeksage") Then
-        '    parameters("@weeksage") = weeksPassed ' Actualiza el valor existente
-        'Else
-        '    parameters.Add("@weeksage", weeksPassed) ' Agrega una nueva entrada
-        'End If
-        'clauses = ("ORDER BY WeeksAge DESC LIMIT 1;")
-        'query &= String.Join(" ", where) & clauses
-
-        Cb_WeeksAge.Text = ExecuteScalar("SELECT WeeksAge FROM Ages WHERE WeeksAge <= @weeksage ORDER BY WeeksAge DESC LIMIT 1",
+        Tb_Age.Text = ExecuteScalar("SELECT Age FROM Ages WHERE WeeksAge <= @weeksage ORDER BY WeeksAge DESC LIMIT 1",
                                            New Dictionary(Of String, Object) From {{"@weeksage", weeksPassed}})
     End Sub
 
     Private Sub KidRegister()
-        Dim ageID As Integer = ExecuteScalar("SELECT ID FROM Ages WHERE WeeksAge = @weeksage",
-                                           New Dictionary(Of String, Object) From {{"@weeksage", Cb_WeeksAge.Text}})
+        Dim ageID As Integer = ExecuteScalar("SELECT ID FROM Ages WHERE Age = @weeksage",
+                                           New Dictionary(Of String, Object) From {{"@weeksage", Tb_Age.Text}})
 
-        Dim success As Boolean = WriteData("INSERT INTO Kids (Name, Gender, DayBirth, Age_ID, Address, BloodType, Allergic, WhatAllergy, TutorName, Status)
-                                            VALUES (@name, @gender, @daybirth, @ageid, @address, @bloodtype, @allergic, @whatallergy, @tutorname, @status)",
+        Dim success As Boolean = WriteData("INSERT INTO Kids (Name, Gender, DayBirth, Age_ID, Address, BloodType, Allergic, WhatAllergy, Status)
+                                            VALUES (@name, @gender, @daybirth, @ageid, @address, @bloodtype, @allergic, @whatallergy, @status)",
                                            New Dictionary(Of String, Object) From {{"@name", Tb_Name.Text},
                                                                                    {"@gender", Cb_Gender.Text},
                                                                                    {"@daybirth", Dtp_DayBirth.Text},
@@ -129,7 +112,6 @@ Public Class ScreenRegister
                                                                                    {"@bloodtype", Cb_BloodType.Text},
                                                                                    {"@allergic", Ckb_Allergic.Checked},
                                                                                    {"@whatallergy", Tb_WhatAllergy.Text},
-                                                                                   {"@tutorname", Tb_TutorName.Text},
                                                                                    {"@status", 1}})
         If success Then
             MessageBox.Show("Se registraron los datos del infante correctamente", "Registro aceptado", MessageBoxButtons.OK, MessageBoxIcon.Information)
