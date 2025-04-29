@@ -26,7 +26,6 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub Cb_Area_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Area.SelectedIndexChanged
-        'AreaID = Cb_Area.SelectedIndex + 1
         FindAreaID(Cb_Area.Text)
         LoadFormRegister()
     End Sub
@@ -113,9 +112,6 @@ Public Class KidEvaluation
                     If Dgv_Adaptative.DataSource Is Nothing Then
                         Dgv_Adaptative.AutoGenerateColumns = False
                         Dgv_Adaptative.DataSource = dt
-                        'Dgv_Adaptative.Columns("Conducta").HeaderText = "Conductas " + " (" + AgeKid + ")"
-                        'Dgv_Adaptative.Columns("ID").Visible = False ' Oculta la columna ID
-                        'Dgv_Adaptative.Columns.Insert(2, CheckBoxColumn)
                     End If
                     Dgv_Adaptative.BringToFront()
 
@@ -168,14 +164,23 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub KidEvaluationRegister()
-        ' Verificar si todos los elementos han sido seleccionados
-        'If AreaSelection.Count = Cb_Area.Items.Count Then
-        RegisterAreaAdaptive()
-        'If success Then
-        '    MessageBox.Show("Se registraron las conductas del infante correctamente", "Evaluación guardada", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        'Else
-        '    MessageBox.Show("No se han evaluado todas las areas de conductas del infante", "Evaluación incompleta", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        'End If
+        ' Verifica si todos las conductas han sido seleccionadas
+        If AreaSelection.Count = Cb_Area.Items.Count Then
+            Try
+                RegisterAreaAdaptive()     ' Se registran las conductas del area Adaptativa
+                RegisterAreaGrossMotor()   ' Se registran las conductas del area Motor Grueso
+                RegisterAreaFineMotor()    ' Se registran las conductas del area Motor Fino
+                RegisterAreaLanguage()     ' Se registran las conductas del area Lenguaje
+                RegisterAreaSocialPerson() ' Se registran las conductas del area Persona Social
+
+                MessageBox.Show("Se registraron las conductas del infante correctamente", "Evaluación guardada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                MessageBox.Show("Se produjo el error: " & ex.Message)
+            End Try
+        Else
+            MessageBox.Show("No se han evaluado todas las areas de conductas del infante", "Evaluación incompleta", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
     End Sub
 
     Private Sub RegisterAreaAdaptive()
@@ -183,19 +188,8 @@ Public Class KidEvaluation
         For Each index As DataGridViewRow In Dgv_Adaptative.Rows
             ' Obtener el valor de la columna "ID"
             BehaviorID = index.Cells("ID_A").Value
-            'Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_Adaptative.Columns("Indicador").Index).Value)
-            ''isChecked As Boolean = False
-            'If index.Cells("Indicador").Value IsNot Nothing AndAlso index.Cells("Indicador").Value IsNot DBNull.Value Then
-            '    isChecked = Convert.ToBoolean(index.Cells("Indicador").Value)
-            'End If
-            'Dim status As Integer = If(isChecked, 1, 0)
-
-            Dim cellValue As Object = index.Cells("Indicador_A").Value
-            Dim valor As Integer = 0 ' Valor predeterminado para desmarcado
-
-            If cellValue IsNot Nothing AndAlso cellValue IsNot DBNull.Value Then
-                valor = Convert.ToInt32(cellValue)
-            End If
+            ' Obtener el valor de la columna "Indicador"
+            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_A").Value), 1, 0)
 
             Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
                                                 VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
@@ -203,7 +197,10 @@ Public Class KidEvaluation
                                                                                    {"@ageid", AgeID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
-                                                                                   {"@status", cellValue}})
+                                                                                   {"@status", isChecked}})
+            If Not success Then
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         Next
     End Sub
 
@@ -211,8 +208,9 @@ Public Class KidEvaluation
         FindAreaID("Motriz Gruesa")
         For Each index As DataGridViewRow In Dgv_GrossMotor.Rows
             ' Obtener el valor de la columna "ID"
-            Dim BehaviorID As Integer = index.Cells(Dgv_GrossMotor.Columns("ID").Index).Value
-            Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_GrossMotor.Columns("Indicador").Index).Value)
+            BehaviorID = index.Cells("ID_G").Value
+            ' Obtener el valor de la columna "Indicador"
+            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_G").Value), 1, 0)
 
             Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
                                                 VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
@@ -220,7 +218,10 @@ Public Class KidEvaluation
                                                                                    {"@ageid", AgeID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
-                                                                                   {"@status", status}})
+                                                                                   {"@status", isChecked}})
+            If Not success Then
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         Next
     End Sub
 
@@ -228,8 +229,9 @@ Public Class KidEvaluation
         FindAreaID("Motriz Fina")
         For Each index As DataGridViewRow In Dgv_FineMotor.Rows
             ' Obtener el valor de la columna "ID"
-            Dim BehaviorID As Integer = index.Cells(Dgv_FineMotor.Columns("ID").Index).Value
-            Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_FineMotor.Columns("Indicador").Index).Value)
+            BehaviorID = index.Cells("ID_F").Value
+            ' Obtener el valor de la columna "Indicador"
+            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_F").Value), 1, 0)
 
             Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
                                                 VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
@@ -237,7 +239,10 @@ Public Class KidEvaluation
                                                                                    {"@ageid", AgeID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
-                                                                                   {"@status", status}})
+                                                                                   {"@status", isChecked}})
+            If Not success Then
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         Next
     End Sub
 
@@ -245,8 +250,9 @@ Public Class KidEvaluation
         FindAreaID("Lenguaje")
         For Each index As DataGridViewRow In Dgv_Language.Rows
             ' Obtener el valor de la columna "ID"
-            Dim BehaviorID As Integer = index.Cells(Dgv_Language.Columns("ID").Index).Value
-            Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_Language.Columns("Indicador").Index).Value)
+            BehaviorID = index.Cells("ID_L").Value
+            ' Obtener el valor de la columna "Indicador"
+            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_L").Value), 1, 0)
 
             Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
                                                 VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
@@ -254,7 +260,10 @@ Public Class KidEvaluation
                                                                                    {"@ageid", AgeID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
-                                                                                   {"@status", status}})
+                                                                                   {"@status", isChecked}})
+            If Not success Then
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         Next
     End Sub
 
@@ -262,8 +271,9 @@ Public Class KidEvaluation
         FindAreaID("Personal Social")
         For Each index As DataGridViewRow In Dgv_SocialPerson.Rows
             ' Obtener el valor de la columna "ID"
-            Dim BehaviorID As Integer = index.Cells(Dgv_SocialPerson.Columns("ID").Index).Value
-            Dim status As Integer = Convert.ToInt32(index.Cells(Dgv_SocialPerson.Columns("Indicador").Index).Value)
+            BehaviorID = index.Cells("ID_S").Value
+            ' Obtener el valor de la columna "Indicador"
+            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_S").Value), 1, 0)
 
             Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
                                                 VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
@@ -271,7 +281,10 @@ Public Class KidEvaluation
                                                                                    {"@ageid", AgeID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
-                                                                                   {"@status", status}})
+                                                                                   {"@status", isChecked}})
+            If Not success Then
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         Next
     End Sub
 

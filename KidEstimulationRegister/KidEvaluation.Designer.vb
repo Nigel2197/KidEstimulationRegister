@@ -31,7 +31,6 @@ Partial Class KidEvaluation
         Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
@@ -44,25 +43,25 @@ Partial Class KidEvaluation
         Label2 = New Label()
         Tb_Name = New TextBox()
         Dgv_FineMotor = New DataGridView()
-        DataGridViewTextBoxColumn1 = New DataGridViewTextBoxColumn()
-        DataGridViewTextBoxColumn2 = New DataGridViewTextBoxColumn()
-        DataGridViewCheckBoxColumn1 = New DataGridViewCheckBoxColumn()
         Dgv_Language = New DataGridView()
-        DataGridViewTextBoxColumn3 = New DataGridViewTextBoxColumn()
-        DataGridViewTextBoxColumn4 = New DataGridViewTextBoxColumn()
-        DataGridViewCheckBoxColumn2 = New DataGridViewCheckBoxColumn()
+        ID_L = New DataGridViewTextBoxColumn()
+        Conducta_L = New DataGridViewTextBoxColumn()
+        Indicador_L = New DataGridViewCheckBoxColumn()
         Dgv_SocialPerson = New DataGridView()
-        DataGridViewTextBoxColumn5 = New DataGridViewTextBoxColumn()
-        DataGridViewTextBoxColumn6 = New DataGridViewTextBoxColumn()
-        DataGridViewCheckBoxColumn3 = New DataGridViewCheckBoxColumn()
+        ID_S = New DataGridViewTextBoxColumn()
+        Conducta_S = New DataGridViewTextBoxColumn()
+        Indicador_S = New DataGridViewCheckBoxColumn()
         Dgv_GrossMotor = New DataGridView()
-        DataGridViewTextBoxColumn7 = New DataGridViewTextBoxColumn()
-        DataGridViewTextBoxColumn8 = New DataGridViewTextBoxColumn()
-        DataGridViewCheckBoxColumn4 = New DataGridViewCheckBoxColumn()
+        ID_G = New DataGridViewTextBoxColumn()
+        Conducta_G = New DataGridViewTextBoxColumn()
+        Indicador_G = New DataGridViewCheckBoxColumn()
         Dgv_Adaptative = New DataGridView()
         ID_A = New DataGridViewTextBoxColumn()
         Conducta_A = New DataGridViewTextBoxColumn()
         Indicador_A = New DataGridViewCheckBoxColumn()
+        ID_F = New DataGridViewTextBoxColumn()
+        Conducta_F = New DataGridViewTextBoxColumn()
+        Indicador_F = New DataGridViewCheckBoxColumn()
         TableLayoutPanel1.SuspendLayout()
         CType(Dgv_FineMotor, ComponentModel.ISupportInitialize).BeginInit()
         CType(Dgv_Language, ComponentModel.ISupportInitialize).BeginInit()
@@ -75,12 +74,12 @@ Partial Class KidEvaluation
         ' 
         TableLayoutPanel1.BackColor = Color.Transparent
         TableLayoutPanel1.ColumnCount = 1
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.Controls.Add(Label8, 0, 0)
         TableLayoutPanel1.Location = New Point(12, 80)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 51.0F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 51F))
         TableLayoutPanel1.Size = New Size(762, 50)
         TableLayoutPanel1.TabIndex = 76
         ' 
@@ -223,7 +222,7 @@ Partial Class KidEvaluation
         DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
         Dgv_FineMotor.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Dgv_FineMotor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Dgv_FineMotor.Columns.AddRange(New DataGridViewColumn() {DataGridViewTextBoxColumn1, DataGridViewTextBoxColumn2, DataGridViewCheckBoxColumn1})
+        Dgv_FineMotor.Columns.AddRange(New DataGridViewColumn() {ID_F, Conducta_F, Indicador_F})
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = Color.AliceBlue
         DataGridViewCellStyle2.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -240,40 +239,6 @@ Partial Class KidEvaluation
         Dgv_FineMotor.ShowEditingIcon = False
         Dgv_FineMotor.Size = New Size(670, 306)
         Dgv_FineMotor.TabIndex = 92
-        ' 
-        ' DataGridViewTextBoxColumn1
-        ' 
-        DataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewTextBoxColumn1.DataPropertyName = "ID"
-        DataGridViewTextBoxColumn1.Frozen = True
-        DataGridViewTextBoxColumn1.HeaderText = "ID"
-        DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        DataGridViewTextBoxColumn1.Resizable = DataGridViewTriState.False
-        DataGridViewTextBoxColumn1.Visible = False
-        DataGridViewTextBoxColumn1.Width = 5
-        ' 
-        ' DataGridViewTextBoxColumn2
-        ' 
-        DataGridViewTextBoxColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewTextBoxColumn2.DataPropertyName = "Conducta"
-        DataGridViewTextBoxColumn2.DividerWidth = 1
-        DataGridViewTextBoxColumn2.Frozen = True
-        DataGridViewTextBoxColumn2.HeaderText = "Conducta"
-        DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        DataGridViewTextBoxColumn2.ReadOnly = True
-        DataGridViewTextBoxColumn2.Resizable = DataGridViewTriState.False
-        DataGridViewTextBoxColumn2.Width = 588
-        ' 
-        ' DataGridViewCheckBoxColumn1
-        ' 
-        DataGridViewCheckBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewCheckBoxColumn1.DataPropertyName = "Indicador"
-        DataGridViewCheckBoxColumn1.DividerWidth = 1
-        DataGridViewCheckBoxColumn1.Frozen = True
-        DataGridViewCheckBoxColumn1.HeaderText = "Indicador"
-        DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
-        DataGridViewCheckBoxColumn1.Resizable = DataGridViewTriState.False
-        DataGridViewCheckBoxColumn1.Width = 80
         ' 
         ' Dgv_Language
         ' 
@@ -294,7 +259,7 @@ Partial Class KidEvaluation
         DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
         Dgv_Language.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Dgv_Language.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Dgv_Language.Columns.AddRange(New DataGridViewColumn() {DataGridViewTextBoxColumn3, DataGridViewTextBoxColumn4, DataGridViewCheckBoxColumn2})
+        Dgv_Language.Columns.AddRange(New DataGridViewColumn() {ID_L, Conducta_L, Indicador_L})
         DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = Color.AliceBlue
         DataGridViewCellStyle4.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -312,39 +277,41 @@ Partial Class KidEvaluation
         Dgv_Language.Size = New Size(670, 306)
         Dgv_Language.TabIndex = 93
         ' 
-        ' DataGridViewTextBoxColumn3
+        ' ID_L
         ' 
-        DataGridViewTextBoxColumn3.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewTextBoxColumn3.DataPropertyName = "ID"
-        DataGridViewTextBoxColumn3.Frozen = True
-        DataGridViewTextBoxColumn3.HeaderText = "ID"
-        DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        DataGridViewTextBoxColumn3.Resizable = DataGridViewTriState.False
-        DataGridViewTextBoxColumn3.Visible = False
-        DataGridViewTextBoxColumn3.Width = 5
+        ID_L.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        ID_L.DataPropertyName = "ID"
+        ID_L.Frozen = True
+        ID_L.HeaderText = "ID"
+        ID_L.Name = "ID_L"
+        ID_L.Resizable = DataGridViewTriState.False
+        ID_L.Visible = False
+        ID_L.Width = 5
         ' 
-        ' DataGridViewTextBoxColumn4
+        ' Conducta_L
         ' 
-        DataGridViewTextBoxColumn4.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewTextBoxColumn4.DataPropertyName = "Conducta"
-        DataGridViewTextBoxColumn4.DividerWidth = 1
-        DataGridViewTextBoxColumn4.Frozen = True
-        DataGridViewTextBoxColumn4.HeaderText = "Conducta"
-        DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        DataGridViewTextBoxColumn4.ReadOnly = True
-        DataGridViewTextBoxColumn4.Resizable = DataGridViewTriState.False
-        DataGridViewTextBoxColumn4.Width = 588
+        Conducta_L.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Conducta_L.DataPropertyName = "Conducta"
+        Conducta_L.DividerWidth = 1
+        Conducta_L.Frozen = True
+        Conducta_L.HeaderText = "Conducta"
+        Conducta_L.Name = "Conducta_L"
+        Conducta_L.ReadOnly = True
+        Conducta_L.Resizable = DataGridViewTriState.False
+        Conducta_L.Width = 588
         ' 
-        ' DataGridViewCheckBoxColumn2
+        ' Indicador_L
         ' 
-        DataGridViewCheckBoxColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewCheckBoxColumn2.DataPropertyName = "Indicador"
-        DataGridViewCheckBoxColumn2.DividerWidth = 1
-        DataGridViewCheckBoxColumn2.Frozen = True
-        DataGridViewCheckBoxColumn2.HeaderText = "Indicador"
-        DataGridViewCheckBoxColumn2.Name = "DataGridViewCheckBoxColumn2"
-        DataGridViewCheckBoxColumn2.Resizable = DataGridViewTriState.False
-        DataGridViewCheckBoxColumn2.Width = 80
+        Indicador_L.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Indicador_L.DataPropertyName = "Indicador"
+        Indicador_L.DividerWidth = 1
+        Indicador_L.Frozen = True
+        Indicador_L.HeaderText = "Indicador"
+        Indicador_L.Name = "Indicador_L"
+        Indicador_L.Resizable = DataGridViewTriState.False
+        Indicador_L.Width = 80
+        Indicador_L.FalseValue = False
+        Indicador_L.TrueValue = True
         ' 
         ' Dgv_SocialPerson
         ' 
@@ -365,7 +332,7 @@ Partial Class KidEvaluation
         DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
         Dgv_SocialPerson.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Dgv_SocialPerson.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Dgv_SocialPerson.Columns.AddRange(New DataGridViewColumn() {DataGridViewTextBoxColumn5, DataGridViewTextBoxColumn6, DataGridViewCheckBoxColumn3})
+        Dgv_SocialPerson.Columns.AddRange(New DataGridViewColumn() {ID_S, Conducta_S, Indicador_S})
         DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = Color.AliceBlue
         DataGridViewCellStyle6.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -383,39 +350,41 @@ Partial Class KidEvaluation
         Dgv_SocialPerson.Size = New Size(670, 306)
         Dgv_SocialPerson.TabIndex = 94
         ' 
-        ' DataGridViewTextBoxColumn5
+        ' ID_S
         ' 
-        DataGridViewTextBoxColumn5.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewTextBoxColumn5.DataPropertyName = "ID"
-        DataGridViewTextBoxColumn5.Frozen = True
-        DataGridViewTextBoxColumn5.HeaderText = "ID"
-        DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        DataGridViewTextBoxColumn5.Resizable = DataGridViewTriState.False
-        DataGridViewTextBoxColumn5.Visible = False
-        DataGridViewTextBoxColumn5.Width = 5
+        ID_S.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        ID_S.DataPropertyName = "ID"
+        ID_S.Frozen = True
+        ID_S.HeaderText = "ID"
+        ID_S.Name = "ID_S"
+        ID_S.Resizable = DataGridViewTriState.False
+        ID_S.Visible = False
+        ID_S.Width = 5
         ' 
-        ' DataGridViewTextBoxColumn6
+        ' Conducta_S
         ' 
-        DataGridViewTextBoxColumn6.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewTextBoxColumn6.DataPropertyName = "Conducta"
-        DataGridViewTextBoxColumn6.DividerWidth = 1
-        DataGridViewTextBoxColumn6.Frozen = True
-        DataGridViewTextBoxColumn6.HeaderText = "Conducta"
-        DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        DataGridViewTextBoxColumn6.ReadOnly = True
-        DataGridViewTextBoxColumn6.Resizable = DataGridViewTriState.False
-        DataGridViewTextBoxColumn6.Width = 588
+        Conducta_S.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Conducta_S.DataPropertyName = "Conducta"
+        Conducta_S.DividerWidth = 1
+        Conducta_S.Frozen = True
+        Conducta_S.HeaderText = "Conducta"
+        Conducta_S.Name = "Conducta_S"
+        Conducta_S.ReadOnly = True
+        Conducta_S.Resizable = DataGridViewTriState.False
+        Conducta_S.Width = 588
         ' 
-        ' DataGridViewCheckBoxColumn3
+        ' Indicador_S
         ' 
-        DataGridViewCheckBoxColumn3.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewCheckBoxColumn3.DataPropertyName = "Indicador"
-        DataGridViewCheckBoxColumn3.DividerWidth = 1
-        DataGridViewCheckBoxColumn3.Frozen = True
-        DataGridViewCheckBoxColumn3.HeaderText = "Indicador"
-        DataGridViewCheckBoxColumn3.Name = "DataGridViewCheckBoxColumn3"
-        DataGridViewCheckBoxColumn3.Resizable = DataGridViewTriState.False
-        DataGridViewCheckBoxColumn3.Width = 80
+        Indicador_S.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Indicador_S.DataPropertyName = "Indicador"
+        Indicador_S.DividerWidth = 1
+        Indicador_S.Frozen = True
+        Indicador_S.HeaderText = "Indicador"
+        Indicador_S.Name = "Indicador_S"
+        Indicador_S.Resizable = DataGridViewTriState.False
+        Indicador_S.Width = 80
+        Indicador_S.FalseValue = False
+        Indicador_S.TrueValue = True
         ' 
         ' Dgv_GrossMotor
         ' 
@@ -436,7 +405,7 @@ Partial Class KidEvaluation
         DataGridViewCellStyle7.WrapMode = DataGridViewTriState.True
         Dgv_GrossMotor.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         Dgv_GrossMotor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Dgv_GrossMotor.Columns.AddRange(New DataGridViewColumn() {DataGridViewTextBoxColumn7, DataGridViewTextBoxColumn8, DataGridViewCheckBoxColumn4})
+        Dgv_GrossMotor.Columns.AddRange(New DataGridViewColumn() {ID_G, Conducta_G, Indicador_G})
         DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle8.BackColor = Color.AliceBlue
         DataGridViewCellStyle8.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -454,39 +423,41 @@ Partial Class KidEvaluation
         Dgv_GrossMotor.Size = New Size(670, 306)
         Dgv_GrossMotor.TabIndex = 95
         ' 
-        ' DataGridViewTextBoxColumn7
+        ' ID_G
         ' 
-        DataGridViewTextBoxColumn7.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewTextBoxColumn7.DataPropertyName = "ID"
-        DataGridViewTextBoxColumn7.Frozen = True
-        DataGridViewTextBoxColumn7.HeaderText = "ID"
-        DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        DataGridViewTextBoxColumn7.Resizable = DataGridViewTriState.False
-        DataGridViewTextBoxColumn7.Visible = False
-        DataGridViewTextBoxColumn7.Width = 5
+        ID_G.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        ID_G.DataPropertyName = "ID"
+        ID_G.Frozen = True
+        ID_G.HeaderText = "ID"
+        ID_G.Name = "ID_G"
+        ID_G.Resizable = DataGridViewTriState.False
+        ID_G.Visible = False
+        ID_G.Width = 5
         ' 
-        ' DataGridViewTextBoxColumn8
+        ' Conducta_G
         ' 
-        DataGridViewTextBoxColumn8.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewTextBoxColumn8.DataPropertyName = "Conducta"
-        DataGridViewTextBoxColumn8.DividerWidth = 1
-        DataGridViewTextBoxColumn8.Frozen = True
-        DataGridViewTextBoxColumn8.HeaderText = "Conducta"
-        DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        DataGridViewTextBoxColumn8.ReadOnly = True
-        DataGridViewTextBoxColumn8.Resizable = DataGridViewTriState.False
-        DataGridViewTextBoxColumn8.Width = 588
+        Conducta_G.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Conducta_G.DataPropertyName = "Conducta"
+        Conducta_G.DividerWidth = 1
+        Conducta_G.Frozen = True
+        Conducta_G.HeaderText = "Conducta"
+        Conducta_G.Name = "Conducta_G"
+        Conducta_G.ReadOnly = True
+        Conducta_G.Resizable = DataGridViewTriState.False
+        Conducta_G.Width = 588
         ' 
-        ' DataGridViewCheckBoxColumn4
+        ' Indicador_G
         ' 
-        DataGridViewCheckBoxColumn4.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        DataGridViewCheckBoxColumn4.DataPropertyName = "Indicador"
-        DataGridViewCheckBoxColumn4.DividerWidth = 1
-        DataGridViewCheckBoxColumn4.Frozen = True
-        DataGridViewCheckBoxColumn4.HeaderText = "Indicador"
-        DataGridViewCheckBoxColumn4.Name = "DataGridViewCheckBoxColumn4"
-        DataGridViewCheckBoxColumn4.Resizable = DataGridViewTriState.False
-        DataGridViewCheckBoxColumn4.Width = 80
+        Indicador_G.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Indicador_G.DataPropertyName = "Indicador"
+        Indicador_G.DividerWidth = 1
+        Indicador_G.Frozen = True
+        Indicador_G.HeaderText = "Indicador"
+        Indicador_G.Name = "Indicador_G"
+        Indicador_G.Resizable = DataGridViewTriState.False
+        Indicador_G.Width = 80
+        Indicador_G.FalseValue = False
+        Indicador_G.TrueValue = True
         ' 
         ' Dgv_Adaptative
         ' 
@@ -508,14 +479,14 @@ Partial Class KidEvaluation
         Dgv_Adaptative.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
         Dgv_Adaptative.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Dgv_Adaptative.Columns.AddRange(New DataGridViewColumn() {ID_A, Conducta_A, Indicador_A})
-        DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle11.BackColor = Color.AliceBlue
-        DataGridViewCellStyle11.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle11.ForeColor = Color.SkyBlue
-        DataGridViewCellStyle11.SelectionBackColor = Color.AliceBlue
-        DataGridViewCellStyle11.SelectionForeColor = Color.SkyBlue
-        DataGridViewCellStyle11.WrapMode = DataGridViewTriState.False
-        Dgv_Adaptative.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = Color.AliceBlue
+        DataGridViewCellStyle10.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle10.ForeColor = Color.SkyBlue
+        DataGridViewCellStyle10.SelectionBackColor = Color.AliceBlue
+        DataGridViewCellStyle10.SelectionForeColor = Color.SkyBlue
+        DataGridViewCellStyle10.WrapMode = DataGridViewTriState.False
+        Dgv_Adaptative.DefaultCellStyle = DataGridViewCellStyle10
         Dgv_Adaptative.EnableHeadersVisualStyles = False
         Dgv_Adaptative.GridColor = Color.Black
         Dgv_Adaptative.Location = New Point(61, 228)
@@ -552,9 +523,6 @@ Partial Class KidEvaluation
         ' 
         Indicador_A.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
         Indicador_A.DataPropertyName = "Indicador"
-        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.NullValue = False
-        Indicador_A.DefaultCellStyle = DataGridViewCellStyle10
         Indicador_A.DividerWidth = 1
         Indicador_A.FalseValue = False
         Indicador_A.Frozen = True
@@ -564,9 +532,45 @@ Partial Class KidEvaluation
         Indicador_A.TrueValue = True
         Indicador_A.Width = 80
         ' 
+        ' ID_F
+        ' 
+        ID_F.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        ID_F.DataPropertyName = "ID"
+        ID_F.Frozen = True
+        ID_F.HeaderText = "ID"
+        ID_F.Name = "ID_F"
+        ID_F.Resizable = DataGridViewTriState.False
+        ID_F.Visible = False
+        ID_F.Width = 5
+        ' 
+        ' Conducta_F
+        ' 
+        Conducta_F.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Conducta_F.DataPropertyName = "Conducta"
+        Conducta_F.DividerWidth = 1
+        Conducta_F.Frozen = True
+        Conducta_F.HeaderText = "Conducta"
+        Conducta_F.Name = "Conducta_F"
+        Conducta_F.ReadOnly = True
+        Conducta_F.Resizable = DataGridViewTriState.False
+        Conducta_F.Width = 588
+        ' 
+        ' Indicador_F
+        ' 
+        Indicador_F.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Indicador_F.DataPropertyName = "Indicador"
+        Indicador_F.DividerWidth = 1
+        Indicador_F.FalseValue = False
+        Indicador_F.Frozen = True
+        Indicador_F.HeaderText = "Indicador"
+        Indicador_F.Name = "Indicador_F"
+        Indicador_F.Resizable = DataGridViewTriState.False
+        Indicador_F.TrueValue = True
+        Indicador_F.Width = 80
+        ' 
         ' KidEvaluation
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
@@ -613,20 +617,20 @@ Partial Class KidEvaluation
     Friend WithEvents Dgv_Language As DataGridView
     Friend WithEvents Dgv_SocialPerson As DataGridView
     Friend WithEvents Dgv_GrossMotor As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewCheckBoxColumn2 As DataGridViewCheckBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewCheckBoxColumn3 As DataGridViewCheckBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewCheckBoxColumn4 As DataGridViewCheckBoxColumn
     Friend WithEvents Dgv_Adaptative As DataGridView
     Friend WithEvents ID_A As DataGridViewTextBoxColumn
     Friend WithEvents Conducta_A As DataGridViewTextBoxColumn
     Friend WithEvents Indicador_A As DataGridViewCheckBoxColumn
+    Friend WithEvents ID_G As DataGridViewTextBoxColumn
+    Friend WithEvents Conducta_G As DataGridViewTextBoxColumn
+    Friend WithEvents Indicador_G As DataGridViewCheckBoxColumn
+    Friend WithEvents ID_L As DataGridViewTextBoxColumn
+    Friend WithEvents Conducta_L As DataGridViewTextBoxColumn
+    Friend WithEvents Indicador_L As DataGridViewCheckBoxColumn
+    Friend WithEvents ID_S As DataGridViewTextBoxColumn
+    Friend WithEvents Conducta_S As DataGridViewTextBoxColumn
+    Friend WithEvents Indicador_S As DataGridViewCheckBoxColumn
+    Friend WithEvents ID_F As DataGridViewTextBoxColumn
+    Friend WithEvents Conducta_F As DataGridViewTextBoxColumn
+    Friend WithEvents Indicador_F As DataGridViewCheckBoxColumn
 End Class

@@ -37,17 +37,15 @@ CREATE TABLE "Kids" (
 )
 
 CREATE TABLE "Registers" (
-	"ID"	INTEGER UNIQUE,
 	"Kid_ID"	INTEGER NOT NULL,
 	"Age_ID"	INTEGER NOT NULL,
 	"Area_ID"	INTEGER NOT NULL,
 	"Behavior_ID"	INTEGER NOT NULL,
-	"Status"	TEXT NOT NULL,
-        "Comments"	TEXT,
-	"RecordDate"	DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY("ID" AUTOINCREMENT),
+	"Status"	INTEGER NOT NULL,
+	"Comments"	TEXT,
+	"RecordDate"	DATETIME DEFAULT (DATETIME('now', '-5 hours')),
 	FOREIGN KEY("Age_ID") REFERENCES "Ages"("ID"),
 	FOREIGN KEY("Area_ID") REFERENCES "Areas"("ID"),
 	FOREIGN KEY("Behavior_ID") REFERENCES "Behaviors"("ID"),
 	FOREIGN KEY("Kid_ID") REFERENCES "Kids"("ID")
-)
+);

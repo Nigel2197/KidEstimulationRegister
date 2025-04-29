@@ -1,8 +1,8 @@
---BEGIN TRANSACTION;
---PRAGMA foreign_keys = OFF;
+BEGIN TRANSACTION;
+PRAGMA foreign_keys = OFF;
 
---DELETE FROM Areas;
---DELETE FROM sqlite_sequence WHERE name='Areas';
+DELETE FROM Registers;
+DELETE FROM sqlite_sequence WHERE name='Registers';
 
---PRAGMA foreign_keys = ON;
---COMMIT;
+PRAGMA foreign_keys = ON;
+COMMIT;
