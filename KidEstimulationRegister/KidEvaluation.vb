@@ -13,9 +13,9 @@ Public Class KidEvaluation
     Private AreaSelection As New HashSet(Of Integer)() ' Almacenar los índices de las areas seleccionadas
 
     Private Sub KidEvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        FindKidData()
-        LoadKidData()
-
+        FindKidData() ' Busca la informacion personal del infante
+        LoadKidData() ' Carga la informacion y la muestra en pantalla
+        FindKidRegister() ' Busca si el infante ya cuenta con una evaluacion registrada segun su edad actual
         Cb_Area.SelectedIndex = 0 ' Se inicia con la conducta "Adaptativa"
         AreaSelection.Add(Cb_Area.SelectedIndex) ' Agrega manualmente el índice del area seleccionada al HashSet
     End Sub
@@ -80,12 +80,13 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub LoadFormRegister() ' Carga el formulario completo donde se registran las conductas del infante
-        FindBehaviors()
-        LoadBehaviors()
-
-        If FoundKidRegister Then
-            LoadStatusForm()
+        If FoundKidRegister Then ' Si existe informacion del infante
+            FindBehaviorsWithStatus() ' Busca los regristos de las conductas evaluadas anteriormente
+        Else
+            FindBehaviors() ' Busca las conductas a evaluar
         End If
+
+        LoadBehaviors() ' Carga el listado de las conductas
     End Sub
 
     Private Sub FindBehaviors()
@@ -99,6 +100,26 @@ Public Class KidEvaluation
 
         where.Add("Age_ID = @ageid")
         parameters.Add("@ageid", AgeID)
+
+        query &= "WHERE " & String.Join(" AND ", where)
+
+        dt = GetData(query, parameters)
+    End Sub
+
+    Private Sub FindBehaviorsWithStatus()
+        where = New List(Of String)() ' Se vacian los filtros utilizados
+        parameters = New Dictionary(Of String, Object)() ' Se vacian los parametros utilizados
+
+        query = "SELECT B.ID, B.Description AS Conducta, R.Status AS Indicador FROM Behaviors B INNER JOIN Registers R ON B.ID = R.Behavior_ID "
+
+        where.Add("B.Area_ID = @areaid")
+        parameters.Add("@areaid", AreaID)
+
+        where.Add("B.Age_ID = @ageid")
+        parameters.Add("@ageid", AgeID)
+
+        where.Add("R.Kid_ID = @kidid")
+        parameters.Add("@kidid", KidID)
 
         query &= "WHERE " & String.Join(" AND ", where)
 
@@ -149,7 +170,7 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub FindKidRegister()
-        Dim result As Object = ExecuteScalar("SELECT 1 FROM Registers WHERE Kid_ID = @kidid AND AgeID = @ageid",
+        Dim result As Object = ExecuteScalar("SELECT 1 FROM Registers WHERE Kid_ID = @kidid AND Age_ID = @ageid",
                                            New Dictionary(Of String, Object) From {{"@kidid", KidID},
                                                                                    {"@ageid", AgeID}})
         If result Then
@@ -199,7 +220,7 @@ Public Class KidEvaluation
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
             If Not success Then
-                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Reinicie el sistema e intente nuevamente{Environment.NewLine}{Environment.NewLine}En caso de continuar con el error contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Next
     End Sub
@@ -220,7 +241,7 @@ Public Class KidEvaluation
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
             If Not success Then
-                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Reinicie el sistema e intente nuevamente{Environment.NewLine}{Environment.NewLine}En caso de continuar con el error contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Next
     End Sub
@@ -241,7 +262,7 @@ Public Class KidEvaluation
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
             If Not success Then
-                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Reinicie el sistema e intente nuevamente{Environment.NewLine}{Environment.NewLine}En caso de continuar con el error contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Next
     End Sub
@@ -262,7 +283,7 @@ Public Class KidEvaluation
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
             If Not success Then
-                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Reinicie el sistema e intente nuevamente{Environment.NewLine}{Environment.NewLine}En caso de continuar con el error contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Next
     End Sub
@@ -283,7 +304,7 @@ Public Class KidEvaluation
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
             If Not success Then
-                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Reinicie el sistema e intente nuevamente{Environment.NewLine}{Environment.NewLine}En caso de continuar con el error contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Next
     End Sub
@@ -294,38 +315,6 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub Cb_Area_DrawItem(sender As Object, e As DrawItemEventArgs) Handles Cb_Area.DrawItem
-        'If e.Index < 0 Then Exit Sub
-
-        '' Definir colores
-        'Dim textColor As Color = Color.SkyBlue
-        'Dim bgColor As Color = Color.White
-
-        '' Si el ítem está seleccionado, mantiene el mismo color de texto
-        'If (e.State And DrawItemState.Selected) = DrawItemState.Selected Then
-        '    bgColor = Color.LightGray ' Color de fondo cuando se selecciona
-        'End If
-
-        '' Dibujar fondo del ítem
-        'Using bgBrush As New SolidBrush(bgColor)
-        '    e.Graphics.FillRectangle(bgBrush, e.Bounds)
-        'End Using
-
-        '' Obtener el texto y calcular su posición para centrarlo
-        'Dim text As String = Cb_Area.Items(e.Index).ToString()
-        'Dim textFont As Font = Cb_Area.Font
-        'Dim textSize As SizeF = e.Graphics.MeasureString(text, textFont)
-
-        '' Calcular la posición correcta para cada ítem
-        'Dim x As Integer = e.Bounds.Left + (e.Bounds.Width - textSize.Width) / 2
-        'Dim y As Integer = e.Bounds.Top + (e.Bounds.Height - textSize.Height) / 2
-
-        '' Dibujar el texto centrado en su ítem correspondiente
-        'Using textBrush As New SolidBrush(textColor)
-        '    e.Graphics.DrawString(text, textFont, textBrush, New PointF(x, y))
-        'End Using
-
-        'e.DrawFocusRectangle() ' Dibuja el rectángulo de selección si es necesario
-
         If e.Index < 0 Then Return ' Evita errores si el ComboBox está vacío
 
         e.DrawBackground()
@@ -333,7 +322,7 @@ Public Class KidEvaluation
         Dim text As String = Cb_Area.Items(e.Index).ToString()
         Dim ColorText As Brush = If(AreaSelection.Contains(e.Index), Brushes.Green, Brushes.Black)
 
-        e.Graphics.DrawString(text, e.Font, ColorText, e.Bounds)
+        e.Graphics.DrawString(text, e.Font, ColorText, e.Bounds) ' Colorea el texto de color verde a todos las conductas que ya fueron seleccionadas
         e.DrawFocusRectangle()
     End Sub
 

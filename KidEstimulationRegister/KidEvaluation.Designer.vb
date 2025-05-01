@@ -43,6 +43,9 @@ Partial Class KidEvaluation
         Label2 = New Label()
         Tb_Name = New TextBox()
         Dgv_FineMotor = New DataGridView()
+        ID_F = New DataGridViewTextBoxColumn()
+        Conducta_F = New DataGridViewTextBoxColumn()
+        Indicador_F = New DataGridViewCheckBoxColumn()
         Dgv_Language = New DataGridView()
         ID_L = New DataGridViewTextBoxColumn()
         Conducta_L = New DataGridViewTextBoxColumn()
@@ -59,9 +62,6 @@ Partial Class KidEvaluation
         ID_A = New DataGridViewTextBoxColumn()
         Conducta_A = New DataGridViewTextBoxColumn()
         Indicador_A = New DataGridViewCheckBoxColumn()
-        ID_F = New DataGridViewTextBoxColumn()
-        Conducta_F = New DataGridViewTextBoxColumn()
-        Indicador_F = New DataGridViewCheckBoxColumn()
         TableLayoutPanel1.SuspendLayout()
         CType(Dgv_FineMotor, ComponentModel.ISupportInitialize).BeginInit()
         CType(Dgv_Language, ComponentModel.ISupportInitialize).BeginInit()
@@ -240,6 +240,42 @@ Partial Class KidEvaluation
         Dgv_FineMotor.Size = New Size(670, 306)
         Dgv_FineMotor.TabIndex = 92
         ' 
+        ' ID_F
+        ' 
+        ID_F.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        ID_F.DataPropertyName = "ID"
+        ID_F.Frozen = True
+        ID_F.HeaderText = "ID"
+        ID_F.Name = "ID_F"
+        ID_F.Resizable = DataGridViewTriState.False
+        ID_F.Visible = False
+        ID_F.Width = 5
+        ' 
+        ' Conducta_F
+        ' 
+        Conducta_F.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Conducta_F.DataPropertyName = "Conducta"
+        Conducta_F.DividerWidth = 1
+        Conducta_F.Frozen = True
+        Conducta_F.HeaderText = "Conducta"
+        Conducta_F.Name = "Conducta_F"
+        Conducta_F.ReadOnly = True
+        Conducta_F.Resizable = DataGridViewTriState.False
+        Conducta_F.Width = 588
+        ' 
+        ' Indicador_F
+        ' 
+        Indicador_F.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        Indicador_F.DataPropertyName = "Indicador"
+        Indicador_F.DividerWidth = 1
+        Indicador_F.FalseValue = False
+        Indicador_F.Frozen = True
+        Indicador_F.HeaderText = "Indicador"
+        Indicador_F.Name = "Indicador_F"
+        Indicador_F.Resizable = DataGridViewTriState.False
+        Indicador_F.TrueValue = True
+        Indicador_F.Width = 80
+        ' 
         ' Dgv_Language
         ' 
         Dgv_Language.AllowUserToAddRows = False
@@ -305,13 +341,13 @@ Partial Class KidEvaluation
         Indicador_L.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
         Indicador_L.DataPropertyName = "Indicador"
         Indicador_L.DividerWidth = 1
+        Indicador_L.FalseValue = False
         Indicador_L.Frozen = True
         Indicador_L.HeaderText = "Indicador"
         Indicador_L.Name = "Indicador_L"
         Indicador_L.Resizable = DataGridViewTriState.False
-        Indicador_L.Width = 80
-        Indicador_L.FalseValue = False
         Indicador_L.TrueValue = True
+        Indicador_L.Width = 80
         ' 
         ' Dgv_SocialPerson
         ' 
@@ -378,13 +414,13 @@ Partial Class KidEvaluation
         Indicador_S.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
         Indicador_S.DataPropertyName = "Indicador"
         Indicador_S.DividerWidth = 1
+        Indicador_S.FalseValue = False
         Indicador_S.Frozen = True
         Indicador_S.HeaderText = "Indicador"
         Indicador_S.Name = "Indicador_S"
         Indicador_S.Resizable = DataGridViewTriState.False
-        Indicador_S.Width = 80
-        Indicador_S.FalseValue = False
         Indicador_S.TrueValue = True
+        Indicador_S.Width = 80
         ' 
         ' Dgv_GrossMotor
         ' 
@@ -451,13 +487,13 @@ Partial Class KidEvaluation
         Indicador_G.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
         Indicador_G.DataPropertyName = "Indicador"
         Indicador_G.DividerWidth = 1
+        Indicador_G.FalseValue = False
         Indicador_G.Frozen = True
         Indicador_G.HeaderText = "Indicador"
         Indicador_G.Name = "Indicador_G"
         Indicador_G.Resizable = DataGridViewTriState.False
-        Indicador_G.Width = 80
-        Indicador_G.FalseValue = False
         Indicador_G.TrueValue = True
+        Indicador_G.Width = 80
         ' 
         ' Dgv_Adaptative
         ' 
@@ -531,42 +567,6 @@ Partial Class KidEvaluation
         Indicador_A.Resizable = DataGridViewTriState.False
         Indicador_A.TrueValue = True
         Indicador_A.Width = 80
-        ' 
-        ' ID_F
-        ' 
-        ID_F.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        ID_F.DataPropertyName = "ID"
-        ID_F.Frozen = True
-        ID_F.HeaderText = "ID"
-        ID_F.Name = "ID_F"
-        ID_F.Resizable = DataGridViewTriState.False
-        ID_F.Visible = False
-        ID_F.Width = 5
-        ' 
-        ' Conducta_F
-        ' 
-        Conducta_F.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        Conducta_F.DataPropertyName = "Conducta"
-        Conducta_F.DividerWidth = 1
-        Conducta_F.Frozen = True
-        Conducta_F.HeaderText = "Conducta"
-        Conducta_F.Name = "Conducta_F"
-        Conducta_F.ReadOnly = True
-        Conducta_F.Resizable = DataGridViewTriState.False
-        Conducta_F.Width = 588
-        ' 
-        ' Indicador_F
-        ' 
-        Indicador_F.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        Indicador_F.DataPropertyName = "Indicador"
-        Indicador_F.DividerWidth = 1
-        Indicador_F.FalseValue = False
-        Indicador_F.Frozen = True
-        Indicador_F.HeaderText = "Indicador"
-        Indicador_F.Name = "Indicador_F"
-        Indicador_F.Resizable = DataGridViewTriState.False
-        Indicador_F.TrueValue = True
-        Indicador_F.Width = 80
         ' 
         ' KidEvaluation
         ' 

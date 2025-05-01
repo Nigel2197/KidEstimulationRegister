@@ -57,7 +57,6 @@ Public Class ScreenRegister
     End Sub
 
     Private Sub Dtp_DayBirth_ValueChanged(sender As Object, e As EventArgs) Handles Dtp_DayBirth.ValueChanged
-
         ' Si el combobox fue seleccionado avanza con la busqueda
         If Dtp_DayBirth.Focused Then
             Dtp_DayBirth.Format = DateTimePickerFormat.Custom
@@ -66,17 +65,14 @@ Public Class ScreenRegister
         Else
             Exit Sub
         End If
-
     End Sub
 
     Private Sub Ckb_Allergic_CheckedChanged(sender As Object, e As EventArgs) Handles Ckb_Allergic.CheckedChanged
-
         If Ckb_Allergic.Checked Then
             Tb_WhatAllergy.Enabled = True
         Else
             Tb_WhatAllergy.Enabled = False
         End If
-
     End Sub
 
     Private Sub GetListWeeksAge()
