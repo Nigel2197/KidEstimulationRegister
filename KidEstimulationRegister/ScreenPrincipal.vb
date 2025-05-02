@@ -17,16 +17,12 @@ Public Class ScreenPrincipal
 
     Private Sub btn_ScreenRegister_Click(sender As Object, e As EventArgs) Handles Btn_ScreenRegister.Click
         Me.Hide()
-        ScreenRegister.Show()
+        MenuRegister.Show()
     End Sub
 
-    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
-        Me.Close()
-    End Sub
-
-    Private Sub Btn_ScreenList_Click(sender As Object, e As EventArgs) Handles Btn_ScreenList.Click
-        Me.Hide()
-        ScreenList.Show()
+    Private Sub Btn_ScreenList_Click(sender As Object, e As EventArgs)
+        Hide
+        ScreenList.Show
     End Sub
 
     Private Sub UpdateAges()
@@ -39,6 +35,10 @@ Public Class ScreenPrincipal
         If Not success Then
             MessageBox.Show($"Ocurrió un error al actualizar las edades de los infantes{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
+    End Sub
+
+    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+        Me.Close()
     End Sub
 
 End Class

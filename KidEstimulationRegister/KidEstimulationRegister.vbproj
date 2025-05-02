@@ -47,6 +47,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="2. Register\KidEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -57,7 +60,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="ScreenList.vb" />
+    <Compile Update="2. Register\MenuRegister.vb" />
+    <Compile Update="2. Register\ScreenList.vb" />
   </ItemGroup>
 
   <ItemGroup>
@@ -76,6 +80,10 @@
     <None Update="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="3. Activitys\" />
   </ItemGroup>
 
 </Project>

@@ -66,11 +66,11 @@ Partial Class ScreenRegister
         Label8.BackColor = Color.Transparent
         Label8.Font = New Font("Baloo", 23.9999981F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = Color.White
-        Label8.Location = New Point(304, 0)
+        Label8.Location = New Point(193, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(154, 50)
+        Label8.Size = New Size(375, 50)
         Label8.TabIndex = 48
-        Label8.Text = "Registro"
+        Label8.Text = "Agregar Nuevo Infante"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' btn_Exit
@@ -161,6 +161,8 @@ Partial Class ScreenRegister
         ' 
         Cb_Gender.BackColor = Color.LightSteelBlue
         Cb_Gender.Cursor = Cursors.Hand
+        Cb_Gender.DropDownStyle = ComboBoxStyle.DropDownList
+        Cb_Gender.FlatStyle = FlatStyle.Flat
         Cb_Gender.Font = New Font("Baloo", 11.999999F)
         Cb_Gender.ForeColor = SystemColors.Window
         Cb_Gender.FormattingEnabled = True
@@ -197,6 +199,8 @@ Partial Class ScreenRegister
         ' 
         Cb_BloodType.BackColor = Color.LightSteelBlue
         Cb_BloodType.Cursor = Cursors.Hand
+        Cb_BloodType.DropDownStyle = ComboBoxStyle.DropDownList
+        Cb_BloodType.FlatStyle = FlatStyle.Flat
         Cb_BloodType.Font = New Font("Baloo", 11.999999F)
         Cb_BloodType.ForeColor = SystemColors.Window
         Cb_BloodType.FormattingEnabled = True

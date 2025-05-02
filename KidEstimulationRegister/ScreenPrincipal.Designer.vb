@@ -28,20 +28,25 @@ Partial Class ScreenPrincipal
         Label1 = New Label()
         Btn_ScreenEvaluation = New Button()
         btn_Exit = New Button()
-        Btn_ScreenList = New Button()
+        TableLayoutPanel1 = New TableLayoutPanel()
+        TableLayoutPanel2 = New TableLayoutPanel()
+        TableLayoutPanel1.SuspendLayout()
+        TableLayoutPanel2.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label2
         ' 
+        Label2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom
         Label2.AutoSize = True
         Label2.BackColor = Color.Transparent
         Label2.Font = New Font("Baloo", 26.2499962F, FontStyle.Bold)
         Label2.ForeColor = Color.DodgerBlue
-        Label2.Location = New Point(204, 128)
+        Label2.Location = New Point(191, 0)
         Label2.Name = "Label2"
-        Label2.Size = New Size(416, 55)
+        Label2.Size = New Size(380, 50)
         Label2.TabIndex = 1
-        Label2.Text = "Estimulación Temprana"
+        Label2.Text = "Evaluación Temprana"
+        Label2.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Btn_ScreenRegister
         ' 
@@ -49,7 +54,7 @@ Partial Class ScreenPrincipal
         Btn_ScreenRegister.Cursor = Cursors.Hand
         Btn_ScreenRegister.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenRegister.ForeColor = Color.White
-        Btn_ScreenRegister.Location = New Point(460, 291)
+        Btn_ScreenRegister.Location = New Point(437, 382)
         Btn_ScreenRegister.Name = "Btn_ScreenRegister"
         Btn_ScreenRegister.Size = New Size(160, 80)
         Btn_ScreenRegister.TabIndex = 3
@@ -62,7 +67,7 @@ Partial Class ScreenPrincipal
         Btn_ScreenActivity.Cursor = Cursors.Hand
         Btn_ScreenActivity.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenActivity.ForeColor = Color.White
-        Btn_ScreenActivity.Location = New Point(204, 412)
+        Btn_ScreenActivity.Location = New Point(199, 382)
         Btn_ScreenActivity.Name = "Btn_ScreenActivity"
         Btn_ScreenActivity.Size = New Size(160, 80)
         Btn_ScreenActivity.TabIndex = 4
@@ -71,13 +76,14 @@ Partial Class ScreenPrincipal
         ' 
         ' Label1
         ' 
+        Label1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom
         Label1.AutoSize = True
         Label1.BackColor = Color.Transparent
         Label1.Font = New Font("Baloo", 26.2499962F, FontStyle.Bold)
         Label1.ForeColor = Color.Orchid
-        Label1.Location = New Point(225, 183)
+        Label1.Location = New Point(196, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(370, 55)
+        Label1.Size = New Size(370, 50)
         Label1.TabIndex = 5
         Label1.Text = "Orientación Familiar"
         ' 
@@ -87,7 +93,7 @@ Partial Class ScreenPrincipal
         Btn_ScreenEvaluation.Cursor = Cursors.Hand
         Btn_ScreenEvaluation.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenEvaluation.ForeColor = Color.White
-        Btn_ScreenEvaluation.Location = New Point(204, 291)
+        Btn_ScreenEvaluation.Location = New Point(316, 247)
         Btn_ScreenEvaluation.Name = "Btn_ScreenEvaluation"
         Btn_ScreenEvaluation.Size = New Size(160, 80)
         Btn_ScreenEvaluation.TabIndex = 2
@@ -107,18 +113,33 @@ Partial Class ScreenPrincipal
         btn_Exit.TabIndex = 6
         btn_Exit.UseVisualStyleBackColor = True
         ' 
-        ' Btn_ScreenList
+        ' TableLayoutPanel1
         ' 
-        Btn_ScreenList.BackColor = Color.SteelBlue
-        Btn_ScreenList.Cursor = Cursors.Hand
-        Btn_ScreenList.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
-        Btn_ScreenList.ForeColor = Color.White
-        Btn_ScreenList.Location = New Point(460, 412)
-        Btn_ScreenList.Name = "Btn_ScreenList"
-        Btn_ScreenList.Size = New Size(160, 80)
-        Btn_ScreenList.TabIndex = 7
-        Btn_ScreenList.Text = "Lista de Infantes"
-        Btn_ScreenList.UseVisualStyleBackColor = False
+        TableLayoutPanel1.BackColor = Color.Transparent
+        TableLayoutPanel1.ColumnCount = 1
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.Controls.Add(Label2, 0, 0)
+        TableLayoutPanel1.Location = New Point(12, 80)
+        TableLayoutPanel1.Name = "TableLayoutPanel1"
+        TableLayoutPanel1.RowCount = 1
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 51F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
+        TableLayoutPanel1.Size = New Size(762, 50)
+        TableLayoutPanel1.TabIndex = 44
+        ' 
+        ' TableLayoutPanel2
+        ' 
+        TableLayoutPanel2.BackColor = Color.Transparent
+        TableLayoutPanel2.ColumnCount = 1
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel2.Controls.Add(Label1, 0, 0)
+        TableLayoutPanel2.Location = New Point(12, 130)
+        TableLayoutPanel2.Name = "TableLayoutPanel2"
+        TableLayoutPanel2.RowCount = 1
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 51F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
+        TableLayoutPanel2.Size = New Size(762, 50)
+        TableLayoutPanel2.TabIndex = 45
         ' 
         ' ScreenPrincipal
         ' 
@@ -127,19 +148,21 @@ Partial Class ScreenPrincipal
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
-        Controls.Add(Btn_ScreenList)
+        Controls.Add(TableLayoutPanel2)
+        Controls.Add(TableLayoutPanel1)
         Controls.Add(btn_Exit)
-        Controls.Add(Label1)
         Controls.Add(Btn_ScreenActivity)
         Controls.Add(Btn_ScreenRegister)
         Controls.Add(Btn_ScreenEvaluation)
-        Controls.Add(Label2)
         MaximizeBox = False
         Name = "ScreenPrincipal"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Kid Stimulation Register"
+        TableLayoutPanel1.ResumeLayout(False)
+        TableLayoutPanel1.PerformLayout()
+        TableLayoutPanel2.ResumeLayout(False)
+        TableLayoutPanel2.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
     Friend WithEvents Label2 As Label
     Friend WithEvents Btn_ScreenRegister As Button
@@ -147,6 +170,7 @@ Partial Class ScreenPrincipal
     Friend WithEvents Label1 As Label
     Friend WithEvents Btn_ScreenEvaluation As Button
     Friend WithEvents btn_Exit As Button
-    Friend WithEvents Btn_ScreenList As Button
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
 
 End Class
