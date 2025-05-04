@@ -9,11 +9,11 @@ Public Class KidEdit
     Private AgeID As Integer
     Private WhatAllergy As String
 
-    ''Variables para las consultas a las bases de datos
-    Dim query As String
-    Dim where As New List(Of String)()
-    Dim parameters As New Dictionary(Of String, Object)()
-    Dim clauses As String
+    '''Variables para las consultas a las bases de datos
+    'Dim query As String
+    'Dim where As New List(Of String)()
+    'Dim parameters As New Dictionary(Of String, Object)()
+    'Dim clauses As String
 
     ' Variables para el calculo de edad
     Dim today As Date = Date.Today 'Establece la fecha del dia actual
@@ -66,12 +66,12 @@ Public Class KidEdit
         If validation Then
             confirmation = MessageBox.Show("¿Estás seguro de que deseas registrar los datos del infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If confirmation = DialogResult.Yes Then
-                KidRegister()
+                UpdateKidRegister()
             Else
                 Return
             End If
         Else
-            MessageBox.Show("Favor completar los datos faltantes para proceder con el registro del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Favor completar los datos faltantes para proceder con la edición del registro del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
@@ -160,12 +160,12 @@ Public Class KidEdit
                                            New Dictionary(Of String, Object) From {{"@weeksage", weeksPassed}})
     End Sub
 
-    Private Sub KidRegister()
+    Private Sub UpdateKidRegister()
         Dim ageID As Integer = ExecuteScalar("SELECT ID FROM Ages WHERE Age = @weeksage",
                                            New Dictionary(Of String, Object) From {{"@weeksage", Tb_Age.Text}})
 
-        Dim success As Boolean = WriteData("INSERT INTO Kids (Name, Gender, DayBirth, Age_ID, Address, BloodType, Allergic, WhatAllergy, Status)
-                                            VALUES (@name, @gender, @daybirth, @ageid, @address, @bloodtype, @allergic, @whatallergy, @status)",
+        Dim success As Boolean = WriteData("UPDATE Kids SET Name = @name, Gender = @gender, DayBirth = @daybirth, Age_ID = @ageid, Address = @address, BloodType = @bloodtype, Allergic = @allergic, WhatAllergy = @whatallergy
+                                            WHERE Name = @nameorigin",
                                            New Dictionary(Of String, Object) From {{"@name", Tb_Name.Text},
                                                                                    {"@gender", Cb_Gender.Text},
                                                                                    {"@daybirth", Dtp_DayBirth.Text},
@@ -174,7 +174,7 @@ Public Class KidEdit
                                                                                    {"@bloodtype", Cb_BloodType.Text},
                                                                                    {"@allergic", Ckb_Allergic.Checked},
                                                                                    {"@whatallergy", Tb_WhatAllergy.Text},
-                                                                                   {"@status", 1}})
+                                                                                   {"@nameorigin", Cb_Name.Text}})
         If success Then
             MessageBox.Show("Se registraron los datos del infante correctamente", "Registro aceptado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else

@@ -82,14 +82,6 @@ Public Class ScreenList
             query &= "WHERE " & String.Join(" AND ", where)
         End If
 
-        'dt = GetData("SELECT Name AS Nombre, Gender AS Sexo, WeeksAge AS [Edad (Semanas)], Address AS Dirección FROM Kids
-        '                               WHERE Name LIKE IFNULL(NULLIF(@name, ''), Name)
-        '                               AND WeeksAge = IFNULL(NULLIF(@weeksage, 0), WeeksAge)
-        '                               AND Gender = IFNULL(NULLIF(@gender, ''), Gender)",
-        '                               New Dictionary(Of String, Object) From {{"@name", Cb_Name.Text},
-        '                                                                       {"@weeksage", Nud_WeeksAge.Value},
-        '                                                                       {"@gender", Cb_Gender.Text}})
-
         dt = GetData(query, parameters)
 
         If dt IsNot Nothing Then
@@ -142,16 +134,4 @@ Public Class ScreenList
         e.DrawFocusRectangle()
     End Sub
 
-    Private Sub Dgv_KidList_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles Dgv_KidList.DataBindingComplete
-        'Dgv_KidList.DefaultCellStyle.BackColor = Color.White
-        'Dgv_KidList.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSteelBlue
-    End Sub
-
-    'Private Sub Cb_Name_KeyDown(sender As Object, e As KeyEventArgs) Handles Cb_Name.KeyDown
-    '    ' Verifica si se presionó la tecla Enter
-    '    If e.KeyCode = Keys.Enter Then
-    '        'FindKid()
-    '        MessageBox.Show("Enter")
-    '    End If
-    'End Sub
 End Class

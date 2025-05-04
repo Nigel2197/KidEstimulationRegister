@@ -3,6 +3,7 @@ Public Class ScreenPrincipal
 
     Private Sub ScreenPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateAges() ' Actualiza las edades de todos los infantes
+        DeleteKids() ' Da de baja a todos los infantes que tengan mas de 5 años
     End Sub
 
     Private Sub btn_ScreenEvaluation_Click(sender As Object, e As EventArgs) Handles Btn_ScreenEvaluation.Click
@@ -10,10 +11,10 @@ Public Class ScreenPrincipal
         ScreenEvaluation.Show()
     End Sub
 
-    'Private Sub btn_ScreenActivity_Click(sender As Object, e As EventArgs) Handles btn_ScreenActivity.Click
-    '    Me.Hide()
-    '    ScreenEvaluation.Show()
-    'End Sub
+    Private Sub btn_ScreenActivity_Click(sender As Object, e As EventArgs) Handles Btn_ScreenActivity.Click
+        Me.Hide()
+        FindKidProgress.Show()
+    End Sub
 
     Private Sub btn_ScreenRegister_Click(sender As Object, e As EventArgs) Handles Btn_ScreenRegister.Click
         Me.Hide()
@@ -34,6 +35,15 @@ Public Class ScreenPrincipal
                                             LIMIT 1)")
         If Not success Then
             MessageBox.Show($"Ocurrió un error al actualizar las edades de los infantes{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+    Private Sub DeleteKids()
+        Dim success As Boolean = WriteData("UPDATE Kids 
+                                            SET Status = 0
+                                            WHERE (julianday('now') - julianday(SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2))) >= (5 * 365.25)")
+        If Not success Then
+            MessageBox.Show($"Ocurrió un error al eliminar a los infantes que tienen más de 5 años{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 

@@ -12,8 +12,8 @@ Public Class MenuRegister
         KidEdit.Show()
     End Sub
 
-    Private Sub Btn_Delete_Click(sender As Object, e As EventArgs) Handles Btn_Delete.Click
-
+    Private Sub Btn_ScreenList_Click(sender As Object, e As EventArgs) Handles Btn_ScreenList.Click
+        Me.Hide()
+        ScreenList.Show()
     End Sub
-
 End Class

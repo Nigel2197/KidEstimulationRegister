@@ -26,7 +26,6 @@ Partial Class MenuRegister
         Btn_New = New Button()
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
-        Btn_Delete = New Button()
         Btn_ScreenList = New Button()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
@@ -37,9 +36,9 @@ Partial Class MenuRegister
         Btn_Edit.Cursor = Cursors.Hand
         Btn_Edit.Font = New Font("Baloo", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Btn_Edit.ForeColor = Color.White
-        Btn_Edit.Location = New Point(315, 319)
+        Btn_Edit.Location = New Point(200, 382)
         Btn_Edit.Name = "Btn_Edit"
-        Btn_Edit.Size = New Size(160, 60)
+        Btn_Edit.Size = New Size(160, 80)
         Btn_Edit.TabIndex = 5
         Btn_Edit.Text = "Editar"
         Btn_Edit.UseVisualStyleBackColor = False
@@ -50,9 +49,9 @@ Partial Class MenuRegister
         Btn_New.Cursor = Cursors.Hand
         Btn_New.Font = New Font("Baloo", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Btn_New.ForeColor = Color.White
-        Btn_New.Location = New Point(315, 216)
+        Btn_New.Location = New Point(316, 246)
         Btn_New.Name = "Btn_New"
-        Btn_New.Size = New Size(160, 60)
+        Btn_New.Size = New Size(160, 80)
         Btn_New.TabIndex = 6
         Btn_New.Text = "Nuevo"
         Btn_New.UseVisualStyleBackColor = False
@@ -84,26 +83,13 @@ Partial Class MenuRegister
         Label8.Text = "Registro de Infantes"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Btn_Delete
-        ' 
-        Btn_Delete.BackColor = Color.SteelBlue
-        Btn_Delete.Cursor = Cursors.Hand
-        Btn_Delete.Font = New Font("Baloo", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Btn_Delete.ForeColor = Color.White
-        Btn_Delete.Location = New Point(315, 425)
-        Btn_Delete.Name = "Btn_Delete"
-        Btn_Delete.Size = New Size(160, 60)
-        Btn_Delete.TabIndex = 45
-        Btn_Delete.Text = "Eliminar"
-        Btn_Delete.UseVisualStyleBackColor = False
-        ' 
         ' Btn_ScreenList
         ' 
         Btn_ScreenList.BackColor = Color.SteelBlue
         Btn_ScreenList.Cursor = Cursors.Hand
         Btn_ScreenList.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenList.ForeColor = Color.White
-        Btn_ScreenList.Location = New Point(499, 405)
+        Btn_ScreenList.Location = New Point(436, 382)
         Btn_ScreenList.Name = "Btn_ScreenList"
         Btn_ScreenList.Size = New Size(160, 80)
         Btn_ScreenList.TabIndex = 46
@@ -118,7 +104,6 @@ Partial Class MenuRegister
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
         Controls.Add(Btn_ScreenList)
-        Controls.Add(Btn_Delete)
         Controls.Add(TableLayoutPanel1)
         Controls.Add(Btn_New)
         Controls.Add(Btn_Edit)
@@ -134,6 +119,5 @@ Partial Class MenuRegister
     Friend WithEvents Btn_New As Button
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Label8 As Label
-    Friend WithEvents Btn_Delete As Button
     Friend WithEvents Btn_ScreenList As Button
 End Class

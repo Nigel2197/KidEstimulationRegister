@@ -40,6 +40,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.3" />
+    <PackageReference Include="WinForms.DataVisualization" Version="1.10.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="3. Activitys\FindKidProgress.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="3. Activitys\DataVisualization.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="2. Register\KidEdit.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -80,10 +87,6 @@
     <None Update="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="3. Activitys\" />
   </ItemGroup>
 
 </Project>

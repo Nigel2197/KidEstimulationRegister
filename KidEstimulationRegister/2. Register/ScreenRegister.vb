@@ -4,10 +4,10 @@ Public Class ScreenRegister
     Dim dt As DataTable
 
     ''Variables para las consultas a las bases de datos
-    Dim query As String
-    Dim where As New List(Of String)()
-    Dim parameters As New Dictionary(Of String, Object)()
-    Dim clauses As String
+    'Dim query As String
+    'Dim where As New List(Of String)()
+    'Dim parameters As New Dictionary(Of String, Object)()
+    'Dim clauses As String
 
     ' Variables para el calculo de edad
     Dim today As Date = Date.Today 'Establece la fecha del dia actual

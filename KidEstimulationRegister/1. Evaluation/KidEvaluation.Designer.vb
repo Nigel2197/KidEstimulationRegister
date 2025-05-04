@@ -22,16 +22,16 @@ Partial Class KidEvaluation
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As DataGridViewCellStyle = New DataGridViewCellStyle()
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
         Lbl_Age = New Label()
@@ -41,7 +41,7 @@ Partial Class KidEvaluation
         Cb_Area = New ComboBox()
         Lbl_Name = New Label()
         Label2 = New Label()
-        Tb_Name = New TextBox()
+        Tb_Comments = New TextBox()
         Dgv_FineMotor = New DataGridView()
         ID_F = New DataGridViewTextBoxColumn()
         Conducta_F = New DataGridViewTextBoxColumn()
@@ -191,17 +191,17 @@ Partial Class KidEvaluation
         Label2.Text = "Observaciones:"
         Label2.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Tb_Name
+        ' Tb_Comments
         ' 
-        Tb_Name.BackColor = Color.LightSteelBlue
-        Tb_Name.Cursor = Cursors.Hand
-        Tb_Name.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Tb_Name.ForeColor = Color.WhiteSmoke
-        Tb_Name.Location = New Point(193, 189)
-        Tb_Name.Name = "Tb_Name"
-        Tb_Name.PlaceholderText = "       ¿Observó algo en el infante?"
-        Tb_Name.Size = New Size(255, 33)
-        Tb_Name.TabIndex = 91
+        Tb_Comments.BackColor = Color.LightSteelBlue
+        Tb_Comments.Cursor = Cursors.Hand
+        Tb_Comments.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Tb_Comments.ForeColor = Color.WhiteSmoke
+        Tb_Comments.Location = New Point(193, 189)
+        Tb_Comments.Name = "Tb_Comments"
+        Tb_Comments.PlaceholderText = "       ¿Observó algo en el infante?"
+        Tb_Comments.Size = New Size(255, 33)
+        Tb_Comments.TabIndex = 91
         ' 
         ' Dgv_FineMotor
         ' 
@@ -213,24 +213,24 @@ Partial Class KidEvaluation
         Dgv_FineMotor.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
         Dgv_FineMotor.BackgroundColor = Color.AliceBlue
         Dgv_FineMotor.BorderStyle = BorderStyle.Fixed3D
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = Color.LightSkyBlue
-        DataGridViewCellStyle1.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = SystemColors.Window
-        DataGridViewCellStyle1.SelectionBackColor = Color.LightSkyBlue
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.Window
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        Dgv_FineMotor.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = Color.LightSkyBlue
+        DataGridViewCellStyle11.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle11.ForeColor = SystemColors.Window
+        DataGridViewCellStyle11.SelectionBackColor = Color.LightSkyBlue
+        DataGridViewCellStyle11.SelectionForeColor = SystemColors.Window
+        DataGridViewCellStyle11.WrapMode = DataGridViewTriState.True
+        Dgv_FineMotor.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Dgv_FineMotor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Dgv_FineMotor.Columns.AddRange(New DataGridViewColumn() {ID_F, Conducta_F, Indicador_F})
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = Color.AliceBlue
-        DataGridViewCellStyle2.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.SkyBlue
-        DataGridViewCellStyle2.SelectionBackColor = Color.AliceBlue
-        DataGridViewCellStyle2.SelectionForeColor = Color.SkyBlue
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        Dgv_FineMotor.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = Color.AliceBlue
+        DataGridViewCellStyle12.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle12.ForeColor = Color.SkyBlue
+        DataGridViewCellStyle12.SelectionBackColor = Color.AliceBlue
+        DataGridViewCellStyle12.SelectionForeColor = Color.SkyBlue
+        DataGridViewCellStyle12.WrapMode = DataGridViewTriState.False
+        Dgv_FineMotor.DefaultCellStyle = DataGridViewCellStyle12
         Dgv_FineMotor.EnableHeadersVisualStyles = False
         Dgv_FineMotor.GridColor = Color.Black
         Dgv_FineMotor.Location = New Point(61, 228)
@@ -286,24 +286,24 @@ Partial Class KidEvaluation
         Dgv_Language.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
         Dgv_Language.BackgroundColor = Color.AliceBlue
         Dgv_Language.BorderStyle = BorderStyle.Fixed3D
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = Color.LightSkyBlue
-        DataGridViewCellStyle3.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = SystemColors.Window
-        DataGridViewCellStyle3.SelectionBackColor = Color.LightSkyBlue
-        DataGridViewCellStyle3.SelectionForeColor = SystemColors.Window
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
-        Dgv_Language.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.BackColor = Color.LightSkyBlue
+        DataGridViewCellStyle13.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle13.ForeColor = SystemColors.Window
+        DataGridViewCellStyle13.SelectionBackColor = Color.LightSkyBlue
+        DataGridViewCellStyle13.SelectionForeColor = SystemColors.Window
+        DataGridViewCellStyle13.WrapMode = DataGridViewTriState.True
+        Dgv_Language.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
         Dgv_Language.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Dgv_Language.Columns.AddRange(New DataGridViewColumn() {ID_L, Conducta_L, Indicador_L})
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = Color.AliceBlue
-        DataGridViewCellStyle4.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle4.ForeColor = Color.SkyBlue
-        DataGridViewCellStyle4.SelectionBackColor = Color.AliceBlue
-        DataGridViewCellStyle4.SelectionForeColor = Color.SkyBlue
-        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.False
-        Dgv_Language.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = Color.AliceBlue
+        DataGridViewCellStyle14.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle14.ForeColor = Color.SkyBlue
+        DataGridViewCellStyle14.SelectionBackColor = Color.AliceBlue
+        DataGridViewCellStyle14.SelectionForeColor = Color.SkyBlue
+        DataGridViewCellStyle14.WrapMode = DataGridViewTriState.False
+        Dgv_Language.DefaultCellStyle = DataGridViewCellStyle14
         Dgv_Language.EnableHeadersVisualStyles = False
         Dgv_Language.GridColor = Color.Black
         Dgv_Language.Location = New Point(61, 228)
@@ -359,24 +359,24 @@ Partial Class KidEvaluation
         Dgv_SocialPerson.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
         Dgv_SocialPerson.BackgroundColor = Color.AliceBlue
         Dgv_SocialPerson.BorderStyle = BorderStyle.Fixed3D
-        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.BackColor = Color.LightSkyBlue
-        DataGridViewCellStyle5.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle5.ForeColor = SystemColors.Window
-        DataGridViewCellStyle5.SelectionBackColor = Color.LightSkyBlue
-        DataGridViewCellStyle5.SelectionForeColor = SystemColors.Window
-        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
-        Dgv_SocialPerson.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle15.BackColor = Color.LightSkyBlue
+        DataGridViewCellStyle15.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle15.ForeColor = SystemColors.Window
+        DataGridViewCellStyle15.SelectionBackColor = Color.LightSkyBlue
+        DataGridViewCellStyle15.SelectionForeColor = SystemColors.Window
+        DataGridViewCellStyle15.WrapMode = DataGridViewTriState.True
+        Dgv_SocialPerson.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle15
         Dgv_SocialPerson.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Dgv_SocialPerson.Columns.AddRange(New DataGridViewColumn() {ID_S, Conducta_S, Indicador_S})
-        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = Color.AliceBlue
-        DataGridViewCellStyle6.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle6.ForeColor = Color.SkyBlue
-        DataGridViewCellStyle6.SelectionBackColor = Color.AliceBlue
-        DataGridViewCellStyle6.SelectionForeColor = Color.SkyBlue
-        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.False
-        Dgv_SocialPerson.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle16.BackColor = Color.AliceBlue
+        DataGridViewCellStyle16.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle16.ForeColor = Color.SkyBlue
+        DataGridViewCellStyle16.SelectionBackColor = Color.AliceBlue
+        DataGridViewCellStyle16.SelectionForeColor = Color.SkyBlue
+        DataGridViewCellStyle16.WrapMode = DataGridViewTriState.False
+        Dgv_SocialPerson.DefaultCellStyle = DataGridViewCellStyle16
         Dgv_SocialPerson.EnableHeadersVisualStyles = False
         Dgv_SocialPerson.GridColor = Color.Black
         Dgv_SocialPerson.Location = New Point(61, 228)
@@ -432,24 +432,24 @@ Partial Class KidEvaluation
         Dgv_GrossMotor.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
         Dgv_GrossMotor.BackgroundColor = Color.AliceBlue
         Dgv_GrossMotor.BorderStyle = BorderStyle.Fixed3D
-        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.BackColor = Color.LightSkyBlue
-        DataGridViewCellStyle7.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle7.ForeColor = SystemColors.Window
-        DataGridViewCellStyle7.SelectionBackColor = Color.LightSkyBlue
-        DataGridViewCellStyle7.SelectionForeColor = SystemColors.Window
-        DataGridViewCellStyle7.WrapMode = DataGridViewTriState.True
-        Dgv_GrossMotor.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle17.BackColor = Color.LightSkyBlue
+        DataGridViewCellStyle17.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle17.ForeColor = SystemColors.Window
+        DataGridViewCellStyle17.SelectionBackColor = Color.LightSkyBlue
+        DataGridViewCellStyle17.SelectionForeColor = SystemColors.Window
+        DataGridViewCellStyle17.WrapMode = DataGridViewTriState.True
+        Dgv_GrossMotor.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle17
         Dgv_GrossMotor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Dgv_GrossMotor.Columns.AddRange(New DataGridViewColumn() {ID_G, Conducta_G, Indicador_G})
-        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = Color.AliceBlue
-        DataGridViewCellStyle8.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle8.ForeColor = Color.SkyBlue
-        DataGridViewCellStyle8.SelectionBackColor = Color.AliceBlue
-        DataGridViewCellStyle8.SelectionForeColor = Color.SkyBlue
-        DataGridViewCellStyle8.WrapMode = DataGridViewTriState.False
-        Dgv_GrossMotor.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = Color.AliceBlue
+        DataGridViewCellStyle18.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle18.ForeColor = Color.SkyBlue
+        DataGridViewCellStyle18.SelectionBackColor = Color.AliceBlue
+        DataGridViewCellStyle18.SelectionForeColor = Color.SkyBlue
+        DataGridViewCellStyle18.WrapMode = DataGridViewTriState.False
+        Dgv_GrossMotor.DefaultCellStyle = DataGridViewCellStyle18
         Dgv_GrossMotor.EnableHeadersVisualStyles = False
         Dgv_GrossMotor.GridColor = Color.Black
         Dgv_GrossMotor.Location = New Point(61, 228)
@@ -505,24 +505,24 @@ Partial Class KidEvaluation
         Dgv_Adaptative.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
         Dgv_Adaptative.BackgroundColor = Color.AliceBlue
         Dgv_Adaptative.BorderStyle = BorderStyle.Fixed3D
-        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.BackColor = Color.LightSkyBlue
-        DataGridViewCellStyle9.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle9.ForeColor = SystemColors.Window
-        DataGridViewCellStyle9.SelectionBackColor = Color.LightSkyBlue
-        DataGridViewCellStyle9.SelectionForeColor = SystemColors.Window
-        DataGridViewCellStyle9.WrapMode = DataGridViewTriState.True
-        Dgv_Adaptative.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle19.BackColor = Color.LightSkyBlue
+        DataGridViewCellStyle19.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle19.ForeColor = SystemColors.Window
+        DataGridViewCellStyle19.SelectionBackColor = Color.LightSkyBlue
+        DataGridViewCellStyle19.SelectionForeColor = SystemColors.Window
+        DataGridViewCellStyle19.WrapMode = DataGridViewTriState.True
+        Dgv_Adaptative.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle19
         Dgv_Adaptative.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Dgv_Adaptative.Columns.AddRange(New DataGridViewColumn() {ID_A, Conducta_A, Indicador_A})
-        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle10.BackColor = Color.AliceBlue
-        DataGridViewCellStyle10.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle10.ForeColor = Color.SkyBlue
-        DataGridViewCellStyle10.SelectionBackColor = Color.AliceBlue
-        DataGridViewCellStyle10.SelectionForeColor = Color.SkyBlue
-        DataGridViewCellStyle10.WrapMode = DataGridViewTriState.False
-        Dgv_Adaptative.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle20.BackColor = Color.AliceBlue
+        DataGridViewCellStyle20.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle20.ForeColor = Color.SkyBlue
+        DataGridViewCellStyle20.SelectionBackColor = Color.AliceBlue
+        DataGridViewCellStyle20.SelectionForeColor = Color.SkyBlue
+        DataGridViewCellStyle20.WrapMode = DataGridViewTriState.False
+        Dgv_Adaptative.DefaultCellStyle = DataGridViewCellStyle20
         Dgv_Adaptative.EnableHeadersVisualStyles = False
         Dgv_Adaptative.GridColor = Color.Black
         Dgv_Adaptative.Location = New Point(61, 228)
@@ -576,7 +576,7 @@ Partial Class KidEvaluation
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
         Controls.Add(Dgv_Adaptative)
-        Controls.Add(Tb_Name)
+        Controls.Add(Tb_Comments)
         Controls.Add(Label2)
         Controls.Add(Lbl_Name)
         Controls.Add(Btn_Save)
@@ -612,7 +612,7 @@ Partial Class KidEvaluation
     Friend WithEvents Cb_Area As ComboBox
     Friend WithEvents Lbl_Name As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Tb_Name As TextBox
+    Friend WithEvents Tb_Comments As TextBox
     Friend WithEvents Dgv_FineMotor As DataGridView
     Friend WithEvents Dgv_Language As DataGridView
     Friend WithEvents Dgv_SocialPerson As DataGridView

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ScreenEvaluation
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class FindKidProgress
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ScreenEvaluation
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Label2 = New Label()
         Btn_Evaluation = New Button()
@@ -82,7 +82,7 @@ Partial Class ScreenEvaluation
         TableLayoutPanel1.RowCount = 1
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 51F))
         TableLayoutPanel1.Size = New Size(762, 50)
-        TableLayoutPanel1.TabIndex = 77
+        TableLayoutPanel1.TabIndex = 78
         ' 
         ' Label8
         ' 
@@ -91,14 +91,14 @@ Partial Class ScreenEvaluation
         Label8.BackColor = Color.Transparent
         Label8.Font = New Font("Baloo", 23.9999981F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = Color.White
-        Label8.Location = New Point(285, 0)
+        Label8.Location = New Point(153, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(191, 50)
+        Label8.Size = New Size(455, 50)
         Label8.TabIndex = 48
-        Label8.Text = "Evaluación"
+        Label8.Text = "Buscar Progreso del Infante"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' ScreenEvaluation
+        ' FindKidProgress
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
@@ -110,7 +110,7 @@ Partial Class ScreenEvaluation
         Controls.Add(Btn_Evaluation)
         Controls.Add(Label2)
         MaximizeBox = False
-        Name = "ScreenEvaluation"
+        Name = "FindKidProgress"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Kid Stimulation Register"
         TableLayoutPanel1.ResumeLayout(False)

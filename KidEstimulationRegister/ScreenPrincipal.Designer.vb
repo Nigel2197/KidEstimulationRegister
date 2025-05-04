@@ -54,7 +54,7 @@ Partial Class ScreenPrincipal
         Btn_ScreenRegister.Cursor = Cursors.Hand
         Btn_ScreenRegister.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenRegister.ForeColor = Color.White
-        Btn_ScreenRegister.Location = New Point(437, 382)
+        Btn_ScreenRegister.Location = New Point(436, 382)
         Btn_ScreenRegister.Name = "Btn_ScreenRegister"
         Btn_ScreenRegister.Size = New Size(160, 80)
         Btn_ScreenRegister.TabIndex = 3
@@ -67,7 +67,7 @@ Partial Class ScreenPrincipal
         Btn_ScreenActivity.Cursor = Cursors.Hand
         Btn_ScreenActivity.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenActivity.ForeColor = Color.White
-        Btn_ScreenActivity.Location = New Point(199, 382)
+        Btn_ScreenActivity.Location = New Point(200, 382)
         Btn_ScreenActivity.Name = "Btn_ScreenActivity"
         Btn_ScreenActivity.Size = New Size(160, 80)
         Btn_ScreenActivity.TabIndex = 4
@@ -93,7 +93,7 @@ Partial Class ScreenPrincipal
         Btn_ScreenEvaluation.Cursor = Cursors.Hand
         Btn_ScreenEvaluation.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenEvaluation.ForeColor = Color.White
-        Btn_ScreenEvaluation.Location = New Point(316, 247)
+        Btn_ScreenEvaluation.Location = New Point(316, 246)
         Btn_ScreenEvaluation.Name = "Btn_ScreenEvaluation"
         Btn_ScreenEvaluation.Size = New Size(160, 80)
         Btn_ScreenEvaluation.TabIndex = 2

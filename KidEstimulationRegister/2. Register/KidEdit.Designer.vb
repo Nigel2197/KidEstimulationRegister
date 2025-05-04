@@ -67,11 +67,11 @@ Partial Class KidEdit
         Label8.BackColor = Color.Transparent
         Label8.Font = New Font("Baloo", 23.9999981F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = Color.White
-        Label8.Location = New Point(193, 0)
+        Label8.Location = New Point(261, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(375, 50)
+        Label8.Size = New Size(240, 50)
         Label8.TabIndex = 48
-        Label8.Text = "Agregar Nuevo Infante"
+        Label8.Text = "Editar Infante"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' btn_Exit
