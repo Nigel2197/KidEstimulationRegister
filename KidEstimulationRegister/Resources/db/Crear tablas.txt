@@ -54,17 +54,18 @@ CREATE TABLE "Evaluations" (
 	"ID"	INTEGER UNIQUE,
 	"Kid_ID"	INTEGER NOT NULL,
 	"Age_ID"	INTEGER NOT NULL,
-	"Adaptative" INTEGER NOT NULL,
-	"GrossMotor" INTEGER NOT NULL,
-	"FineMotor" INTEGER NOT NULL,
-	"Language" INTEGER NOT NULL,
-	"SocialPerson" INTEGER NOT NULL,
+	"Adaptative"	INTEGER NOT NULL,
+	"GrossMotor"	INTEGER NOT NULL,
+	"FineMotor"	INTEGER NOT NULL,
+	"Language"	INTEGER NOT NULL,
+	"SocialPerson"	INTEGER NOT NULL,
 	"Comments"	TEXT,
-	"WeekAttention" TEXT,
+	"Session"	INTEGER NOT NULL,
+	"GeneralSession" INTEGER NOT NULL,
 	"RecordDate"	DATETIME DEFAULT (DATETIME('now', '-5 hours')),
 	PRIMARY KEY("ID" AUTOINCREMENT),
-	FOREIGN KEY("Kid_ID") REFERENCES "Kids"("ID"),
-	FOREIGN KEY("Age_ID") REFERENCES "Ages"("ID")
+	FOREIGN KEY("Age_ID") REFERENCES "Ages"("ID"),
+	FOREIGN KEY("Kid_ID") REFERENCES "Kids"("ID")
 );
 
 CREATE TABLE "EvaluationsDetail" (

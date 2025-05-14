@@ -13,6 +13,9 @@ Public Class KidEvaluation
     Private AreaSelection As New HashSet(Of Integer)() ' Almacenar los índices de las areas seleccionadas
 
     ' Variables para almacenar la cantidad de conductas que cumplió el infante
+    Private EvaluationID As Integer
+    Private Session As Integer
+    Private MaxSession As Integer
     Private Adaptative As Integer
     Private GrossMotor As Integer
     Private FineMotor As Integer
@@ -23,6 +26,7 @@ Public Class KidEvaluation
         FindKidData() ' Busca la informacion personal del infante
         LoadKidData() ' Carga la informacion y la muestra en pantalla
         FindKidRegister() ' Busca si el infante ya cuenta con una evaluacion registrada segun su edad actual
+        FindKidSessionNumber()  ' Busca el numero de registro de sesión que lleva el infante
         Cb_Area.SelectedIndex = 0 ' Se inicia con la conducta "Adaptativa"
         AreaSelection.Add(Cb_Area.SelectedIndex) ' Agrega manualmente el índice del area seleccionada al HashSet
     End Sub
@@ -187,16 +191,22 @@ Public Class KidEvaluation
         End If
     End Sub
 
+    Private Sub FindKidSessionNumber()
+        Session = ExecuteScalar("SELECT COALESCE((SELECT Session FROM Evaluations WHERE Kid_ID = @kidid AND Age_ID = @ageid ORDER BY ID DESC LIMIT 1), 0 AS Session",
+                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
+                                                                                   {"@ageid", AgeID}})
+        MaxSession = ExecuteScalar("SELECT COALESCE((SELECT Session FROM Evaluations WHERE Kid_ID = @kidid ORDER BY ID DESC LIMIT 1), 0 AS Session",
+                                           New Dictionary(Of String, Object) From {{"@kidid", KidID}})
+    End Sub
+
     Private Sub KidEvaluationRegister()
-        ' Verifica si todos las conductas han sido seleccionadas
+        ' Verifica si todos las areas de conductas han sido seleccionadas
         If AreaSelection.Count = Cb_Area.Items.Count Then
             Try
-                RegisterAreaAdaptive()     ' Se registran las conductas del area Adaptativa
-                RegisterAreaGrossMotor()   ' Se registran las conductas del area Motor Grueso
-                RegisterAreaFineMotor()    ' Se registran las conductas del area Motor Fino
-                RegisterAreaLanguage()     ' Se registran las conductas del area Lenguaje
-                RegisterAreaSocialPerson() ' Se registran las conductas del area Persona Social
-                RegisterEvaluation()       ' Se registra el encabezado de la evaluación
+                RegisterEvaluationHeader() ' Se registra el encabezado de la evaluación
+                FindKidEvaluationID()      ' Busca el ID de la Evaluacion que se esta registrando
+                RegisterEvaluationDetail() ' Se registra el detalle de la evaluación
+                RegisterEvaluation()       ' Se coloca en el encabezado de la evaluación las cantidades de conductas cumplidas
                 MessageBox.Show("Se registraron las conductas del infante correctamente", "Evaluación guardada", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show("Se produjo el error: " & ex.Message)
@@ -205,6 +215,39 @@ Public Class KidEvaluation
             MessageBox.Show("No se han evaluado todas las areas de conductas del infante", "Evaluación incompleta", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
 
+    End Sub
+
+    Private Sub RegisterEvaluationHeader()
+        Dim success As Boolean = WriteData("INSERT INTO Evaluations (Kid_ID, Age_ID, Adaptative, GrossMotor, FineMotor, Language, SocialPerson, Comments, WeekAttention)
+                                                VALUES (@kidid, @ageid, @adaptative, @grossmotor, @finemotor, @language, @socialperson, @comments, @session, @maxsession)",
+                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
+                                                                                   {"@ageid", AgeID},
+                                                                                   {"@adaptative", Adaptative},
+                                                                                   {"@grossmotor", GrossMotor},
+                                                                                   {"@finemotor", FineMotor},
+                                                                                   {"@language", Language},
+                                                                                   {"@socialperson", SocialPerson},
+                                                                                   {"@comments", Tb_Comments.Text},
+                                                                                   {"@session", Session},
+                                                                                   {"@maxsession", MaxSession}})
+        If Not success Then
+            MessageBox.Show($"Ocurrió un error al guardar el encabezado de la evaluación{Environment.NewLine}Reinicie el sistema e intente nuevamente{Environment.NewLine}{Environment.NewLine}En caso de continuar con el error contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+    Private Sub FindKidEvaluationID()
+        EvaluationID = ExecuteScalar("SELECT COALESCE((SELECT ID FROM Evaluations ORDER BY ID DESC LIMIT 1), 0) AS UltimoID")
+    End Sub
+    Private Sub RegisterEvaluationDetail()
+        RegisterAreaAdaptive()     ' Se registran las conductas del area Adaptativa
+        RegisterAreaGrossMotor()   ' Se registran las conductas del area Motor Grueso
+        RegisterAreaFineMotor()    ' Se registran las conductas del area Motor Fino
+        RegisterAreaLanguage()     ' Se registran las conductas del area Lenguaje
+        RegisterAreaSocialPerson() ' Se registran las conductas del area Persona Social
+    End Sub
+
+    Private Sub FindAreaID(Area As String)
+        AreaID = ExecuteScalar("SELECT ID FROM Areas WHERE Name = @name",
+                                           New Dictionary(Of String, Object) From {{"@name", Area}})
     End Sub
 
     Private Sub RegisterAreaAdaptive()
@@ -223,10 +266,9 @@ Public Class KidEvaluation
                 isChecked = 0
             End If
 
-            Dim success As Boolean = WriteData("INSERT INTO EvaluationsDetail (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
-                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
-                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
-                                                                                   {"@ageid", AgeID},
+            Dim success As Boolean = WriteData("INSERT INTO EvaluationsDetail (Evaluation_ID, Area_ID, Behavior_ID, Status)
+                                                VALUES (@evaluationid, @areaid, @behaviorid, @status)",
+                                           New Dictionary(Of String, Object) From {{"@evaluationid", EvaluationID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
@@ -238,16 +280,23 @@ Public Class KidEvaluation
 
     Private Sub RegisterAreaGrossMotor()
         FindAreaID("Motriz Gruesa")
+        GrossMotor = 0 ' Se inicia en 0
+
         For Each index As DataGridViewRow In Dgv_GrossMotor.Rows
             ' Obtener el valor de la columna "ID"
             BehaviorID = index.Cells("ID_G").Value
-            ' Obtener el valor de la columna "Indicador"
-            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_G").Value), 1, 0)
 
-            Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
-                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
-                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
-                                                                                   {"@ageid", AgeID},
+            ' Obtener el valor de la columna "Indicador"
+            If (Convert.ToBoolean(index.Cells("Indicador_G").Value)) Then
+                isChecked = 1
+                GrossMotor += 1 ' Se suma 1 el contador de conductas cumplidas
+            Else
+                isChecked = 0
+            End If
+
+            Dim success As Boolean = WriteData("INSERT INTO EvaluationsDetail (Evaluation_ID, Area_ID, Behavior_ID, Status)
+                                                VALUES (@evaluationid, @areaid, @behaviorid, @status)",
+                                           New Dictionary(Of String, Object) From {{"@evaluationid", EvaluationID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
@@ -259,16 +308,23 @@ Public Class KidEvaluation
 
     Private Sub RegisterAreaFineMotor()
         FindAreaID("Motriz Fina")
+        FineMotor = 0 ' Se inicia en 0
+
         For Each index As DataGridViewRow In Dgv_FineMotor.Rows
             ' Obtener el valor de la columna "ID"
             BehaviorID = index.Cells("ID_F").Value
-            ' Obtener el valor de la columna "Indicador"
-            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_F").Value), 1, 0)
 
-            Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
-                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
-                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
-                                                                                   {"@ageid", AgeID},
+            ' Obtener el valor de la columna "Indicador"
+            If (Convert.ToBoolean(index.Cells("Indicador_F").Value)) Then
+                isChecked = 1
+                FineMotor += 1 ' Se suma 1 el contador de conductas cumplidas
+            Else
+                isChecked = 0
+            End If
+
+            Dim success As Boolean = WriteData("INSERT INTO EvaluationsDetail (Evaluation_ID, Area_ID, Behavior_ID, Status)
+                                                VALUES (@evaluationid, @areaid, @behaviorid, @status)",
+                                           New Dictionary(Of String, Object) From {{"@evaluationid", EvaluationID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
@@ -280,16 +336,23 @@ Public Class KidEvaluation
 
     Private Sub RegisterAreaLanguage()
         FindAreaID("Lenguaje")
+        Language = 0 ' Se inicia en 0
+
         For Each index As DataGridViewRow In Dgv_Language.Rows
             ' Obtener el valor de la columna "ID"
             BehaviorID = index.Cells("ID_L").Value
-            ' Obtener el valor de la columna "Indicador"
-            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_L").Value), 1, 0)
 
-            Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
-                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
-                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
-                                                                                   {"@ageid", AgeID},
+            ' Obtener el valor de la columna "Indicador"
+            If (Convert.ToBoolean(index.Cells("Indicador_L").Value)) Then
+                isChecked = 1
+                Language += 1 ' Se suma 1 el contador de conductas cumplidas
+            Else
+                isChecked = 0
+            End If
+
+            Dim success As Boolean = WriteData("INSERT INTO EvaluationsDetail (Evaluation_ID, Area_ID, Behavior_ID, Status)
+                                                VALUES (@evaluationid, @areaid, @behaviorid, @status)",
+                                           New Dictionary(Of String, Object) From {{"@evaluationid", EvaluationID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
@@ -301,16 +364,23 @@ Public Class KidEvaluation
 
     Private Sub RegisterAreaSocialPerson()
         FindAreaID("Personal Social")
+        SocialPerson = 0 ' Se inicia en 0
+
         For Each index As DataGridViewRow In Dgv_SocialPerson.Rows
             ' Obtener el valor de la columna "ID"
             BehaviorID = index.Cells("ID_S").Value
-            ' Obtener el valor de la columna "Indicador"
-            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_S").Value), 1, 0)
 
-            Dim success As Boolean = WriteData("INSERT INTO Registers (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
-                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
-                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
-                                                                                   {"@ageid", AgeID},
+            ' Obtener el valor de la columna "Indicador"
+            If (Convert.ToBoolean(index.Cells("Indicador_S").Value)) Then
+                isChecked = 1
+                SocialPerson += 1 ' Se suma 1 el contador de conductas cumplidas
+            Else
+                isChecked = 0
+            End If
+
+            Dim success As Boolean = WriteData("INSERT INTO EvaluationsDetail (Evaluation_ID, Area_ID, Behavior_ID, Status)
+                                                VALUES (@evaluationid, @areaid, @behaviorid, @status)",
+                                           New Dictionary(Of String, Object) From {{"@evaluationid", EvaluationID},
                                                                                    {"@areaid", AreaID},
                                                                                    {"@behaviorid", BehaviorID},
                                                                                    {"@status", isChecked}})
@@ -322,40 +392,17 @@ Public Class KidEvaluation
 
     Private Sub RegisterEvaluation()
 
-        For Each index As DataGridViewRow In Dgv_Adaptative.Rows
-            ' Obtener el valor de la columna "ID"
-            BehaviorID = index.Cells("ID_A").Value
-            ' Obtener el valor de la columna "Indicador"
-            isChecked = If(Convert.ToBoolean(index.Cells("Indicador_A").Value), 1, 0)
-
-            Dim success As Boolean = WriteData("INSERT INTO Evaluations (Kid_ID, Age_ID, Adaptative, GrossMotor, FineMotor, Language, SocialPerson, Comments, WeekAttention)
-                                                VALUES (@kidid, @ageid, @adaptative, @grossmotor, @finemotor, @languague, @socialperson, @comments, @weekattention)",
-                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
-                                                                                   {"@ageid", AgeID},
-                                                                                   {"@adaptative", AreaID},
-                                                                                   {"@grossmotor", BehaviorID},
-                                                                                   {"@finemotor", isChecked},
-                                                                                   {"@languague", KidID},
-                                                                                   {"@socialperson", AgeID},
-                                                                                   {"@adaptative", AreaID},
-                                                                                   {"@comments", Tb_Comments.Text},
-                                                                                   {"@weekattention", isChecked}})
-
-            Dim successdetail As Boolean = WriteData("INSERT INTO EvaluationsDetail (Kid_ID, Age_ID, Area_ID, Behavior_ID, Status)
-                                                VALUES (@kidid, @ageid, @areaid, @behaviorid, @status)",
-                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
-                                                                                   {"@ageid", AgeID},
-                                                                                   {"@areaid", AreaID},
-                                                                                   {"@behaviorid", BehaviorID},
-                                                                                   {"@status", isChecked}})
-            If Not success And Not successdetail Then
-                MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Reinicie el sistema e intente nuevamente{Environment.NewLine}{Environment.NewLine}En caso de continuar con el error contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
-        Next
-    End Sub
-    Private Sub FindAreaID(Area As String)
-        AreaID = ExecuteScalar("SELECT ID FROM Areas WHERE Name = @name",
-                                           New Dictionary(Of String, Object) From {{"@name", Area}})
+        Dim success As Boolean = WriteData("UPDATE Evaluations SET Adaptative = @adaptative, GrossMotor = @grossmotor, FineMotor = @finemotor, Language = @language, SocialPerson = @socialperson)
+                                            WHERE ID = @evaluationid",
+                                           New Dictionary(Of String, Object) From {{"@adaptative", Adaptative},
+                                                                                   {"@grossmotor", GrossMotor},
+                                                                                   {"@finemotor", FineMotor},
+                                                                                   {"@language", Language},
+                                                                                   {"@socialperson", SocialPerson},
+                                                                                   {"@evaluationid", EvaluationID}})
+        If Not success Then
+            MessageBox.Show($"Ocurrió un error al guardar la evaluación{Environment.NewLine}Reinicie el sistema e intente nuevamente{Environment.NewLine}{Environment.NewLine}En caso de continuar con el error contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
     End Sub
 
     Private Sub Cb_Area_DrawItem(sender As Object, e As DrawItemEventArgs) Handles Cb_Area.DrawItem
