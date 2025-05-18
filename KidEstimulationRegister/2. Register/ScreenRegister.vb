@@ -9,7 +9,6 @@ Public Class ScreenRegister
     Dim weeksPassed As Integer
 
     Private Sub ScreenRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GetListWeeksAge()
         LoadCalendar()
     End Sub
 
@@ -36,9 +35,14 @@ Public Class ScreenRegister
         End If
 
         If validation Then
-            confirmation = MessageBox.Show("¿Estás seguro de que deseas registrar los datos del infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            confirmation = MessageBox.Show("¿Está seguro de que desea registrar los datos del infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If confirmation = DialogResult.Yes Then
                 KidRegister()
+
+                ' Cierra esta pantalla de creacion
+                Dim frm As New MenuRegister()
+                frm.Show()
+                Me.Close()
             Else
                 Return
             End If
@@ -66,11 +70,6 @@ Public Class ScreenRegister
         Else
             Tb_WhatAllergy.Enabled = False
         End If
-    End Sub
-
-    Private Sub GetListWeeksAge()
-        query = "SELECT Age FROM Ages"
-        dt = GetData(query)
     End Sub
 
     Private Sub LoadCalendar()

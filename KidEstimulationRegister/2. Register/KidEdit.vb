@@ -63,9 +63,14 @@ Public Class KidEdit
         End If
 
         If validation Then
-            confirmation = MessageBox.Show("¿Estás seguro de que deseas registrar los datos del infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            confirmation = MessageBox.Show("¿Está seguro de que desea registrar los datos del infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If confirmation = DialogResult.Yes Then
                 UpdateKidRegister()
+
+                ' Cierra esta pantalla de edicion
+                Dim frm As New MenuRegister()
+                frm.Show()
+                Me.Close()
             Else
                 Return
             End If
@@ -138,11 +143,6 @@ Public Class KidEdit
         Else
             MessageBox.Show("Error al consultar los datos del infante")
         End If
-    End Sub
-
-    Private Sub GetListWeeksAge()
-        query = "SELECT Age FROM Ages"
-        dt = GetData(query)
     End Sub
 
     Private Sub LoadCalendar()

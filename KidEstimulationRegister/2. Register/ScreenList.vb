@@ -4,10 +4,7 @@ Public Class ScreenList
 
     Private Sub ScreenList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetListKidName()
-        LoadListKidName()
-        GetListWeeksAge()
-        LoadListWeeksAge()
-        'Cb_Name.Focus()
+        GetListAge()
     End Sub
 
     Private Sub Cb_Name_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Name.SelectedIndexChanged
@@ -19,30 +16,26 @@ Public Class ScreenList
         End If
     End Sub
 
-    Private Sub Btn_FindKids_Click(sender As Object, e As EventArgs) Handles Btn_FindKids.Click
+    Private Sub Btn_Accept_Click(sender As Object, e As EventArgs) Handles Btn_Accept.Click
         FindKid()
     End Sub
 
     Private Sub GetListKidName()
         query = "SELECT Name FROM Kids"
         dt = GetData(query)
-    End Sub
 
-    Private Sub LoadListKidName()
         Cb_Name.DataSource = dt
         Cb_Name.DisplayMember = "Name"
         Cb_Name.SelectedIndex = -1
     End Sub
 
-    Private Sub GetListWeeksAge()
-        query = "SELECT WeeksAge FROM Ages"
+    Private Sub GetListAge()
+        query = "SELECT Age FROM Ages"
         dt = GetData(query)
-    End Sub
 
-    Private Sub LoadListWeeksAge()
-        Cb_WeeksAge.DataSource = dt
-        Cb_WeeksAge.DisplayMember = "WeeksAge"
-        Cb_WeeksAge.SelectedIndex = -1
+        Cb_Age.DataSource = dt
+        Cb_Age.DisplayMember = "Age"
+        Cb_Age.SelectedIndex = -1
     End Sub
 
     Private Sub FindKid()
@@ -60,9 +53,9 @@ Public Class ScreenList
         End If
 
         ' Verifica si el parámetro @weeksage tiene un valor mayor a 0 y añade la condición correspondiente
-        If Not String.IsNullOrEmpty(Cb_WeeksAge.Text) Then
+        If Not String.IsNullOrEmpty(Cb_Age.Text) Then
             where.Add("WeeksAge = @weeksage")
-            parameters.Add("@weeksage", Cb_WeeksAge.Text)
+            parameters.Add("@weeksage", Cb_Age.Text)
         End If
 
         ' Verifica si el parámetro @gender tiene un valor y añade la condición correspondiente
@@ -127,9 +120,16 @@ Public Class ScreenList
         e.DrawFocusRectangle()
     End Sub
 
+    Private Sub btn_Clean_Click(sender As Object, e As EventArgs) Handles btn_Clean.Click
+        Dim frm As New ScreenList()
+        frm.Show()
+        Me.Close()
+    End Sub
+
     Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
         Dim frm As New MenuRegister()
         frm.Show()
         Me.Close()
     End Sub
+
 End Class

@@ -48,7 +48,7 @@ Public Class KidEvaluation
     Private Sub Btn_Save_Click(sender As Object, e As EventArgs) Handles Btn_Save.Click
         Dim confirmation As DialogResult
 
-        confirmation = MessageBox.Show("¿Estás seguro de que deseas registrar las conductas realizadas por el infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        confirmation = MessageBox.Show("¿Está seguro de que desea registrar las conductas realizadas por el infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmation = DialogResult.Yes Then
             ' Verifica si todos las areas de conductas han sido seleccionadas
@@ -118,7 +118,6 @@ Public Class KidEvaluation
             Lbl_Name.Text = NameKid
             KidID = dt.Rows(0)("Kid_ID")
             AgeID = dt.Rows(0)("Age_ID")
-            'AgeKid = dt.Rows(0)("Age").ToString().ToUpper
         Else
             MessageBox.Show("Error al consultar los datos del infante")
         End If
@@ -135,10 +134,10 @@ Public Class KidEvaluation
         End If
 
         ' Se busca el numero de sesion que lleva el infante
-        Session = ExecuteScalar("SELECT COALESCE((SELECT Session FROM Evaluations WHERE Kid_ID = @kidid AND Age_ID = @ageid ORDER BY ID DESC LIMIT 1), 0) + 1 AS Session",
+        Session = ExecuteScalar("SELECT COALESCE((SELECT MAX(Session) FROM Evaluations WHERE Kid_ID = @kidid AND Age_ID = @ageid), 0) + 1 AS Session",
                                            New Dictionary(Of String, Object) From {{"@kidid", KidID},
                                                                                    {"@ageid", AgeID}})
-        MaxSession = ExecuteScalar("SELECT COALESCE((SELECT Session FROM Evaluations WHERE Kid_ID = @kidid ORDER BY ID DESC LIMIT 1), 0) + 1 AS Session",
+        MaxSession = ExecuteScalar("SELECT COALESCE((SELECT MAX(GeneralSession) FROM Evaluations WHERE Kid_ID = @kidid), 0) + 1 AS MaxSession",
                                            New Dictionary(Of String, Object) From {{"@kidid", KidID}})
     End Sub
 
@@ -192,8 +191,6 @@ Public Class KidEvaluation
         where.Add("E.ID = (SELECT MAX(ID) FROM Evaluations WHERE Kid_ID = @kidid AND Age_ID = @ageid)")
 
         query &= "WHERE " & String.Join(" AND ", where)
-
-        'query &= "ORDER BY "
 
         dt = GetData(query, parameters)
     End Sub
@@ -434,6 +431,18 @@ Public Class KidEvaluation
         e.DrawFocusRectangle()
     End Sub
 
+    Private Sub btn_Clean_Click(sender As Object, e As EventArgs) Handles btn_Clean.Click
+        Dim confirmation As DialogResult
+
+        confirmation = MessageBox.Show($"¿Está seguro de que desea limpiar las conductas evaluadas durante esta sesion?{Environment.NewLine}{Environment.NewLine}", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Dim frm As New KidEvaluation(Lbl_Name.Text)
+            frm.Show()
+            Me.Close()
+        End If
+    End Sub
+
     Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
         Dim confirmation As DialogResult
 
@@ -445,4 +454,5 @@ Public Class KidEvaluation
             Me.Close()
         End If
     End Sub
+
 End Class

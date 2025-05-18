@@ -22,18 +22,15 @@ Partial Class ScreenList
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
-        Cb_Gender = New ComboBox()
         Label2 = New Label()
         Label1 = New Label()
         Label3 = New Label()
-        Cb_WeeksAge = New ComboBox()
         Cb_Name = New ComboBox()
-        Btn_FindKids = New Button()
         TableLayoutPanel4 = New TableLayoutPanel()
         Dgv_KidList = New DataGridView()
         Nombre = New DataGridViewTextBoxColumn()
@@ -41,8 +38,11 @@ Partial Class ScreenList
         Años = New DataGridViewTextBoxColumn()
         Direccion = New DataGridViewTextBoxColumn()
         Sangre = New DataGridViewTextBoxColumn()
-        Btn_Limpiar = New Button()
         btn_Exit = New Button()
+        btn_Clean = New Button()
+        Btn_Accept = New Button()
+        Cb_Age = New ComboBox()
+        Cb_Gender = New ComboBox()
         TableLayoutPanel1.SuspendLayout()
         TableLayoutPanel4.SuspendLayout()
         CType(Dgv_KidList, ComponentModel.ISupportInitialize).BeginInit()
@@ -75,18 +75,6 @@ Partial Class ScreenList
         Label8.Text = "Lista de Infantes"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Cb_Gender
-        ' 
-        Cb_Gender.BackColor = Color.LightSteelBlue
-        Cb_Gender.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Cb_Gender.ForeColor = SystemColors.Window
-        Cb_Gender.FormattingEnabled = True
-        Cb_Gender.Items.AddRange(New Object() {"Masculino", "Femenino"})
-        Cb_Gender.Location = New Point(385, 186)
-        Cb_Gender.Name = "Cb_Gender"
-        Cb_Gender.Size = New Size(138, 29)
-        Cb_Gender.TabIndex = 3
-        ' 
         ' Label2
         ' 
         Label2.AutoSize = True
@@ -106,7 +94,7 @@ Partial Class ScreenList
         Label1.BackColor = Color.Transparent
         Label1.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = SystemColors.Window
-        Label1.Location = New Point(385, 158)
+        Label1.Location = New Point(574, 158)
         Label1.Name = "Label1"
         Label1.Size = New Size(51, 25)
         Label1.TabIndex = 71
@@ -118,25 +106,11 @@ Partial Class ScreenList
         Label3.BackColor = Color.Transparent
         Label3.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label3.ForeColor = SystemColors.Window
-        Label3.Location = New Point(302, 158)
+        Label3.Location = New Point(383, 158)
         Label3.Name = "Label3"
         Label3.Size = New Size(52, 25)
         Label3.TabIndex = 72
         Label3.Text = "Edad:"
-        ' 
-        ' Cb_WeeksAge
-        ' 
-        Cb_WeeksAge.AutoCompleteSource = AutoCompleteSource.ListItems
-        Cb_WeeksAge.BackColor = Color.LightSteelBlue
-        Cb_WeeksAge.Cursor = Cursors.Hand
-        Cb_WeeksAge.DropDownStyle = ComboBoxStyle.DropDownList
-        Cb_WeeksAge.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Cb_WeeksAge.ForeColor = SystemColors.Window
-        Cb_WeeksAge.FormattingEnabled = True
-        Cb_WeeksAge.Location = New Point(302, 186)
-        Cb_WeeksAge.Name = "Cb_WeeksAge"
-        Cb_WeeksAge.Size = New Size(77, 29)
-        Cb_WeeksAge.TabIndex = 73
         ' 
         ' Cb_Name
         ' 
@@ -151,22 +125,8 @@ Partial Class ScreenList
         Cb_Name.FormattingEnabled = True
         Cb_Name.Location = New Point(55, 186)
         Cb_Name.Name = "Cb_Name"
-        Cb_Name.Size = New Size(241, 29)
+        Cb_Name.Size = New Size(297, 29)
         Cb_Name.TabIndex = 1
-        ' 
-        ' Btn_FindKids
-        ' 
-        Btn_FindKids.Anchor = AnchorStyles.None
-        Btn_FindKids.BackColor = Color.SteelBlue
-        Btn_FindKids.Cursor = Cursors.Hand
-        Btn_FindKids.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
-        Btn_FindKids.ForeColor = Color.White
-        Btn_FindKids.Location = New Point(641, 179)
-        Btn_FindKids.Name = "Btn_FindKids"
-        Btn_FindKids.Size = New Size(90, 40)
-        Btn_FindKids.TabIndex = 4
-        Btn_FindKids.Text = "Buscar"
-        Btn_FindKids.UseVisualStyleBackColor = False
         ' 
         ' TableLayoutPanel4
         ' 
@@ -187,33 +147,33 @@ Partial Class ScreenList
         Dgv_KidList.AllowUserToDeleteRows = False
         Dgv_KidList.BackgroundColor = Color.AliceBlue
         Dgv_KidList.BorderStyle = BorderStyle.Fixed3D
-        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.BackColor = Color.LightSkyBlue
-        DataGridViewCellStyle7.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle7.ForeColor = SystemColors.Window
-        DataGridViewCellStyle7.SelectionBackColor = Color.LightSkyBlue
-        DataGridViewCellStyle7.SelectionForeColor = SystemColors.Window
-        Dgv_KidList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = Color.LightSkyBlue
+        DataGridViewCellStyle4.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = SystemColors.Window
+        DataGridViewCellStyle4.SelectionBackColor = Color.LightSkyBlue
+        DataGridViewCellStyle4.SelectionForeColor = SystemColors.Window
+        Dgv_KidList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         Dgv_KidList.Columns.AddRange(New DataGridViewColumn() {Nombre, Sexo, Años, Direccion, Sangre})
-        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = Color.AliceBlue
-        DataGridViewCellStyle8.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle8.ForeColor = Color.SkyBlue
-        DataGridViewCellStyle8.SelectionBackColor = Color.AliceBlue
-        DataGridViewCellStyle8.SelectionForeColor = Color.SkyBlue
-        DataGridViewCellStyle8.WrapMode = DataGridViewTriState.False
-        Dgv_KidList.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = Color.AliceBlue
+        DataGridViewCellStyle5.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle5.ForeColor = Color.SkyBlue
+        DataGridViewCellStyle5.SelectionBackColor = Color.AliceBlue
+        DataGridViewCellStyle5.SelectionForeColor = Color.SkyBlue
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
+        Dgv_KidList.DefaultCellStyle = DataGridViewCellStyle5
         Dgv_KidList.EnableHeadersVisualStyles = False
         Dgv_KidList.GridColor = Color.Black
         Dgv_KidList.Location = New Point(3, 3)
         Dgv_KidList.Name = "Dgv_KidList"
         Dgv_KidList.ReadOnly = True
-        DataGridViewCellStyle9.BackColor = SystemColors.Control
-        DataGridViewCellStyle9.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle9.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText
-        Dgv_KidList.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle6.BackColor = SystemColors.Control
+        DataGridViewCellStyle6.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle6.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
+        Dgv_KidList.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         Dgv_KidList.RowHeadersVisible = False
         Dgv_KidList.ShowEditingIcon = False
         Dgv_KidList.Size = New Size(670, 302)
@@ -276,20 +236,6 @@ Partial Class ScreenList
         Sangre.ReadOnly = True
         Sangre.Width = 65
         ' 
-        ' Btn_Limpiar
-        ' 
-        Btn_Limpiar.Anchor = AnchorStyles.None
-        Btn_Limpiar.BackColor = Color.SteelBlue
-        Btn_Limpiar.Cursor = Cursors.Hand
-        Btn_Limpiar.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
-        Btn_Limpiar.ForeColor = Color.White
-        Btn_Limpiar.Location = New Point(545, 179)
-        Btn_Limpiar.Name = "Btn_Limpiar"
-        Btn_Limpiar.Size = New Size(90, 40)
-        Btn_Limpiar.TabIndex = 78
-        Btn_Limpiar.Text = "Limpiar"
-        Btn_Limpiar.UseVisualStyleBackColor = False
-        ' 
         ' btn_Exit
         ' 
         btn_Exit.BackgroundImage = My.Resources.Resources.salir
@@ -303,6 +249,62 @@ Partial Class ScreenList
         btn_Exit.TabIndex = 98
         btn_Exit.UseVisualStyleBackColor = True
         ' 
+        ' btn_Clean
+        ' 
+        btn_Clean.BackgroundImage = My.Resources.Resources.limpiar
+        btn_Clean.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Clean.Cursor = Cursors.Hand
+        btn_Clean.FlatStyle = FlatStyle.Flat
+        btn_Clean.ForeColor = SystemColors.ControlText
+        btn_Clean.Location = New Point(574, 678)
+        btn_Clean.Name = "btn_Clean"
+        btn_Clean.Size = New Size(97, 35)
+        btn_Clean.TabIndex = 99
+        btn_Clean.UseVisualStyleBackColor = True
+        ' 
+        ' Btn_Accept
+        ' 
+        Btn_Accept.BackgroundImage = My.Resources.Resources.aceptar
+        Btn_Accept.BackgroundImageLayout = ImageLayout.Stretch
+        Btn_Accept.Cursor = Cursors.Hand
+        Btn_Accept.FlatStyle = FlatStyle.Flat
+        Btn_Accept.ForeColor = SystemColors.ControlText
+        Btn_Accept.Location = New Point(677, 678)
+        Btn_Accept.Name = "Btn_Accept"
+        Btn_Accept.Size = New Size(97, 35)
+        Btn_Accept.TabIndex = 100
+        Btn_Accept.UseVisualStyleBackColor = True
+        ' 
+        ' Cb_Age
+        ' 
+        Cb_Age.BackColor = Color.LightSteelBlue
+        Cb_Age.Cursor = Cursors.Hand
+        Cb_Age.DropDownStyle = ComboBoxStyle.DropDownList
+        Cb_Age.FlatStyle = FlatStyle.Flat
+        Cb_Age.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Cb_Age.ForeColor = SystemColors.Window
+        Cb_Age.FormattingEnabled = True
+        Cb_Age.Items.AddRange(New Object() {"Masculino", "Femenino"})
+        Cb_Age.Location = New Point(383, 186)
+        Cb_Age.Name = "Cb_Age"
+        Cb_Age.Size = New Size(159, 29)
+        Cb_Age.TabIndex = 102
+        ' 
+        ' Cb_Gender
+        ' 
+        Cb_Gender.BackColor = Color.LightSteelBlue
+        Cb_Gender.Cursor = Cursors.Hand
+        Cb_Gender.DropDownStyle = ComboBoxStyle.DropDownList
+        Cb_Gender.FlatStyle = FlatStyle.Flat
+        Cb_Gender.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Cb_Gender.ForeColor = SystemColors.Window
+        Cb_Gender.FormattingEnabled = True
+        Cb_Gender.Items.AddRange(New Object() {"Masculino", "Femenino"})
+        Cb_Gender.Location = New Point(574, 186)
+        Cb_Gender.Name = "Cb_Gender"
+        Cb_Gender.Size = New Size(165, 29)
+        Cb_Gender.TabIndex = 103
+        ' 
         ' ScreenList
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -310,15 +312,15 @@ Partial Class ScreenList
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
+        Controls.Add(Cb_Gender)
+        Controls.Add(Cb_Age)
+        Controls.Add(Btn_Accept)
+        Controls.Add(btn_Clean)
         Controls.Add(btn_Exit)
-        Controls.Add(Btn_Limpiar)
-        Controls.Add(Btn_FindKids)
         Controls.Add(Cb_Name)
         Controls.Add(Label2)
-        Controls.Add(Cb_WeeksAge)
         Controls.Add(TableLayoutPanel4)
         Controls.Add(Label3)
-        Controls.Add(Cb_Gender)
         Controls.Add(Label1)
         Controls.Add(TableLayoutPanel1)
         MaximizeBox = False
@@ -334,15 +336,11 @@ Partial Class ScreenList
     End Sub
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Label8 As Label
-    Friend WithEvents Cb_Gender As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents Btn_FindKids As Button
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
     Friend WithEvents Cb_Name As ComboBox
-    Friend WithEvents Cb_WeeksAge As ComboBox
-    Friend WithEvents Btn_Limpiar As Button
     Friend WithEvents Dgv_KidList As DataGridView
     Friend WithEvents Nombre As DataGridViewTextBoxColumn
     Friend WithEvents Sexo As DataGridViewTextBoxColumn
@@ -350,4 +348,8 @@ Partial Class ScreenList
     Friend WithEvents Direccion As DataGridViewTextBoxColumn
     Friend WithEvents Sangre As DataGridViewTextBoxColumn
     Friend WithEvents btn_Exit As Button
+    Friend WithEvents btn_Clean As Button
+    Friend WithEvents Btn_Accept As Button
+    Friend WithEvents Cb_Age As ComboBox
+    Friend WithEvents Cb_Gender As ComboBox
 End Class

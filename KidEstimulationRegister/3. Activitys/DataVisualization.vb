@@ -15,11 +15,10 @@ Public Class DataVisualization
 
     Private Sub DataVisualization_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FindKidData() ' Busca la informacion personal del infante
-        LoadKidData() ' Carga la informacion y la muestra en pantalla
         FindKidEvaluation() ' Busca si el infante ya cuenta con una evaluacion registrada segun su edad actual
-        LoadKidEvaluation()
-        Cb_Area.SelectedIndex = 0 ' Se inicia con la conducta "Adaptativa"
-        AreaSelection.Add(Cb_Area.SelectedIndex) ' Agrega manualmente el índice del area seleccionada al HashSet
+        GetListAge() ' Obtiene todas las edades que se evaluan
+        'LoadKidEvaluation()
+        Cb_Age.SelectedIndex = 0 ' Se inicia con la conducta "Adaptativa"
     End Sub
 
     Public Sub New(Name As String)
@@ -27,14 +26,8 @@ Public Class DataVisualization
         NameKid = Name
     End Sub
 
-    Private Sub Cb_Area_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Area.SelectedIndexChanged
-        FindAreaID(Cb_Area.Text)
-    End Sub
-
-    Private Sub Cb_Area_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles Cb_Area.SelectionChangeCommitted
-        AreaSelection.Add(Cb_Area.SelectedIndex) ' Agrega el índice del area seleccionada al HashSet
-        Cb_Area.Invalidate() ' Fuerza el redibujado del ComboBox
-        Me.ActiveControl = Nothing ' Le quita el focus al ComboBox
+    Private Sub Cb_Age_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Age.SelectedIndexChanged
+        LoadKidProgress(Cb_Age.Text)
     End Sub
 
     Private Sub FindKidData() ' Busca los datos personales del infante
@@ -51,9 +44,8 @@ Public Class DataVisualization
         query &= "WHERE " & String.Join("", where)
 
         dt = GetData(query, parameters)
-    End Sub
 
-    Private Sub LoadKidData() ' Muestra en pantalla los datos personales del infante
+        ' Muestra en pantalla los datos personales del infante
         If dt IsNot Nothing Then
             Lbl_Age.Text = dt.Rows(0)("Age").ToString().ToUpper
             Lbl_Name.Text = NameKid
@@ -69,7 +61,7 @@ Public Class DataVisualization
         where = New List(Of String)() ' Se vacian los filtros utilizados
         parameters = New Dictionary(Of String, Object)() ' Se vacian los parametros utilizados
 
-        query = "SELECT Age_ID, Area_ID, SUM(Status) AS BehaviorsComplete FROM Registers "
+        query = "SELECT Age_ID, Area_ID, SUM(Status) AS BehaviorsComplete FROM Evaluations "
 
         where.Add("Kid_ID = @kidid")
         parameters.Add("@areaid", KidID)
@@ -84,62 +76,105 @@ Public Class DataVisualization
         dt = GetData(query, parameters)
     End Sub
 
-    Private Sub LoadKidEvaluation()
-        If dt IsNot Nothing Then
-            ' Limpiar el gráfico
-            Ch_ProgressKid.Series.Clear()
+    Private Sub GetListAge()
+        query = "SELECT Age FROM Ages"
+        dt = GetData(query)
 
-            ' Crear una serie por cada área
-            Dim areas = New Dictionary(Of Integer, String) From {
-                {1, "Adaptativa"},
-                {2, "Motriz Gruesa"},
-                {3, "Motriz Fina"},
-                {4, "Lenguaje"},
-                {5, "Personal Social"}
-            }
+        Cb_Age.DataSource = dt
+        Cb_Age.DisplayMember = "Age"
+        Cb_Age.SelectedIndex = -1
+    End Sub
 
-            For Each area In areas
-                Dim serie = Ch_ProgressKid.Series.Add(area.Value)
-                serie.ChartType = SeriesChartType.Line ' o Column
-            Next
+    Private Sub LoadKidProgress(Age As String)
+        ' Limpiar configuraciones anteriores
+        Ch_ProgressKid.Series.Clear()
+        Ch_ProgressKid.ChartAreas.Clear()
+        Ch_ProgressKid.Titles.Clear()
 
-            ' Obtener los datos desde SQLite
-            'Dim query As String = "SELECT Age_ID, Area_ID, SUM(Status) AS Cumplidas FROM Registers WHERE Kid_ID = @kidID GROUP BY Age_ID, Area_ID ORDER BY Age_ID"
-            'Dim parameters = New Dictionary(Of String, Object) From {{"@kidID", 1}} ' o variable
+        ' Crear área del gráfico
+        Dim area As New ChartArea("Área")
+        area.AxisY.Maximum = 100
+        area.AxisY.Minimum = 0
+        area.AxisY.Interval = 10
+        area.AxisY.Title = "Porcentaje (%)"
+        area.AxisX.Title = "Área de desarrollo"
+        area.AxisX.Interval = 1
+        area.AxisX.MajorGrid.Enabled = False
+        area.AxisX.LabelStyle.Enabled = True
+        area.AxisX.LabelStyle.Angle = 0
+        Ch_ProgressKid.ChartAreas.Add(area)
 
-            'Dim dt As DataTable = GetData(query, parameters)
+        ' Crear la serie
+        Dim serie As New Series("Avance")
+        serie.ChartType = SeriesChartType.Line
+        serie.BorderWidth = 2
+        serie.MarkerStyle = MarkerStyle.Circle
+        serie.MarkerSize = 8
+        serie.Color = Color.SkyBlue
+        serie.IsValueShownAsLabel = True ' Mostrar los valores en el gráfico
+        serie.LabelForeColor = Color.DarkBlue
 
-            ' Llenar el gráfico
-            For Each row As DataRow In dt.Rows
-                Dim edad As Integer = Convert.ToInt32(row("Age_ID"))
-                Dim area As Integer = Convert.ToInt32(row("Area_ID"))
-                Dim valor As Integer = Convert.ToInt32(row("BehaviorsComplete"))
-                Ch_ProgressKid.Series(areas(area)).Points.AddXY(edad, valor)
-            Next
+        ' Ejecutar consulta
+        where = New List(Of String)() ' Se vacian los filtros utilizados
+        parameters = New Dictionary(Of String, Object)() ' Se vacian los parametros utilizados
+
+        query = "SELECT ROUND((Adaptative * 100.0) / (SELECT COUNT(ID) FROM Behaviors WHERE Age_ID = @ageid AND Area_ID = 1) / 5.0, 0) * 5 AS Adaptative,
+                        ROUND((GrossMotor * 100.0) / (SELECT COUNT(ID) FROM Behaviors WHERE Age_ID = @ageid AND Area_ID = 2) / 5.0, 0) * 5 AS GrossMotor,
+                        ROUND((FineMotor * 100.0) / (SELECT COUNT(ID) FROM Behaviors WHERE Age_ID = @ageid AND Area_ID = 3) / 5.0, 0) * 5 AS FineMotor,
+                        ROUND((Language * 100.0) / (SELECT COUNT(ID) FROM Behaviors WHERE Age_ID = @ageid AND Area_ID = 4) / 5.0, 0) * 5 AS Language,
+                        ROUND((SocialPerson * 100.0) / (SELECT COUNT(ID) FROM Behaviors WHERE Age_ID = @ageid AND Area_ID = 5) / 5.0, 0) * 5 AS SocialPerson
+                 FROM Evaluations "
+
+        where.Add("Kid_ID = @kidid")
+        parameters.Add("@kidid", KidID)
+
+        where.Add("Age_ID = @ageid")
+        parameters.Add("@ageid", AgeID)
+
+        query &= "WHERE " & String.Join(" AND ", where)
+
+        dt = GetData(query, parameters)
+
+        If dt.Rows.Count > 0 Then
+            Dim row = dt.Rows(0)
+
+            ' Verifica que cada valor no sea DBNull antes de convertirlo
+            If Not IsDBNull(row("Adaptative")) Then
+                serie.Points.AddXY("Adaptativa", Convert.ToDouble(row("Adaptative")))
+            End If
+            If Not IsDBNull(row("GrossMotor")) Then
+                serie.Points.AddXY("Motriz Gruesa", Convert.ToDouble(row("GrossMotor")))
+            End If
+            If Not IsDBNull(row("FineMotor")) Then
+                serie.Points.AddXY("Motriz Fina", Convert.ToDouble(row("FineMotor")))
+            End If
+            If Not IsDBNull(row("Language")) Then
+                serie.Points.AddXY("Lenguaje", Convert.ToDouble(row("Language")))
+            End If
+            If Not IsDBNull(row("SocialPerson")) Then
+                serie.Points.AddXY("Social", Convert.ToDouble(row("SocialPerson")))
+            End If
         Else
-            MessageBox.Show("No se encontró evaluaciones realizadas al infante")
+            MessageBox.Show("No se encontró evaluaciones realizadas al infante", "Sin Datos", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+
+        ' Añadir la serie al gráfico
+        Ch_ProgressKid.Series.Add(serie)
+
+        ' Título opcional
+        Ch_ProgressKid.Titles.Add("Desarrollo del Niño en Edad de " & Age)
     End Sub
 
-    Private Sub FindAreaID(Area As String)
-        AreaID = ExecuteScalar("SELECT ID FROM Areas WHERE Name = @name",
-                                           New Dictionary(Of String, Object) From {{"@name", Area}})
-    End Sub
-
-    Private Sub Cb_Area_DrawItem(sender As Object, e As DrawItemEventArgs) Handles Cb_Area.DrawItem
+    Private Sub Cb_Area_DrawItem(sender As Object, e As DrawItemEventArgs) Handles Cb_Age.DrawItem
         If e.Index < 0 Then Return ' Evita errores si el ComboBox está vacío
 
         e.DrawBackground()
 
-        Dim text As String = Cb_Area.Items(e.Index).ToString()
+        Dim text As String = Cb_Age.Items(e.Index).ToString()
         Dim ColorText As Brush = If(AreaSelection.Contains(e.Index), Brushes.Green, Brushes.Black)
 
         e.Graphics.DrawString(text, e.Font, ColorText, e.Bounds) ' Colorea el texto de color verde a todos las conductas que ya fueron seleccionadas
         e.DrawFocusRectangle()
-    End Sub
-
-    Private Sub Tb_Name_TextChanged(sender As Object, e As EventArgs) Handles Tb_Name.TextChanged
-
     End Sub
 
     Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
@@ -147,4 +182,5 @@ Public Class DataVisualization
         frm.Show()
         Me.Close()
     End Sub
+
 End Class

@@ -29,12 +29,12 @@ Partial Class DataVisualization
         Label8 = New Label()
         Lbl_Age = New Label()
         Btn_Save = New Button()
-        Cb_Area = New ComboBox()
         Lbl_Name = New Label()
         Label2 = New Label()
         Tb_Name = New TextBox()
         Ch_ProgressKid = New System.Windows.Forms.DataVisualization.Charting.Chart()
         btn_Exit = New Button()
+        Cb_Age = New ComboBox()
         TableLayoutPanel1.SuspendLayout()
         CType(Ch_ProgressKid, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -91,22 +91,6 @@ Partial Class DataVisualization
         Btn_Save.Size = New Size(97, 35)
         Btn_Save.TabIndex = 83
         Btn_Save.UseVisualStyleBackColor = True
-        ' 
-        ' Cb_Area
-        ' 
-        Cb_Area.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
-        Cb_Area.BackColor = Color.LightSteelBlue
-        Cb_Area.Cursor = Cursors.Hand
-        Cb_Area.DrawMode = DrawMode.OwnerDrawVariable
-        Cb_Area.DropDownStyle = ComboBoxStyle.DropDownList
-        Cb_Area.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Cb_Area.ForeColor = Color.SkyBlue
-        Cb_Area.FormattingEnabled = True
-        Cb_Area.Items.AddRange(New Object() {"Adaptativa", "Motriz Gruesa", "Motriz Fina", "Lenguaje", "Personal Social"})
-        Cb_Area.Location = New Point(61, 148)
-        Cb_Area.Name = "Cb_Area"
-        Cb_Area.Size = New Size(166, 34)
-        Cb_Area.TabIndex = 69
         ' 
         ' Lbl_Name
         ' 
@@ -173,6 +157,21 @@ Partial Class DataVisualization
         btn_Exit.TabIndex = 98
         btn_Exit.UseVisualStyleBackColor = True
         ' 
+        ' Cb_Age
+        ' 
+        Cb_Age.BackColor = Color.LightSteelBlue
+        Cb_Age.Cursor = Cursors.Hand
+        Cb_Age.DropDownStyle = ComboBoxStyle.DropDownList
+        Cb_Age.FlatStyle = FlatStyle.Flat
+        Cb_Age.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Cb_Age.ForeColor = SystemColors.Window
+        Cb_Age.FormattingEnabled = True
+        Cb_Age.Items.AddRange(New Object() {"Masculino", "Femenino"})
+        Cb_Age.Location = New Point(61, 148)
+        Cb_Age.Name = "Cb_Age"
+        Cb_Age.Size = New Size(166, 33)
+        Cb_Age.TabIndex = 103
+        ' 
         ' DataVisualization
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -180,6 +179,7 @@ Partial Class DataVisualization
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
+        Controls.Add(Cb_Age)
         Controls.Add(btn_Exit)
         Controls.Add(Ch_ProgressKid)
         Controls.Add(Tb_Name)
@@ -187,7 +187,6 @@ Partial Class DataVisualization
         Controls.Add(Lbl_Name)
         Controls.Add(Btn_Save)
         Controls.Add(TableLayoutPanel1)
-        Controls.Add(Cb_Area)
         Controls.Add(Lbl_Age)
         MaximizeBox = False
         Name = "DataVisualization"
@@ -203,10 +202,10 @@ Partial Class DataVisualization
     Friend WithEvents Label8 As Label
     Friend WithEvents Lbl_Age As Label
     Friend WithEvents Btn_Save As Button
-    Friend WithEvents Cb_Area As ComboBox
     Friend WithEvents Lbl_Name As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Tb_Name As TextBox
     Friend WithEvents Ch_ProgressKid As System.Windows.Forms.DataVisualization.Charting.Chart
     Friend WithEvents btn_Exit As Button
+    Friend WithEvents Cb_Age As ComboBox
 End Class
