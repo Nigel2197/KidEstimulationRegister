@@ -22,9 +22,9 @@ Partial Class DataVisualization
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend3 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
         Lbl_Age = New Label()
@@ -34,6 +34,7 @@ Partial Class DataVisualization
         Label2 = New Label()
         Tb_Name = New TextBox()
         Ch_ProgressKid = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        btn_Exit = New Button()
         TableLayoutPanel1.SuspendLayout()
         CType(Ch_ProgressKid, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -85,7 +86,7 @@ Partial Class DataVisualization
         Btn_Save.Cursor = Cursors.Hand
         Btn_Save.FlatStyle = FlatStyle.Flat
         Btn_Save.ForeColor = SystemColors.ControlText
-        Btn_Save.Location = New Point(683, 678)
+        Btn_Save.Location = New Point(677, 678)
         Btn_Save.Name = "Btn_Save"
         Btn_Save.Size = New Size(97, 35)
         Btn_Save.TabIndex = 83
@@ -146,18 +147,31 @@ Partial Class DataVisualization
         ' 
         ' Ch_ProgressKid
         ' 
-        ChartArea1.Name = "ChartArea1"
-        Ch_ProgressKid.ChartAreas.Add(ChartArea1)
-        Legend1.Name = "Legend1"
-        Ch_ProgressKid.Legends.Add(Legend1)
+        ChartArea3.Name = "ChartArea1"
+        Ch_ProgressKid.ChartAreas.Add(ChartArea3)
+        Legend3.Name = "Legend1"
+        Ch_ProgressKid.Legends.Add(Legend3)
         Ch_ProgressKid.Location = New Point(273, 242)
         Ch_ProgressKid.Name = "Ch_ProgressKid"
-        Series1.ChartArea = "ChartArea1"
-        Series1.Legend = "Legend1"
-        Series1.Name = "Series1"
-        Ch_ProgressKid.Series.Add(Series1)
+        Series3.ChartArea = "ChartArea1"
+        Series3.Legend = "Legend1"
+        Series3.Name = "Series1"
+        Ch_ProgressKid.Series.Add(Series3)
         Ch_ProgressKid.Size = New Size(300, 300)
         Ch_ProgressKid.TabIndex = 92
+        ' 
+        ' btn_Exit
+        ' 
+        btn_Exit.BackgroundImage = My.Resources.Resources.salir
+        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Exit.Cursor = Cursors.Hand
+        btn_Exit.FlatStyle = FlatStyle.Flat
+        btn_Exit.ForeColor = SystemColors.ControlText
+        btn_Exit.Location = New Point(12, 678)
+        btn_Exit.Name = "btn_Exit"
+        btn_Exit.Size = New Size(97, 35)
+        btn_Exit.TabIndex = 98
+        btn_Exit.UseVisualStyleBackColor = True
         ' 
         ' DataVisualization
         ' 
@@ -166,6 +180,7 @@ Partial Class DataVisualization
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
+        Controls.Add(btn_Exit)
         Controls.Add(Ch_ProgressKid)
         Controls.Add(Tb_Name)
         Controls.Add(Label2)
@@ -193,4 +208,5 @@ Partial Class DataVisualization
     Friend WithEvents Label2 As Label
     Friend WithEvents Tb_Name As TextBox
     Friend WithEvents Ch_ProgressKid As System.Windows.Forms.DataVisualization.Charting.Chart
+    Friend WithEvents btn_Exit As Button
 End Class

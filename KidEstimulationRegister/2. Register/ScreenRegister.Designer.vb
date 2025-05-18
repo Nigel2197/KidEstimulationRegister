@@ -80,7 +80,7 @@ Partial Class ScreenRegister
         btn_Exit.Cursor = Cursors.Hand
         btn_Exit.FlatStyle = FlatStyle.Flat
         btn_Exit.ForeColor = SystemColors.ControlText
-        btn_Exit.Location = New Point(4, 680)
+        btn_Exit.Location = New Point(12, 678)
         btn_Exit.Name = "btn_Exit"
         btn_Exit.Size = New Size(97, 35)
         btn_Exit.TabIndex = 42

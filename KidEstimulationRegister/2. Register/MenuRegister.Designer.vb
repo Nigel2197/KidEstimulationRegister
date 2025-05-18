@@ -27,6 +27,7 @@ Partial Class MenuRegister
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
         Btn_ScreenList = New Button()
+        btn_Exit = New Button()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -96,6 +97,19 @@ Partial Class MenuRegister
         Btn_ScreenList.Text = "Lista de Infantes"
         Btn_ScreenList.UseVisualStyleBackColor = False
         ' 
+        ' btn_Exit
+        ' 
+        btn_Exit.BackgroundImage = My.Resources.Resources.salir
+        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Exit.Cursor = Cursors.Hand
+        btn_Exit.FlatStyle = FlatStyle.Flat
+        btn_Exit.ForeColor = SystemColors.ControlText
+        btn_Exit.Location = New Point(12, 678)
+        btn_Exit.Name = "btn_Exit"
+        btn_Exit.Size = New Size(97, 35)
+        btn_Exit.TabIndex = 99
+        btn_Exit.UseVisualStyleBackColor = True
+        ' 
         ' MenuRegister
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -103,6 +117,7 @@ Partial Class MenuRegister
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
+        Controls.Add(btn_Exit)
         Controls.Add(Btn_ScreenList)
         Controls.Add(TableLayoutPanel1)
         Controls.Add(Btn_New)
@@ -120,4 +135,5 @@ Partial Class MenuRegister
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Label8 As Label
     Friend WithEvents Btn_ScreenList As Button
+    Friend WithEvents btn_Exit As Button
 End Class

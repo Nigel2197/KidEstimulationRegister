@@ -7,4 +7,5 @@
     Public where As New List(Of String)()
     Public parameters As New Dictionary(Of String, Object)()
     Public clauses As String
+    Public success As Boolean
 End Module

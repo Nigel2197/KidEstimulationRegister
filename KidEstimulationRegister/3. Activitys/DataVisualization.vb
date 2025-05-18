@@ -54,7 +54,7 @@ Public Class DataVisualization
     End Sub
 
     Private Sub LoadKidData() ' Muestra en pantalla los datos personales del infante
-        If dt.Rows.Count > 0 Then
+        If dt IsNot Nothing Then
             Lbl_Age.Text = dt.Rows(0)("Age").ToString().ToUpper
             Lbl_Name.Text = NameKid
             KidID = dt.Rows(0)("Kid_ID")
@@ -85,7 +85,7 @@ Public Class DataVisualization
     End Sub
 
     Private Sub LoadKidEvaluation()
-        If dt.Rows.Count > 0 Then
+        If dt IsNot Nothing Then
             ' Limpiar el gráfico
             Ch_ProgressKid.Series.Clear()
 
@@ -140,5 +140,11 @@ Public Class DataVisualization
 
     Private Sub Tb_Name_TextChanged(sender As Object, e As EventArgs) Handles Tb_Name.TextChanged
 
+    End Sub
+
+    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+        Dim frm As New FindKidProgress()
+        frm.Show()
+        Me.Close()
     End Sub
 End Class

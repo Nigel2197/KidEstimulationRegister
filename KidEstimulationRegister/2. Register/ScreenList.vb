@@ -1,13 +1,6 @@
 ﻿Imports DataAccess
 
 Public Class ScreenList
-    'Dim dt As DataTable
-
-    '''Variables para las consultas a las bases de datos
-    'Dim query As String
-    'Dim where As New List(Of String)()
-    'Dim parameters As New Dictionary(Of String, Object)()
-    'Dim clauses As String
 
     Private Sub ScreenList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetListKidName()
@@ -94,7 +87,7 @@ Public Class ScreenList
     Private Sub LoadDataListKid()
         Dgv_KidList.DataSource = Nothing
 
-        If dt.Rows.Count > 0 Then
+        If dt IsNot Nothing Then
             Dgv_KidList.AutoGenerateColumns = False
             Dgv_KidList.DataSource = dt
         Else
@@ -134,4 +127,9 @@ Public Class ScreenList
         e.DrawFocusRectangle()
     End Sub
 
+    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+        Dim frm As New MenuRegister()
+        frm.Show()
+        Me.Close()
+    End Sub
 End Class

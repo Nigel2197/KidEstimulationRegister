@@ -81,7 +81,7 @@ Partial Class KidEdit
         btn_Exit.Cursor = Cursors.Hand
         btn_Exit.FlatStyle = FlatStyle.Flat
         btn_Exit.ForeColor = SystemColors.ControlText
-        btn_Exit.Location = New Point(4, 680)
+        btn_Exit.Location = New Point(12, 678)
         btn_Exit.Name = "btn_Exit"
         btn_Exit.Size = New Size(97, 35)
         btn_Exit.TabIndex = 42
@@ -255,7 +255,7 @@ Partial Class KidEdit
         btn_Save.Cursor = Cursors.Hand
         btn_Save.FlatStyle = FlatStyle.Flat
         btn_Save.ForeColor = SystemColors.ControlText
-        btn_Save.Location = New Point(685, 678)
+        btn_Save.Location = New Point(677, 678)
         btn_Save.Name = "btn_Save"
         btn_Save.Size = New Size(97, 35)
         btn_Save.TabIndex = 9
@@ -268,7 +268,7 @@ Partial Class KidEdit
         btn_Clean.Cursor = Cursors.Hand
         btn_Clean.FlatStyle = FlatStyle.Flat
         btn_Clean.ForeColor = SystemColors.ControlText
-        btn_Clean.Location = New Point(582, 678)
+        btn_Clean.Location = New Point(562, 678)
         btn_Clean.Name = "btn_Clean"
         btn_Clean.Size = New Size(97, 35)
         btn_Clean.TabIndex = 45

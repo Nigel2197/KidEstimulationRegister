@@ -2,7 +2,6 @@
 Imports DataAccess
 
 Public Class KidEdit
-    Dim dt As DataTable
 
     Private NameKid As String
     Private KidID As Integer
@@ -127,7 +126,7 @@ Public Class KidEdit
     End Sub
 
     Private Sub LoadKidData() ' Muestra en pantalla los datos personales del infante
-        If dt.Rows.Count > 0 Then
+        If dt IsNot Nothing Then
             Tb_Name.Text = Cb_Name.Text
             Cb_Gender.Text = dt.Rows(0)("Gender").ToString()
             Dtp_DayBirth.Value = DateTime.ParseExact(dt.Rows(0)("DayBirth").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture)
@@ -184,4 +183,15 @@ Public Class KidEdit
 
     End Sub
 
+    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+        Dim confirmation As DialogResult
+
+        confirmation = MessageBox.Show($"¿Está seguro de que desea salir?{Environment.NewLine}{Environment.NewLine}Los cambios realizados en los datos del infante no se guardarán", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Dim frm As New MenuRegister()
+            frm.Show()
+            Me.Close()
+        End If
+    End Sub
 End Class

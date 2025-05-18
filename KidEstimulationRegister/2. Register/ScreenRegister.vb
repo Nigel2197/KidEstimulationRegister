@@ -1,13 +1,6 @@
 ﻿Imports DataAccess
 
 Public Class ScreenRegister
-    Dim dt As DataTable
-
-    ''Variables para las consultas a las bases de datos
-    'Dim query As String
-    'Dim where As New List(Of String)()
-    'Dim parameters As New Dictionary(Of String, Object)()
-    'Dim clauses As String
 
     ' Variables para el calculo de edad
     Dim today As Date = Date.Today 'Establece la fecha del dia actual
@@ -118,4 +111,15 @@ Public Class ScreenRegister
 
     End Sub
 
+    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+        Dim confirmation As DialogResult
+
+        confirmation = MessageBox.Show($"¿Está seguro de que desea salir?{Environment.NewLine}{Environment.NewLine}El registro de los datos del infante no se guardará", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Dim frm As New MenuRegister()
+            frm.Show()
+            Me.Close()
+        End If
+    End Sub
 End Class

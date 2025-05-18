@@ -1,8 +1,8 @@
 BEGIN TRANSACTION;
 PRAGMA foreign_keys = OFF;
 
-DELETE FROM Registers;
-DELETE FROM sqlite_sequence WHERE name='Registers';
+DELETE FROM Evaluations;
+DELETE FROM sqlite_sequence WHERE name='Evaluations';
 
 PRAGMA foreign_keys = ON;
 COMMIT;

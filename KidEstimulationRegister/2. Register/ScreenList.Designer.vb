@@ -22,9 +22,9 @@ Partial Class ScreenList
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
         Cb_Gender = New ComboBox()
@@ -42,6 +42,7 @@ Partial Class ScreenList
         Direccion = New DataGridViewTextBoxColumn()
         Sangre = New DataGridViewTextBoxColumn()
         Btn_Limpiar = New Button()
+        btn_Exit = New Button()
         TableLayoutPanel1.SuspendLayout()
         TableLayoutPanel4.SuspendLayout()
         CType(Dgv_KidList, ComponentModel.ISupportInitialize).BeginInit()
@@ -186,33 +187,33 @@ Partial Class ScreenList
         Dgv_KidList.AllowUserToDeleteRows = False
         Dgv_KidList.BackgroundColor = Color.AliceBlue
         Dgv_KidList.BorderStyle = BorderStyle.Fixed3D
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = Color.LightSkyBlue
-        DataGridViewCellStyle1.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = SystemColors.Window
-        DataGridViewCellStyle1.SelectionBackColor = Color.LightSkyBlue
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.Window
-        Dgv_KidList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.BackColor = Color.LightSkyBlue
+        DataGridViewCellStyle7.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle7.ForeColor = SystemColors.Window
+        DataGridViewCellStyle7.SelectionBackColor = Color.LightSkyBlue
+        DataGridViewCellStyle7.SelectionForeColor = SystemColors.Window
+        Dgv_KidList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         Dgv_KidList.Columns.AddRange(New DataGridViewColumn() {Nombre, Sexo, Años, Direccion, Sangre})
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = Color.AliceBlue
-        DataGridViewCellStyle2.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.SkyBlue
-        DataGridViewCellStyle2.SelectionBackColor = Color.AliceBlue
-        DataGridViewCellStyle2.SelectionForeColor = Color.SkyBlue
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        Dgv_KidList.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = Color.AliceBlue
+        DataGridViewCellStyle8.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle8.ForeColor = Color.SkyBlue
+        DataGridViewCellStyle8.SelectionBackColor = Color.AliceBlue
+        DataGridViewCellStyle8.SelectionForeColor = Color.SkyBlue
+        DataGridViewCellStyle8.WrapMode = DataGridViewTriState.False
+        Dgv_KidList.DefaultCellStyle = DataGridViewCellStyle8
         Dgv_KidList.EnableHeadersVisualStyles = False
         Dgv_KidList.GridColor = Color.Black
         Dgv_KidList.Location = New Point(3, 3)
         Dgv_KidList.Name = "Dgv_KidList"
         Dgv_KidList.ReadOnly = True
-        DataGridViewCellStyle3.BackColor = SystemColors.Control
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle3.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
-        Dgv_KidList.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.BackColor = SystemColors.Control
+        DataGridViewCellStyle9.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle9.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText
+        Dgv_KidList.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
         Dgv_KidList.RowHeadersVisible = False
         Dgv_KidList.ShowEditingIcon = False
         Dgv_KidList.Size = New Size(670, 302)
@@ -289,6 +290,19 @@ Partial Class ScreenList
         Btn_Limpiar.Text = "Limpiar"
         Btn_Limpiar.UseVisualStyleBackColor = False
         ' 
+        ' btn_Exit
+        ' 
+        btn_Exit.BackgroundImage = My.Resources.Resources.salir
+        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Exit.Cursor = Cursors.Hand
+        btn_Exit.FlatStyle = FlatStyle.Flat
+        btn_Exit.ForeColor = SystemColors.ControlText
+        btn_Exit.Location = New Point(12, 678)
+        btn_Exit.Name = "btn_Exit"
+        btn_Exit.Size = New Size(97, 35)
+        btn_Exit.TabIndex = 98
+        btn_Exit.UseVisualStyleBackColor = True
+        ' 
         ' ScreenList
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -296,6 +310,7 @@ Partial Class ScreenList
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
+        Controls.Add(btn_Exit)
         Controls.Add(Btn_Limpiar)
         Controls.Add(Btn_FindKids)
         Controls.Add(Cb_Name)
@@ -334,4 +349,5 @@ Partial Class ScreenList
     Friend WithEvents Años As DataGridViewTextBoxColumn
     Friend WithEvents Direccion As DataGridViewTextBoxColumn
     Friend WithEvents Sangre As DataGridViewTextBoxColumn
+    Friend WithEvents btn_Exit As Button
 End Class

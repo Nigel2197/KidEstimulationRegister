@@ -27,6 +27,7 @@ Partial Class ScreenEvaluation
         Cb_Name = New ComboBox()
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
+        btn_Exit = New Button()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -98,6 +99,19 @@ Partial Class ScreenEvaluation
         Label8.Text = "Evaluación"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
+        ' btn_Exit
+        ' 
+        btn_Exit.BackgroundImage = My.Resources.Resources.salir
+        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Exit.Cursor = Cursors.Hand
+        btn_Exit.FlatStyle = FlatStyle.Flat
+        btn_Exit.ForeColor = SystemColors.ControlText
+        btn_Exit.Location = New Point(12, 678)
+        btn_Exit.Name = "btn_Exit"
+        btn_Exit.Size = New Size(97, 35)
+        btn_Exit.TabIndex = 98
+        btn_Exit.UseVisualStyleBackColor = True
+        ' 
         ' ScreenEvaluation
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -105,6 +119,7 @@ Partial Class ScreenEvaluation
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(786, 719)
+        Controls.Add(btn_Exit)
         Controls.Add(TableLayoutPanel1)
         Controls.Add(Cb_Name)
         Controls.Add(Btn_Evaluation)
@@ -123,4 +138,5 @@ Partial Class ScreenEvaluation
     Friend WithEvents Cb_Name As ComboBox
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Label8 As Label
+    Friend WithEvents btn_Exit As Button
 End Class
