@@ -22,9 +22,13 @@ Partial Class DataVisualization
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend3 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
         Lbl_Age = New Label()
@@ -131,17 +135,55 @@ Partial Class DataVisualization
         ' 
         ' Ch_ProgressKid
         ' 
-        ChartArea3.Name = "ChartArea1"
-        Ch_ProgressKid.ChartAreas.Add(ChartArea3)
-        Legend3.Name = "Legend1"
-        Ch_ProgressKid.Legends.Add(Legend3)
-        Ch_ProgressKid.Location = New Point(273, 242)
+        Ch_ProgressKid.BackColor = Color.Transparent
+        ChartArea1.Name = "ChartArea1"
+        Ch_ProgressKid.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Ch_ProgressKid.Legends.Add(Legend1)
+        Ch_ProgressKid.Location = New Point(61, 189)
         Ch_ProgressKid.Name = "Ch_ProgressKid"
+        Ch_ProgressKid.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
+        Series1.BorderWidth = 5
+        Series1.ChartArea = "ChartArea1"
+        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series1.Legend = "Legend1"
+        Series1.LegendText = "Adaptativa"
+        Series1.Name = "Adaptative"
+        Series1.YValuesPerPoint = 2
+        Series2.BorderWidth = 5
+        Series2.ChartArea = "ChartArea1"
+        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series2.Legend = "Legend1"
+        Series2.LegendText = "Motor Grueso"
+        Series2.Name = "GrossMotor"
+        Series2.YValuesPerPoint = 2
+        Series3.BorderWidth = 5
         Series3.ChartArea = "ChartArea1"
+        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
         Series3.Legend = "Legend1"
-        Series3.Name = "Series1"
+        Series3.LegendText = "Motor Fino"
+        Series3.Name = "FineMotor"
+        Series3.YValuesPerPoint = 4
+        Series4.BorderWidth = 5
+        Series4.ChartArea = "ChartArea1"
+        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series4.Legend = "Legend1"
+        Series4.LegendText = "Lenguaje"
+        Series4.Name = "Language"
+        Series4.YValuesPerPoint = 2
+        Series5.BorderWidth = 5
+        Series5.ChartArea = "ChartArea1"
+        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series5.Legend = "Legend1"
+        Series5.LegendText = "Persona Social"
+        Series5.Name = "SocialPerson"
+        Series5.YValuesPerPoint = 2
+        Ch_ProgressKid.Series.Add(Series1)
+        Ch_ProgressKid.Series.Add(Series2)
         Ch_ProgressKid.Series.Add(Series3)
-        Ch_ProgressKid.Size = New Size(300, 300)
+        Ch_ProgressKid.Series.Add(Series4)
+        Ch_ProgressKid.Series.Add(Series5)
+        Ch_ProgressKid.Size = New Size(670, 353)
         Ch_ProgressKid.TabIndex = 92
         ' 
         ' btn_Exit
@@ -166,7 +208,6 @@ Partial Class DataVisualization
         Cb_Age.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Cb_Age.ForeColor = SystemColors.Window
         Cb_Age.FormattingEnabled = True
-        Cb_Age.Items.AddRange(New Object() {"Masculino", "Femenino"})
         Cb_Age.Location = New Point(61, 148)
         Cb_Age.Name = "Cb_Age"
         Cb_Age.Size = New Size(166, 33)
