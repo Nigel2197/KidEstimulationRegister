@@ -11,8 +11,8 @@ Public Class DataVisualization
     Private FoundKidRegister As Boolean
 
     Private Sub DataVisualization_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        FindKidEvaluationData() ' Busca si el infante ya cuenta con una evaluacion registrada
         FindKidData() ' Busca la informacion personal del infante
+        FindKidEvaluationData() ' Busca si el infante ya cuenta con una evaluacion registrada
         GetListAge() ' Obtiene todas las edades que se evaluan
         Cb_Age.SelectedIndex = 0 ' Se inicia con TODOS las edades
     End Sub
@@ -27,9 +27,8 @@ Public Class DataVisualization
     End Sub
 
     Private Sub FindKidEvaluationData()
-        Dim result As Object = ExecuteScalar("SELECT 1 FROM Evaluations WHERE Kid_ID = @kidid AND Age_ID = @ageid",
-                                           New Dictionary(Of String, Object) From {{"@kidid", KidID},
-                                                                                   {"@ageid", AgeID}})
+        Dim result As Object = ExecuteScalar("SELECT 1 FROM Evaluations WHERE Kid_ID = @kidid",
+                                           New Dictionary(Of String, Object) From {{"@kidid", KidID}})
         If result Then ' Si existe una evaluacion con su nombre y edad
             FoundKidRegister = True
         Else ' Si no existe una evaluacion con su nombre y edad
@@ -77,9 +76,13 @@ Public Class DataVisualization
     Private Sub LoadKidProgress(Age As String)
         If FoundKidRegister Then
 
-
             Dim isTodos As Boolean = (Cb_Age.Text = "TODOS")
             Dim maxSessions As Integer
+
+            ' Limpiar los puntos de cada serie existente
+            For Each serie As Series In Ch_ProgressKid.Series
+                serie.Points.Clear()
+            Next
 
             If isTodos Then ' Se busca el numero de sesiones maxima que lleva el infante
                 maxSessions = ExecuteScalar("SELECT COALESCE(MAX(GeneralSession), 0) FROM Evaluations WHERE Kid_ID = @kidid",
@@ -92,54 +95,43 @@ Public Class DataVisualization
 
             For NumSession As Integer = 1 To maxSessions ' Se recorre el numero de sesiones que se han realizado
                 ' Ejecutar consulta
-                where = New List(Of String)() ' Se vacian los filtros utilizados
-                parameters = New Dictionary(Of String, Object)() ' Se vacian los parametros utilizados
+                where = New List(Of String) From {"Kid_ID = @kidid", "Session = @session"}
+                parameters = New Dictionary(Of String, Object) From {{"@kidid", KidID}, {"@session", NumSession}}
+
+                If Not isTodos Then
+                    where.Add("Age_ID = @ageid")
+                    parameters.Add("@ageid", AgeID)
+                End If
 
                 query = "SELECT ROUND((E.Adaptative * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 1 AND E.Session = @session) / 5.0, 0) * 5 AS Adaptative,
                             ROUND((E.GrossMotor * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 2 AND E.Session = @session) / 5.0, 0) * 5 AS GrossMotor,
                             ROUND((E.FineMotor * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 3 AND E.Session = @session) / 5.0, 0) * 5 AS FineMotor,
                             ROUND((E.Language * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 4 AND E.Session = @session) / 5.0, 0) * 5 AS Language,
                             ROUND((E.SocialPerson * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 5 AND E.Session = @session) / 5.0, 0) * 5 AS SocialPerson
-                     FROM Evaluations E"
-
-                where.Add("Kid_ID = @kidid")
-                parameters.Add("@kidid", KidID)
-
-                where.Add("Age_ID = @ageid")
-                parameters.Add("@ageid", AgeID)
-
-                where.Add("Session = @session")
-                parameters.Add("@session", NumSession)
+                     FROM Evaluations E "
 
                 query &= "WHERE " & String.Join(" AND ", where)
+
+                dt = GetData(query, parameters)
+                ' Aquí puedes procesar dt para graficar, etc.
+                Dim row = dt.Rows(0)
+                ' Asegúrate de que los nombres coincidan con los de las series en el diseñador
+                If Ch_ProgressKid.Series.IndexOf("Adaptativa") >= 0 AndAlso Not IsDBNull(row("Adaptative")) Then
+                    Ch_ProgressKid.Series("Adaptativa").Points.AddXY(NumSession, Convert.ToDouble(row("Adaptative")))
+                End If
+                If Ch_ProgressKid.Series.IndexOf("Motriz Gruesa") >= 0 AndAlso Not IsDBNull(row("GrossMotor")) Then
+                    Ch_ProgressKid.Series("Motriz Gruesa").Points.AddXY(NumSession, Convert.ToDouble(row("GrossMotor")))
+                End If
+                If Ch_ProgressKid.Series.IndexOf("Motriz Fina") >= 0 AndAlso Not IsDBNull(row("FineMotor")) Then
+                    Ch_ProgressKid.Series("Motriz Fina").Points.AddXY(NumSession, Convert.ToDouble(row("FineMotor")))
+                End If
+                If Ch_ProgressKid.Series.IndexOf("Lenguaje") >= 0 AndAlso Not IsDBNull(row("Language")) Then
+                    Ch_ProgressKid.Series("Lenguaje").Points.AddXY(NumSession, Convert.ToDouble(row("Language")))
+                End If
+                If Ch_ProgressKid.Series.IndexOf("Social") >= 0 AndAlso Not IsDBNull(row("SocialPerson")) Then
+                    Ch_ProgressKid.Series("Social").Points.AddXY(NumSession, Convert.ToDouble(row("SocialPerson")))
+                End If
             Next
-
-            '    For NumSession As Integer = 1 To maxSessions
-            '        Dim where = New List(Of String) From {"Kid_ID = @kidid", "Session = @session"}
-            '        Dim parameters = New Dictionary(Of String, Object) From {
-            '    {"@kidid", KidID},
-            '    {"@session", NumSession}
-            '}
-
-            '        If Not isTodos Then
-            '            where.Add("Age_ID = @ageid")
-            '            parameters.Add("@ageid", AgeID)
-            '        End If
-
-            '        Dim query As String =
-            '    "SELECT ROUND((E.Adaptative * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 1 AND E.Session = @session) / 5.0, 0) * 5 AS Adaptative, " &
-            '    "ROUND((E.GrossMotor * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 2 AND E.Session = @session) / 5.0, 0) * 5 AS GrossMotor, " &
-            '    "ROUND((E.FineMotor * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 3 AND E.Session = @session) / 5.0, 0) * 5 AS FineMotor, " &
-            '    "ROUND((E.Language * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 4 AND E.Session = @session) / 5.0, 0) * 5 AS Language, " &
-            '    "ROUND((E.SocialPerson * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 5 AND E.Session = @session) / 5.0, 0) * 5 AS SocialPerson " &
-            '    "FROM Evaluations E WHERE " & String.Join(" AND ", where)
-
-            '        dt = GetData(query, parameters)
-            '        ' Aquí puedes procesar dt para graficar, etc.
-            '    Next
-
-
-            dt = GetData(query, parameters)
 
             ' Título opcional
             'Ch_ProgressKid.Titles.Add("Desarrollo del Niño en Edad de " & Age)

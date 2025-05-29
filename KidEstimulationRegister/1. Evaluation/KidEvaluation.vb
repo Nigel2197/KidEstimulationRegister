@@ -296,6 +296,7 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
+        'Adaptative = CInt(Math.Round((Adaptative / Dgv_Adaptative.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterAreaGrossMotor()
@@ -321,6 +322,7 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
+        'GrossMotor = CInt(Math.Round((GrossMotor / Dgv_GrossMotor.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterAreaFineMotor()
@@ -346,6 +348,7 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
+        'FineMotor = CInt(Math.Round((FineMotor / Dgv_FineMotor.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterAreaLanguage()
@@ -371,6 +374,7 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
+        'Language = CInt(Math.Round((Language / Dgv_Language.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterAreaSocialPerson()
@@ -396,6 +400,7 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
+        'SocialPerson = CInt(Math.Round((SocialPerson / Dgv_SocialPerson.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterEvaluation()
