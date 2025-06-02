@@ -93,6 +93,12 @@ Public Class DataVisualization
 
             End If
 
+            ' Agrega el punto (0,0) como punto inicial a cada serie
+            For Each serie As Series In Ch_ProgressKid.Series
+                serie.Points.Clear()
+                serie.Points.AddXY(0, 0) ' Punto inicial en el origen
+            Next
+
             For NumSession As Integer = 1 To maxSessions ' Se recorre el numero de sesiones que se han realizado
                 ' Ejecutar consulta
                 where = New List(Of String) From {"Kid_ID = @kidid", "Session = @session"}
@@ -103,33 +109,34 @@ Public Class DataVisualization
                     parameters.Add("@ageid", AgeID)
                 End If
 
-                query = "SELECT ROUND((E.Adaptative * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 1 AND E.Session = @session) / 5.0, 0) * 5 AS Adaptative,
-                            ROUND((E.GrossMotor * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 2 AND E.Session = @session) / 5.0, 0) * 5 AS GrossMotor,
-                            ROUND((E.FineMotor * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 3 AND E.Session = @session) / 5.0, 0) * 5 AS FineMotor,
-                            ROUND((E.Language * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 4 AND E.Session = @session) / 5.0, 0) * 5 AS Language,
-                            ROUND((E.SocialPerson * 100.0) / (SELECT COUNT(B.ID) FROM Behaviors B WHERE B.Age_ID = @ageid AND B.Area_ID = 5 AND E.Session = @session) / 5.0, 0) * 5 AS SocialPerson
+                query = "SELECT E.AdaptativePercent AS Adaptative,
+                                E.GrossMotorPercent AS GrossMotor,
+                                E.FineMotorPercent AS FineMotor,
+                                E.LanguagePercent AS Language,
+                                E.SocialPersonPercent AS SocialPerson
                      FROM Evaluations E "
 
                 query &= "WHERE " & String.Join(" AND ", where)
 
                 dt = GetData(query, parameters)
                 ' Aquí puedes procesar dt para graficar, etc.
-                Dim row = dt.Rows(0)
-                ' Asegúrate de que los nombres coincidan con los de las series en el diseñador
-                If Ch_ProgressKid.Series.IndexOf("Adaptativa") >= 0 AndAlso Not IsDBNull(row("Adaptative")) Then
-                    Ch_ProgressKid.Series("Adaptativa").Points.AddXY(NumSession, Convert.ToDouble(row("Adaptative")))
-                End If
-                If Ch_ProgressKid.Series.IndexOf("Motriz Gruesa") >= 0 AndAlso Not IsDBNull(row("GrossMotor")) Then
-                    Ch_ProgressKid.Series("Motriz Gruesa").Points.AddXY(NumSession, Convert.ToDouble(row("GrossMotor")))
-                End If
-                If Ch_ProgressKid.Series.IndexOf("Motriz Fina") >= 0 AndAlso Not IsDBNull(row("FineMotor")) Then
-                    Ch_ProgressKid.Series("Motriz Fina").Points.AddXY(NumSession, Convert.ToDouble(row("FineMotor")))
-                End If
-                If Ch_ProgressKid.Series.IndexOf("Lenguaje") >= 0 AndAlso Not IsDBNull(row("Language")) Then
-                    Ch_ProgressKid.Series("Lenguaje").Points.AddXY(NumSession, Convert.ToDouble(row("Language")))
-                End If
-                If Ch_ProgressKid.Series.IndexOf("Social") >= 0 AndAlso Not IsDBNull(row("SocialPerson")) Then
-                    Ch_ProgressKid.Series("Social").Points.AddXY(NumSession, Convert.ToDouble(row("SocialPerson")))
+                If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                    Dim row = dt.Rows(0)
+                    If Ch_ProgressKid.Series.IndexOf("Adaptative") >= 0 AndAlso Not IsDBNull(row("Adaptative")) Then
+                        Ch_ProgressKid.Series("Adaptative").Points.AddXY(NumSession, Convert.ToDouble(row("Adaptative")))
+                    End If
+                    If Ch_ProgressKid.Series.IndexOf("GrossMotor") >= 0 AndAlso Not IsDBNull(row("GrossMotor")) Then
+                        Ch_ProgressKid.Series("GrossMotor").Points.AddXY(NumSession, Convert.ToDouble(row("GrossMotor")))
+                    End If
+                    If Ch_ProgressKid.Series.IndexOf("FineMotor") >= 0 AndAlso Not IsDBNull(row("FineMotor")) Then
+                        Ch_ProgressKid.Series("FineMotor").Points.AddXY(NumSession, Convert.ToDouble(row("FineMotor")))
+                    End If
+                    If Ch_ProgressKid.Series.IndexOf("Language") >= 0 AndAlso Not IsDBNull(row("Language")) Then
+                        Ch_ProgressKid.Series("Language").Points.AddXY(NumSession, Convert.ToDouble(row("Language")))
+                    End If
+                    If Ch_ProgressKid.Series.IndexOf("SocialPerson") >= 0 AndAlso Not IsDBNull(row("SocialPerson")) Then
+                        Ch_ProgressKid.Series("SocialPerson").Points.AddXY(NumSession, Convert.ToDouble(row("SocialPerson")))
+                    End If
                 End If
             Next
 

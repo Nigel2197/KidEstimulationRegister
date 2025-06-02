@@ -136,6 +136,11 @@ Partial Class DataVisualization
         ' Ch_ProgressKid
         ' 
         Ch_ProgressKid.BackColor = Color.Transparent
+        ChartArea1.AxisX.Minimum = 0R
+        ChartArea1.AxisY.Maximum = 100R
+        ChartArea1.AxisY.Minimum = 0R
+        ChartArea1.BackColor = Color.Transparent
+        ChartArea1.BorderColor = Color.Transparent
         ChartArea1.Name = "ChartArea1"
         Ch_ProgressKid.ChartAreas.Add(ChartArea1)
         Legend1.Name = "Legend1"
@@ -146,6 +151,7 @@ Partial Class DataVisualization
         Series1.BorderWidth = 5
         Series1.ChartArea = "ChartArea1"
         Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series1.Color = SystemColors.Highlight
         Series1.Legend = "Legend1"
         Series1.LegendText = "Adaptativa"
         Series1.Name = "Adaptative"

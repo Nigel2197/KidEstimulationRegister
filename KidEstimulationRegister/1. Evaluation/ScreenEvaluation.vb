@@ -71,6 +71,6 @@ Public Class ScreenEvaluation
     Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
         Dim frm As New ScreenPrincipal()
         frm.Show()
-        Me.Close()
+        Me.Dispose()
     End Sub
 End Class

@@ -21,6 +21,11 @@ Public Class KidEvaluation
     Private FineMotor As Integer
     Private Language As Integer
     Private SocialPerson As Integer
+    Private AdaptativePercent As Integer
+    Private GrossMotorPercent As Integer
+    Private FineMotorPercent As Integer
+    Private LanguagePercent As Integer
+    Private SocialPersonPercent As Integer
 
     Private Sub KidEvaluation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FindKidPersonalData() ' Busca la informacion personal del infante
@@ -239,8 +244,8 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub RegisterEvaluationHeader()
-        success = WriteData("INSERT INTO Evaluations (Kid_ID, Age_ID, Adaptative, GrossMotor, FineMotor, Language, SocialPerson, Comments, Session, GeneralSession)
-                                                VALUES (@kidid, @ageid, @adaptative, @grossmotor, @finemotor, @language, @socialperson, @comments, @session, @maxsession)",
+        success = WriteData("INSERT INTO Evaluations (Kid_ID, Age_ID, Adaptative, GrossMotor, FineMotor, Language, SocialPerson, AdaptativePercent, GrossMotorPercent, FineMotorPercent, LanguagePercent, SocialPersonPercent, Comments, Session, GeneralSession)
+                                                VALUES (@kidid, @ageid, @adaptative, @grossmotor, @finemotor, @language, @socialperson, @adaptativepercent, @grossmotorpercent, @finemotorpercent, @languagepercent, @socialpersonpercent, @comments, @session, @maxsession)",
                                            New Dictionary(Of String, Object) From {{"@kidid", KidID},
                                                                                    {"@ageid", AgeID},
                                                                                    {"@adaptative", Adaptative},
@@ -248,6 +253,11 @@ Public Class KidEvaluation
                                                                                    {"@finemotor", FineMotor},
                                                                                    {"@language", Language},
                                                                                    {"@socialperson", SocialPerson},
+                                                                                   {"@adaptativepercent", AdaptativePercent},
+                                                                                   {"@grossmotorpercent", GrossMotorPercent},
+                                                                                   {"@finemotorpercent", FineMotorPercent},
+                                                                                   {"@languagepercent", LanguagePercent},
+                                                                                   {"@socialpersonpercent", SocialPersonPercent},
                                                                                    {"@comments", Tb_Comments.Text},
                                                                                    {"@session", Session},
                                                                                    {"@maxsession", MaxSession}})
@@ -296,7 +306,7 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
-        'Adaptative = CInt(Math.Round((Adaptative / Dgv_Adaptative.Rows.Count) * 100 / 5.0, 0) * 5)
+        AdaptativePercent = CInt(Math.Round((Adaptative / Dgv_Adaptative.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterAreaGrossMotor()
@@ -322,7 +332,7 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
-        'GrossMotor = CInt(Math.Round((GrossMotor / Dgv_GrossMotor.Rows.Count) * 100 / 5.0, 0) * 5)
+        GrossMotorPercent = CInt(Math.Round((GrossMotor / Dgv_GrossMotor.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterAreaFineMotor()
@@ -348,7 +358,7 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
-        'FineMotor = CInt(Math.Round((FineMotor / Dgv_FineMotor.Rows.Count) * 100 / 5.0, 0) * 5)
+        FineMotorPercent = CInt(Math.Round((FineMotor / Dgv_FineMotor.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterAreaLanguage()
@@ -374,7 +384,7 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
-        'Language = CInt(Math.Round((Language / Dgv_Language.Rows.Count) * 100 / 5.0, 0) * 5)
+        LanguagePercent = CInt(Math.Round((Language / Dgv_Language.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterAreaSocialPerson()
@@ -400,17 +410,23 @@ Public Class KidEvaluation
                                                                         {"@behaviorid", BehaviorID},
                                                                         {"@status", isChecked}})
         Next
-        'SocialPerson = CInt(Math.Round((SocialPerson / Dgv_SocialPerson.Rows.Count) * 100 / 5.0, 0) * 5)
+        SocialPersonPercent = CInt(Math.Round((SocialPerson / Dgv_SocialPerson.Rows.Count) * 100 / 5.0, 0) * 5)
     End Sub
 
     Private Sub RegisterEvaluation()
         success = WriteData("UPDATE Evaluations SET Adaptative = @adaptative, GrossMotor = @grossmotor, FineMotor = @finemotor, Language = @language, SocialPerson = @socialperson
+                                                   ,AdaptativePercent = @adaptativepercent, GrossMotorPercent = @grossmotorpercent, FineMotorPercent = @finemotorpercent, LanguagePercent = @languagepercent, SocialPersonPercent = @socialpersonpercent
                              WHERE ID = @evaluationid",
                             New Dictionary(Of String, Object) From {{"@adaptative", Adaptative},
                                                                     {"@grossmotor", GrossMotor},
                                                                     {"@finemotor", FineMotor},
                                                                     {"@language", Language},
                                                                     {"@socialperson", SocialPerson},
+                                                                    {"@adaptativepercent", AdaptativePercent},
+                                                                    {"@grossmotorpercent", GrossMotorPercent},
+                                                                    {"@finemotorpercent", FineMotorPercent},
+                                                                    {"@languagepercent", LanguagePercent},
+                                                                    {"@socialpersonpercent", SocialPersonPercent},
                                                                     {"@evaluationid", EvaluationID}})
     End Sub
 
