@@ -13,7 +13,7 @@ Public Class DataVisualization
     Private Sub DataVisualization_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FindKidData() ' Busca la informacion personal del infante
         FindKidEvaluationData() ' Busca si el infante ya cuenta con una evaluacion registrada
-        GetListAge() ' Obtiene todas las edades que se evaluan
+        GetListAge() ' Obtiene todas las edades que se han evaluado del infante
         Cb_Age.SelectedIndex = 0 ' Se inicia con TODOS las edades
     End Sub
 
@@ -63,14 +63,26 @@ Public Class DataVisualization
     End Sub
 
     Private Sub GetListAge()
-        query = "SELECT Age FROM Ages"
-        dt = GetData(query)
+        where = New List(Of String)() ' Se vacian los filtros utilizados
+        parameters = New Dictionary(Of String, Object)() ' Se vacian los parametros utilizados
+
+        query = "SELECT A.ID, A.Age FROM Ages A INNER JOIN Evaluations E ON A.ID = E.Age_ID "
+
+        where.Add("E.Kid_ID = @kidid")
+        parameters.Add("@kidid", KidID)
+
+        query &= "WHERE " & String.Join("", where) & " "
+
+        query &= "GROUP BY A.Age"
+
+        dt = GetData(query, parameters)
 
         Cb_Age.Items.Add("TODOS")
         For Each row As DataRow In dt.Rows
             Cb_Age.Items.Add(row("Age").ToString())
         Next
         Cb_Age.DisplayMember = "Age"
+
     End Sub
 
     Private Sub LoadKidProgress(Age As String)
@@ -88,8 +100,8 @@ Public Class DataVisualization
                 maxSessions = ExecuteScalar("SELECT COALESCE(MAX(GeneralSession), 0) FROM Evaluations WHERE Kid_ID = @kidid",
                                     New Dictionary(Of String, Object) From {{"@kidid", KidID}})
             Else ' Se busca el numero de sesion que lleva el infante para esa edad
-                maxSessions = ExecuteScalar("SELECT COALESCE(MAX(Session), 0) FROM Evaluations WHERE Kid_ID = @kidid AND Age_ID = @ageid",
-                                    New Dictionary(Of String, Object) From {{"@kidid", KidID}, {"@ageid", AgeID}})
+                maxSessions = ExecuteScalar("SELECT COALESCE(MAX(Session), 0) FROM Evaluations E INNER JOIN Ages A ON E.Age_ID = A.ID WHERE E.Kid_ID = @kidid AND A.Age = @age",
+                                    New Dictionary(Of String, Object) From {{"@kidid", KidID}, {"@age", Cb_Age.Text}})
 
             End If
 
