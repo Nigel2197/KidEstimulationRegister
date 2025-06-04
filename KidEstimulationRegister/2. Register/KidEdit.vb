@@ -86,7 +86,7 @@ Public Class KidEdit
         If NameKid IsNot Nothing Then
             Dtp_DayBirth.Format = DateTimePickerFormat.Custom
             Dtp_DayBirth.CustomFormat = "dd/MM/yyyy" ' Cambia al formato dia/mes/año
-            GetWeeksAgeKid()
+            GetMonthsAgeKid()
         Else
             Exit Sub
         End If
@@ -150,14 +150,33 @@ Public Class KidEdit
         Dtp_DayBirth.MinDate = today.AddYears(-5)
     End Sub
 
-    Private Sub GetWeeksAgeKid()
-        selectedDate = Dtp_DayBirth.Value ' Toma la fecha seleccionada
-        totalDays = (today - selectedDate).TotalDays ' Trae el total de dias de nacimiento
-        weeksPassed = Math.Floor(totalDays / 7) ' Calcula las semanas de nacimiento
+    Private Sub GetMonthsAgeKid()
+        selectedDate = Dtp_DayBirth.Value
+        today = Date.Today
 
-        Tb_Age.Text = ExecuteScalar("SELECT Age FROM Ages WHERE WeeksAge <= @weeksage ORDER BY WeeksAge DESC LIMIT 1",
-                                           New Dictionary(Of String, Object) From {{"@weeksage", weeksPassed}})
+        ' Calcular meses calendario exactos
+        Dim monthsPassed As Integer = (today.Year - selectedDate.Year) * 12 + (today.Month - selectedDate.Month)
+
+        ' Si aún no ha llegado el día del mes, restamos 1 (aún no cumplió el mes actual)
+        If today.Day < selectedDate.Day Then
+            monthsPassed -= 1
+        End If
+
+        ' Buscar en la tabla Ages por el valor más cercano menor o igual
+        Dim query As String = "SELECT Age FROM Ages WHERE MonthsAge <= @monthAge ORDER BY MonthsAge DESC LIMIT 1"
+        Dim parameters = New Dictionary(Of String, Object) From {{"@monthAge", monthsPassed}}
+
+        Tb_Age.Text = ExecuteScalar(query, parameters)
     End Sub
+
+    'Private Sub GetWeeksAgeKid()
+    '    selectedDate = Dtp_DayBirth.Value ' Toma la fecha seleccionada
+    '    totalDays = (today - selectedDate).TotalDays ' Trae el total de dias de nacimiento
+    '    weeksPassed = Math.Floor(totalDays / 7) ' Calcula las semanas de nacimiento
+
+    '    Tb_Age.Text = ExecuteScalar("SELECT Age FROM Ages WHERE WeeksAge <= @weeksage ORDER BY WeeksAge DESC LIMIT 1",
+    '                                       New Dictionary(Of String, Object) From {{"@weeksage", weeksPassed}})
+    'End Sub
 
     Private Sub UpdateKidRegister()
         Dim ageID As Integer = ExecuteScalar("SELECT ID FROM Ages WHERE Age = @weeksage",

@@ -27,12 +27,19 @@ Public Class ScreenPrincipal
     End Sub
 
     Private Sub UpdateAges()
-        Dim success As Boolean = WriteData("UPDATE Kids 
+        'Dim success As Boolean = WriteData("UPDATE Kids 
+        '                                    SET Age_ID = (SELECT ID
+        '                                    FROM Ages
+        '                                    WHERE WeeksAge <= CAST((julianday(SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) - julianday('now')) / -7 AS INT)
+        '                                    ORDER BY WeeksAge DESC
+        '                                    LIMIT 1)")
+        Dim success As Boolean = WriteData("UPDATE Kids
                                             SET Age_ID = (SELECT ID
-                                            FROM Ages
-                                            WHERE WeeksAge <= CAST((julianday(SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) - julianday('now')) / -7 AS INT)
-                                            ORDER BY WeeksAge DESC
-                                            LIMIT 1)")
+                                                          FROM Ages
+                                                          WHERE MonthsAge <= ((CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) AS INTEGER)) * 12 +
+                                                                              (CAST(strftime('%m', 'now') AS INTEGER) - CAST(strftime('%m', SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) AS INTEGER)) )
+                                                          ORDER BY MonthsAge DESC
+                                                          LIMIT 1)")
         If Not success Then
             MessageBox.Show($"Ocurrió un error al actualizar las edades de los infantes{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
