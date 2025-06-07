@@ -32,7 +32,6 @@ Partial Class DataVisualization
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
         Lbl_Age = New Label()
-        Btn_Save = New Button()
         Lbl_Name = New Label()
         Label2 = New Label()
         Tb_Name = New TextBox()
@@ -83,19 +82,6 @@ Partial Class DataVisualization
         Lbl_Age.Text = "3 AÑOS - 6 MESES"
         Lbl_Age.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Btn_Save
-        ' 
-        Btn_Save.BackgroundImage = My.Resources.Resources.guardar
-        Btn_Save.BackgroundImageLayout = ImageLayout.Stretch
-        Btn_Save.Cursor = Cursors.Hand
-        Btn_Save.FlatStyle = FlatStyle.Flat
-        Btn_Save.ForeColor = SystemColors.ControlText
-        Btn_Save.Location = New Point(677, 678)
-        Btn_Save.Name = "Btn_Save"
-        Btn_Save.Size = New Size(97, 35)
-        Btn_Save.TabIndex = 83
-        Btn_Save.UseVisualStyleBackColor = True
-        ' 
         ' Lbl_Name
         ' 
         Lbl_Name.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom
@@ -143,6 +129,13 @@ Partial Class DataVisualization
         ChartArea1.BorderColor = Color.Transparent
         ChartArea1.Name = "ChartArea1"
         Ch_ProgressKid.ChartAreas.Add(ChartArea1)
+        Legend1.Alignment = StringAlignment.Far
+        Legend1.BackColor = Color.Transparent
+        Legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom
+        Legend1.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Legend1.ForeColor = Color.White
+        Legend1.IsTextAutoFit = False
+        Legend1.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row
         Legend1.Name = "Legend1"
         Ch_ProgressKid.Legends.Add(Legend1)
         Ch_ProgressKid.Location = New Point(61, 189)
@@ -151,7 +144,7 @@ Partial Class DataVisualization
         Series1.BorderWidth = 5
         Series1.ChartArea = "ChartArea1"
         Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
-        Series1.Color = SystemColors.Highlight
+        Series1.Color = Color.Gold
         Series1.Legend = "Legend1"
         Series1.LegendText = "Adaptativa"
         Series1.Name = "Adaptative"
@@ -159,6 +152,7 @@ Partial Class DataVisualization
         Series2.BorderWidth = 5
         Series2.ChartArea = "ChartArea1"
         Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series2.Color = Color.LimeGreen
         Series2.Legend = "Legend1"
         Series2.LegendText = "Motor Grueso"
         Series2.Name = "GrossMotor"
@@ -166,6 +160,7 @@ Partial Class DataVisualization
         Series3.BorderWidth = 5
         Series3.ChartArea = "ChartArea1"
         Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series3.Color = Color.Red
         Series3.Legend = "Legend1"
         Series3.LegendText = "Motor Fino"
         Series3.Name = "FineMotor"
@@ -173,6 +168,7 @@ Partial Class DataVisualization
         Series4.BorderWidth = 5
         Series4.ChartArea = "ChartArea1"
         Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series4.Color = SystemColors.Highlight
         Series4.Legend = "Legend1"
         Series4.LegendText = "Lenguaje"
         Series4.Name = "Language"
@@ -180,6 +176,7 @@ Partial Class DataVisualization
         Series5.BorderWidth = 5
         Series5.ChartArea = "ChartArea1"
         Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series5.Color = Color.BlueViolet
         Series5.Legend = "Legend1"
         Series5.LegendText = "Persona Social"
         Series5.Name = "SocialPerson"
@@ -232,7 +229,6 @@ Partial Class DataVisualization
         Controls.Add(Tb_Name)
         Controls.Add(Label2)
         Controls.Add(Lbl_Name)
-        Controls.Add(Btn_Save)
         Controls.Add(TableLayoutPanel1)
         Controls.Add(Lbl_Age)
         MaximizeBox = False
@@ -248,7 +244,6 @@ Partial Class DataVisualization
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Label8 As Label
     Friend WithEvents Lbl_Age As Label
-    Friend WithEvents Btn_Save As Button
     Friend WithEvents Lbl_Name As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Tb_Name As TextBox

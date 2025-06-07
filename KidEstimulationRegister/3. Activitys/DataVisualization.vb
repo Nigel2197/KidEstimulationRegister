@@ -10,7 +10,25 @@ Public Class DataVisualization
     Private AgeID As Integer
     Private FoundKidRegister As Boolean
 
+    ' Variable para guardar el color y el grosor de las series
+    Private Structure SerieEstiloOriginal
+        Public Color As Color
+        Public BorderWidth As Integer
+    End Structure
+
     Private Sub DataVisualization_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' En el constructor o en el Load del formulario:
+        AddHandler Ch_ProgressKid.MouseClick, AddressOf Chart_MouseClick
+
+        ' Guarda el color original de cada serie en la propiedad Tag
+        For Each serie As Series In Ch_ProgressKid.Series
+            Dim estilo As New SerieEstiloOriginal With {
+                .Color = serie.Color,
+                .BorderWidth = serie.BorderWidth
+            }
+            serie.Tag = estilo
+        Next
+
         FindKidData() ' Busca la informacion personal del infante
         FindKidEvaluationData() ' Busca si el infante ya cuenta con una evaluacion registrada
         GetListAge() ' Obtiene todas las edades que se han evaluado del infante
@@ -113,12 +131,17 @@ Public Class DataVisualization
 
             For NumSession As Integer = 1 To maxSessions ' Se recorre el numero de sesiones que se han realizado
                 ' Ejecutar consulta
-                where = New List(Of String) From {"Kid_ID = @kidid", "Session = @session"}
-                parameters = New Dictionary(Of String, Object) From {{"@kidid", KidID}, {"@session", NumSession}}
+                where = New List(Of String) From {"Kid_ID = @kidid"}
+                parameters = New Dictionary(Of String, Object) From {{"@kidid", KidID}}
 
-                If Not isTodos Then
-                    where.Add("Age_ID = @ageid")
-                    parameters.Add("@ageid", AgeID)
+                If isTodos Then
+                    where.Add("E.GeneralSession = @session")
+                    parameters.Add("@session", NumSession)
+                Else
+                    where.Add("E.Session = @session")
+                    parameters.Add("@session", NumSession)
+                    where.Add("A.Age = @age")
+                    parameters.Add("@age", Cb_Age.Text)
                 End If
 
                 query = "SELECT E.AdaptativePercent AS Adaptative,
@@ -126,7 +149,9 @@ Public Class DataVisualization
                                 E.FineMotorPercent AS FineMotor,
                                 E.LanguagePercent AS Language,
                                 E.SocialPersonPercent AS SocialPerson
-                     FROM Evaluations E "
+                         FROM Evaluations E 
+                         INNER JOIN Ages A
+					     ON E.Age_ID = A.ID "
 
                 query &= "WHERE " & String.Join(" AND ", where)
 
@@ -158,6 +183,30 @@ Public Class DataVisualization
             MessageBox.Show("No se encontró evaluaciones realizadas al infante", "Sin Datos", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
+    End Sub
+
+    Private Sub Chart_MouseClick(sender As Object, e As MouseEventArgs)
+        Dim result = Ch_ProgressKid.HitTest(e.X, e.Y)
+        If result.ChartElementType = ChartElementType.LegendItem Then
+            Dim legendText As String = result.Series.Name
+
+            For Each s As Series In Ch_ProgressKid.Series
+                Dim estilo = CType(s.Tag, SerieEstiloOriginal)
+                If s.Name = legendText Then
+                    s.Color = estilo.Color
+                    s.BorderWidth = 5 ' Resalta la seleccionada
+                Else
+                    s.Color = Color.LightGray
+                    s.BorderWidth = 2
+                End If
+            Next
+        Else
+            For Each s As Series In Ch_ProgressKid.Series
+                Dim estilo = CType(s.Tag, SerieEstiloOriginal)
+                s.Color = estilo.Color
+                s.BorderWidth = estilo.BorderWidth
+            Next
+        End If
     End Sub
 
     Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
