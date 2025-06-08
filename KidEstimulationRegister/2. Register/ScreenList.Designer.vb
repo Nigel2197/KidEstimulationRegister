@@ -302,7 +302,7 @@ Partial Class ScreenList
         Cb_Gender.Items.AddRange(New Object() {"Masculino", "Femenino"})
         Cb_Gender.Location = New Point(574, 186)
         Cb_Gender.Name = "Cb_Gender"
-        Cb_Gender.Size = New Size(165, 29)
+        Cb_Gender.Size = New Size(157, 29)
         Cb_Gender.TabIndex = 103
         ' 
         ' ScreenList

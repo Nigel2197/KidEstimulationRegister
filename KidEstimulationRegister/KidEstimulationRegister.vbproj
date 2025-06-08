@@ -9,10 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="obj\**" />
     <Compile Remove="Resources\db\**" />
     <Compile Remove="Resources\documents\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="obj\**" />
     <EmbeddedResource Remove="Resources\db\**" />
     <EmbeddedResource Remove="Resources\documents\**" />
+    <None Remove="bin\**" />
+    <None Remove="obj\**" />
     <None Remove="Resources\db\**" />
     <None Remove="Resources\documents\**" />
   </ItemGroup>

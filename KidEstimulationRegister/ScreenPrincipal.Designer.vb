@@ -102,7 +102,7 @@ Partial Class ScreenPrincipal
         ' 
         ' btn_Exit
         ' 
-        btn_Exit.BackgroundImage = My.Resources.Resources.salir1
+        btn_Exit.BackgroundImage = My.Resources.Resources.salir
         btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
         btn_Exit.Cursor = Cursors.Hand
         btn_Exit.FlatStyle = FlatStyle.Flat
