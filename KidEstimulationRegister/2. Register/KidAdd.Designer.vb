@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ScreenRegister
+Partial Class KidAdd
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,9 +22,10 @@ Partial Class ScreenRegister
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(KidAdd))
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
-        btn_Exit = New Button()
+        btn_Back = New Button()
         Label11 = New Label()
         Label2 = New Label()
         Tb_Name = New TextBox()
@@ -43,6 +44,7 @@ Partial Class ScreenRegister
         Ckb_Allergic = New CheckBox()
         Dtp_DayBirth = New DateTimePicker()
         Tb_Age = New TextBox()
+        btn_Exit = New Button()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -66,25 +68,27 @@ Partial Class ScreenRegister
         Label8.BackColor = Color.Transparent
         Label8.Font = New Font("Baloo", 23.9999981F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = Color.White
-        Label8.Location = New Point(193, 0)
+        Label8.Location = New Point(258, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(375, 50)
+        Label8.Size = New Size(245, 50)
         Label8.TabIndex = 48
-        Label8.Text = "Agregar Nuevo Infante"
+        Label8.Text = "Nuevo Infante"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' btn_Exit
+        ' btn_Back
         ' 
-        btn_Exit.BackgroundImage = My.Resources.Resources.salir
-        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
-        btn_Exit.Cursor = Cursors.Hand
-        btn_Exit.FlatStyle = FlatStyle.Flat
-        btn_Exit.ForeColor = SystemColors.ControlText
-        btn_Exit.Location = New Point(12, 678)
-        btn_Exit.Name = "btn_Exit"
-        btn_Exit.Size = New Size(97, 35)
-        btn_Exit.TabIndex = 42
-        btn_Exit.UseVisualStyleBackColor = True
+        btn_Back.BackColor = Color.Transparent
+        btn_Back.BackgroundImage = My.Resources.Resources.regresar
+        btn_Back.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Back.Cursor = Cursors.Hand
+        btn_Back.FlatAppearance.BorderSize = 0
+        btn_Back.FlatStyle = FlatStyle.Flat
+        btn_Back.ForeColor = Color.Transparent
+        btn_Back.Location = New Point(5, 5)
+        btn_Back.Name = "btn_Back"
+        btn_Back.Size = New Size(118, 40)
+        btn_Back.TabIndex = 42
+        btn_Back.UseVisualStyleBackColor = False
         ' 
         ' Label11
         ' 
@@ -248,29 +252,33 @@ Partial Class ScreenRegister
         ' 
         ' btn_Save
         ' 
+        btn_Save.BackColor = Color.Transparent
         btn_Save.BackgroundImage = My.Resources.Resources.guardar
         btn_Save.BackgroundImageLayout = ImageLayout.Stretch
         btn_Save.Cursor = Cursors.Hand
+        btn_Save.FlatAppearance.BorderSize = 0
         btn_Save.FlatStyle = FlatStyle.Flat
-        btn_Save.ForeColor = SystemColors.ControlText
-        btn_Save.Location = New Point(685, 678)
+        btn_Save.ForeColor = Color.Transparent
+        btn_Save.Location = New Point(664, 674)
         btn_Save.Name = "btn_Save"
-        btn_Save.Size = New Size(97, 35)
+        btn_Save.Size = New Size(118, 40)
         btn_Save.TabIndex = 9
-        btn_Save.UseVisualStyleBackColor = True
+        btn_Save.UseVisualStyleBackColor = False
         ' 
         ' btn_Clean
         ' 
+        btn_Clean.BackColor = Color.Transparent
         btn_Clean.BackgroundImage = My.Resources.Resources.limpiar
         btn_Clean.BackgroundImageLayout = ImageLayout.Stretch
         btn_Clean.Cursor = Cursors.Hand
+        btn_Clean.FlatAppearance.BorderSize = 0
         btn_Clean.FlatStyle = FlatStyle.Flat
-        btn_Clean.ForeColor = SystemColors.ControlText
-        btn_Clean.Location = New Point(582, 678)
+        btn_Clean.ForeColor = Color.Transparent
+        btn_Clean.Location = New Point(334, 674)
         btn_Clean.Name = "btn_Clean"
-        btn_Clean.Size = New Size(97, 35)
+        btn_Clean.Size = New Size(118, 40)
         btn_Clean.TabIndex = 45
-        btn_Clean.UseVisualStyleBackColor = True
+        btn_Clean.UseVisualStyleBackColor = False
         ' 
         ' Ckb_Allergic
         ' 
@@ -314,20 +322,37 @@ Partial Class ScreenRegister
         Tb_Age.Size = New Size(165, 33)
         Tb_Age.TabIndex = 48
         ' 
-        ' ScreenRegister
+        ' btn_Exit
+        ' 
+        btn_Exit.BackColor = Color.Transparent
+        btn_Exit.BackgroundImage = My.Resources.Resources.salir
+        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Exit.Cursor = Cursors.Hand
+        btn_Exit.FlatAppearance.BorderSize = 0
+        btn_Exit.FlatStyle = FlatStyle.Flat
+        btn_Exit.ForeColor = Color.Transparent
+        btn_Exit.Location = New Point(5, 674)
+        btn_Exit.Name = "btn_Exit"
+        btn_Exit.Size = New Size(118, 40)
+        btn_Exit.TabIndex = 49
+        btn_Exit.UseVisualStyleBackColor = False
+        ' 
+        ' KidAdd
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
+        CancelButton = btn_Exit
         ClientSize = New Size(786, 719)
+        Controls.Add(btn_Exit)
         Controls.Add(Tb_Age)
         Controls.Add(Dtp_DayBirth)
         Controls.Add(Ckb_Allergic)
         Controls.Add(btn_Clean)
         Controls.Add(btn_Save)
         Controls.Add(TableLayoutPanel1)
-        Controls.Add(btn_Exit)
+        Controls.Add(btn_Back)
         Controls.Add(Tb_WhatAllergy)
         Controls.Add(Label9)
         Controls.Add(Label7)
@@ -341,18 +366,20 @@ Partial Class ScreenRegister
         Controls.Add(Tb_Name)
         Controls.Add(Label2)
         Controls.Add(Label11)
+        ForeColor = Color.Transparent
         FormBorderStyle = FormBorderStyle.FixedDialog
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
-        Name = "ScreenRegister"
+        Name = "KidAdd"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Kid Stimulation Register"
+        Text = "Primeros Pasos"
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents btn_Exit As Button
+    Friend WithEvents btn_Back As Button
     Friend WithEvents Label11 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Tb_Name As TextBox
@@ -372,4 +399,5 @@ Partial Class ScreenRegister
     Friend WithEvents Label8 As Label
     Private WithEvents Dtp_DayBirth As DateTimePicker
     Friend WithEvents Tb_Age As TextBox
+    Friend WithEvents btn_Exit As Button
 End Class

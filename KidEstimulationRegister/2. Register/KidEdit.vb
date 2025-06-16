@@ -1,18 +1,14 @@
 ﻿Imports System.Globalization
+Imports System.Runtime.InteropServices.JavaScript.JSType
 Imports DataAccess
 
 Public Class KidEdit
+    Private isUserChange As Boolean = False
 
     Private NameKid As String
     Private KidID As Integer
     Private AgeID As Integer
     Private WhatAllergy As String
-
-    '''Variables para las consultas a las bases de datos
-    'Dim query As String
-    'Dim where As New List(Of String)()
-    'Dim parameters As New Dictionary(Of String, Object)()
-    'Dim clauses As String
 
     ' Variables para el calculo de edad
     Dim today As Date = Date.Today 'Establece la fecha del dia actual
@@ -21,16 +17,25 @@ Public Class KidEdit
     Dim weeksPassed As Integer
 
     Private Sub KidEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GetListKidName()
-        LoadListKidName()
+        RoundAllButtons(Me) ' Redondea los bordes de los botones inferiores del formulario
+    End Sub
+
+    Public Sub New(Name As String)
+        InitializeComponent()
+        If Not String.IsNullOrEmpty(Name) Then ' Cargar datos del infante con ese nombre
+            Cb_Name.Text = Name
+            isUserChange = True
+            Cb_Name_SelectedIndexChanged(Cb_Name, EventArgs.Empty)
+        Else
+            GetListKidName() ' Carga la lista de nombres de infantes en el combobox
+        End If
     End Sub
 
     Private Sub Cb_Name_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Name.SelectedIndexChanged
         ' Si el combobox fue seleccionado avanza con la busqueda
-        If Cb_Name.Focused Then
+        If isUserChange Then
             NameKid = Cb_Name.Text
             FindKidData() ' Busca la informacion personal del infante
-            LoadKidData() ' Carga la informacion y la muestra en pantalla
             LoadCalendar() ' Carga la fecha minima y maxima del calendario de cumpleaños
             WhatAllergy = Tb_WhatAllergy.Text
             Cb_Name.Visible = False
@@ -38,6 +43,10 @@ Public Class KidEdit
         Else
             Exit Sub
         End If
+    End Sub
+
+    Private Sub Cb_Name_DropDown(sender As Object, e As EventArgs) Handles Cb_Name.DropDown
+        isUserChange = True
     End Sub
 
     Private Sub btn_Save_Click(sender As Object, e As EventArgs) Handles btn_Save.Click
@@ -63,12 +72,13 @@ Public Class KidEdit
         End If
 
         If validation Then
+            Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
             confirmation = MessageBox.Show("¿Está seguro de que desea registrar los datos del infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If confirmation = DialogResult.Yes Then
                 UpdateKidRegister()
 
                 ' Cierra esta pantalla de edicion
-                Dim frm As New MenuRegister()
+                Dim frm As New ScreenList()
                 frm.Show()
                 Me.Close()
             Else
@@ -105,9 +115,7 @@ Public Class KidEdit
     Private Sub GetListKidName()
         query = "SELECT Name FROM Kids"
         dt = GetData(query)
-    End Sub
 
-    Private Sub LoadListKidName()
         Cb_Name.DataSource = Nothing
         Cb_Name.DataSource = dt
         Cb_Name.DisplayMember = "Name" ' El campo "Name" se mostrará en el ComboBox
@@ -128,9 +136,7 @@ Public Class KidEdit
         query &= "WHERE " & String.Join("", where)
 
         dt = GetData(query, parameters)
-    End Sub
 
-    Private Sub LoadKidData() ' Muestra en pantalla los datos personales del infante
         If dt IsNot Nothing Then
             Tb_Name.Text = Cb_Name.Text
             Cb_Gender.Text = dt.Rows(0)("Gender").ToString()
@@ -169,15 +175,6 @@ Public Class KidEdit
         Tb_Age.Text = ExecuteScalar(query, parameters)
     End Sub
 
-    'Private Sub GetWeeksAgeKid()
-    '    selectedDate = Dtp_DayBirth.Value ' Toma la fecha seleccionada
-    '    totalDays = (today - selectedDate).TotalDays ' Trae el total de dias de nacimiento
-    '    weeksPassed = Math.Floor(totalDays / 7) ' Calcula las semanas de nacimiento
-
-    '    Tb_Age.Text = ExecuteScalar("SELECT Age FROM Ages WHERE WeeksAge <= @weeksage ORDER BY WeeksAge DESC LIMIT 1",
-    '                                       New Dictionary(Of String, Object) From {{"@weeksage", weeksPassed}})
-    'End Sub
-
     Private Sub UpdateKidRegister()
         Dim ageID As Integer = ExecuteScalar("SELECT ID FROM Ages WHERE Age = @weeksage",
                                            New Dictionary(Of String, Object) From {{"@weeksage", Tb_Age.Text}})
@@ -202,15 +199,28 @@ Public Class KidEdit
 
     End Sub
 
-    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+    Private Sub btn_Back_Click(sender As Object, e As EventArgs) Handles btn_Back.Click
         Dim confirmation As DialogResult
 
-        confirmation = MessageBox.Show($"¿Está seguro de que desea salir?{Environment.NewLine}{Environment.NewLine}Los cambios realizados en los datos del infante no se guardarán", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere regresar?{Environment.NewLine}Esto no cerrará el sistema, pero los cambios realizados en los datos del infante no se guardarán.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmation = DialogResult.Yes Then
-            Dim frm As New MenuRegister()
+            Dim frm As New ScreenList()
             frm.Show()
             Me.Close()
         End If
     End Sub
+
+    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+        Dim confirmation As DialogResult
+
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere cerrar el sistema?{Environment.NewLine}Los cambios realizados en los datos del infante no se guardarán.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Application.Exit()
+        End If
+    End Sub
+
 End Class

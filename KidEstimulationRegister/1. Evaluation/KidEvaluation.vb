@@ -32,6 +32,7 @@ Public Class KidEvaluation
         FindKidEvaluationData() ' Busca si el infante ya cuenta con una evaluacion registrada segun su edad actual
         Cb_Area.SelectedIndex = 0 ' Se inicia con la conducta "Adaptativa"
         AreaSelection.Add(Cb_Area.SelectedIndex) ' Agrega manualmente el índice del area seleccionada al HashSet
+        RoundAllButtons(Me) ' Redondea los bordes de los botones inferiores del formulario
     End Sub
 
     Public Sub New(Name As String)
@@ -50,9 +51,10 @@ Public Class KidEvaluation
         Me.ActiveControl = Nothing ' Le quita el focus al ComboBox
     End Sub
 
-    Private Sub Btn_Save_Click(sender As Object, e As EventArgs) Handles Btn_Save.Click
+    Private Sub btn_Accept_Click(sender As Object, e As EventArgs) Handles btn_Accept.Click
         Dim confirmation As DialogResult
 
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
         confirmation = MessageBox.Show("¿Está seguro de que desea registrar las conductas realizadas por el infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmation = DialogResult.Yes Then
@@ -455,7 +457,8 @@ Public Class KidEvaluation
     Private Sub btn_Clean_Click(sender As Object, e As EventArgs) Handles btn_Clean.Click
         Dim confirmation As DialogResult
 
-        confirmation = MessageBox.Show($"¿Está seguro de que desea limpiar las conductas evaluadas durante esta sesion?{Environment.NewLine}{Environment.NewLine}", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere limpiar las conductas evaluadas durante esta sesion?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmation = DialogResult.Yes Then
             Dim frm As New KidEvaluation(Lbl_Name.Text)
@@ -464,10 +467,11 @@ Public Class KidEvaluation
         End If
     End Sub
 
-    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+    Private Sub btn_Back_Click(sender As Object, e As EventArgs) Handles btn_Back.Click
         Dim confirmation As DialogResult
 
-        confirmation = MessageBox.Show($"¿Está seguro de que desea salir?{Environment.NewLine}{Environment.NewLine}La evaluacion actual no se guardará", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere regresar?{Environment.NewLine}Esto no cerrará el sistema, pero los datos de la evaluación actual no se guardarán.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmation = DialogResult.Yes Then
             Dim frm As New ScreenEvaluation()
@@ -476,4 +480,14 @@ Public Class KidEvaluation
         End If
     End Sub
 
+    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+        Dim confirmation As DialogResult
+
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere cerrar el sistema?{Environment.NewLine}Los datos de la evaluación actual no se guardarán.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Application.Exit()
+        End If
+    End Sub
 End Class

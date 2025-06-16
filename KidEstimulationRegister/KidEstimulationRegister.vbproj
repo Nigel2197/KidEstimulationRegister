@@ -6,6 +6,7 @@
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <ApplicationIcon>Resources\icono.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,6 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\icono.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />
@@ -60,9 +65,7 @@
     <Compile Update="3. Activitys\DataVisualization.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="2. Register\KidEdit.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="2. Register\KidEdit.vb" />
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -73,7 +76,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="2. Register\MenuRegister.vb" />
     <Compile Update="2. Register\ScreenList.vb" />
   </ItemGroup>
 

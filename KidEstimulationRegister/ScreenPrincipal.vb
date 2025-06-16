@@ -4,26 +4,22 @@ Public Class ScreenPrincipal
     Private Sub ScreenPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateAges() ' Actualiza las edades de todos los infantes
         DeleteKids() ' Da de baja a todos los infantes que tengan mas de 5 años
+        RoundAllButtons(Me) ' Redondea los bordes de los botones inferiores del formulario
     End Sub
 
     Private Sub btn_ScreenEvaluation_Click(sender As Object, e As EventArgs) Handles Btn_ScreenEvaluation.Click
-        Me.Hide()
         ScreenEvaluation.Show()
+        Me.Hide()
     End Sub
 
     Private Sub btn_ScreenActivity_Click(sender As Object, e As EventArgs) Handles Btn_ScreenActivity.Click
-        Me.Hide()
         FindKidProgress.Show()
+        Me.Hide()
     End Sub
 
     Private Sub btn_ScreenRegister_Click(sender As Object, e As EventArgs) Handles Btn_ScreenRegister.Click
+        ScreenList.Show()
         Me.Hide()
-        MenuRegister.Show()
-    End Sub
-
-    Private Sub Btn_ScreenList_Click(sender As Object, e As EventArgs)
-        Hide
-        ScreenList.Show
     End Sub
 
     Private Sub UpdateAges()
@@ -55,7 +51,14 @@ Public Class ScreenPrincipal
     End Sub
 
     Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
-        Me.Close()
+        Dim confirmation As DialogResult
+
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere cerrar el sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Application.Exit()
+        End If
     End Sub
 
 End Class

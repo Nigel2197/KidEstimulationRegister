@@ -4,7 +4,7 @@ Public Class FindKidProgress
 
     Private Sub FindKidProgress_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetListKidName()
-        LoadListKidName()
+        RoundAllButtons(Me) ' Redondea los bordes de los botones inferiores del formulario
     End Sub
 
     Private Sub Cb_Name_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Name.SelectedIndexChanged
@@ -29,9 +29,7 @@ Public Class FindKidProgress
     Private Sub GetListKidName()
         query = "SELECT Name FROM Kids"
         dt = GetData(query)
-    End Sub
 
-    Private Sub LoadListKidName()
         Cb_Name.DataSource = Nothing
         Cb_Name.DataSource = dt
         Cb_Name.DisplayMember = "Name" ' El campo "Name" se mostrará en el ComboBox
@@ -68,9 +66,20 @@ Public Class FindKidProgress
         e.DrawFocusRectangle()
     End Sub
 
-    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+    Private Sub btn_Back_Click(sender As Object, e As EventArgs) Handles btn_Back.Click
         Dim frm As New ScreenPrincipal()
         frm.Show()
         Me.Close()
+    End Sub
+
+    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+        Dim confirmation As DialogResult
+
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere cerrar el sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Application.Exit()
+        End If
     End Sub
 End Class

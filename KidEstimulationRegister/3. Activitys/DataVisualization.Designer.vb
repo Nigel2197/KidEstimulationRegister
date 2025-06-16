@@ -29,6 +29,7 @@ Partial Class DataVisualization
         Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DataVisualization))
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
         Lbl_Age = New Label()
@@ -36,8 +37,9 @@ Partial Class DataVisualization
         Label2 = New Label()
         Tb_Name = New TextBox()
         Ch_ProgressKid = New System.Windows.Forms.DataVisualization.Charting.Chart()
-        btn_Exit = New Button()
+        btn_Back = New Button()
         Cb_Age = New ComboBox()
+        btn_Exit = New Button()
         TableLayoutPanel1.SuspendLayout()
         CType(Ch_ProgressKid, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -189,18 +191,20 @@ Partial Class DataVisualization
         Ch_ProgressKid.Size = New Size(670, 353)
         Ch_ProgressKid.TabIndex = 92
         ' 
-        ' btn_Exit
+        ' btn_Back
         ' 
-        btn_Exit.BackgroundImage = My.Resources.Resources.salir
-        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
-        btn_Exit.Cursor = Cursors.Hand
-        btn_Exit.FlatStyle = FlatStyle.Flat
-        btn_Exit.ForeColor = SystemColors.ControlText
-        btn_Exit.Location = New Point(12, 678)
-        btn_Exit.Name = "btn_Exit"
-        btn_Exit.Size = New Size(97, 35)
-        btn_Exit.TabIndex = 98
-        btn_Exit.UseVisualStyleBackColor = True
+        btn_Back.BackColor = Color.Transparent
+        btn_Back.BackgroundImage = My.Resources.Resources.regresar
+        btn_Back.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Back.Cursor = Cursors.Hand
+        btn_Back.FlatAppearance.BorderSize = 0
+        btn_Back.FlatStyle = FlatStyle.Flat
+        btn_Back.ForeColor = Color.Transparent
+        btn_Back.Location = New Point(5, 5)
+        btn_Back.Name = "btn_Back"
+        btn_Back.Size = New Size(118, 40)
+        btn_Back.TabIndex = 98
+        btn_Back.UseVisualStyleBackColor = False
         ' 
         ' Cb_Age
         ' 
@@ -216,25 +220,44 @@ Partial Class DataVisualization
         Cb_Age.Size = New Size(166, 33)
         Cb_Age.TabIndex = 103
         ' 
+        ' btn_Exit
+        ' 
+        btn_Exit.BackColor = Color.Transparent
+        btn_Exit.BackgroundImage = My.Resources.Resources.salir
+        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Exit.Cursor = Cursors.Hand
+        btn_Exit.FlatAppearance.BorderSize = 0
+        btn_Exit.FlatStyle = FlatStyle.Flat
+        btn_Exit.ForeColor = Color.Transparent
+        btn_Exit.Location = New Point(5, 674)
+        btn_Exit.Name = "btn_Exit"
+        btn_Exit.Size = New Size(118, 40)
+        btn_Exit.TabIndex = 104
+        btn_Exit.UseVisualStyleBackColor = False
+        ' 
         ' DataVisualization
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
+        CancelButton = btn_Exit
         ClientSize = New Size(786, 719)
-        Controls.Add(Cb_Age)
         Controls.Add(btn_Exit)
+        Controls.Add(Cb_Age)
+        Controls.Add(btn_Back)
         Controls.Add(Ch_ProgressKid)
         Controls.Add(Tb_Name)
         Controls.Add(Label2)
         Controls.Add(Lbl_Name)
         Controls.Add(TableLayoutPanel1)
         Controls.Add(Lbl_Age)
+        FormBorderStyle = FormBorderStyle.FixedDialog
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         Name = "DataVisualization"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Kid Stimulation Register"
+        Text = "Primeros Pasos"
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
         CType(Ch_ProgressKid, ComponentModel.ISupportInitialize).EndInit()
@@ -248,6 +271,7 @@ Partial Class DataVisualization
     Friend WithEvents Label2 As Label
     Friend WithEvents Tb_Name As TextBox
     Friend WithEvents Ch_ProgressKid As System.Windows.Forms.DataVisualization.Charting.Chart
-    Friend WithEvents btn_Exit As Button
+    Friend WithEvents btn_Back As Button
     Friend WithEvents Cb_Age As ComboBox
+    Friend WithEvents btn_Exit As Button
 End Class

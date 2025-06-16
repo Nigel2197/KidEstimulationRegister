@@ -1,6 +1,6 @@
 ﻿Imports DataAccess
 
-Public Class ScreenRegister
+Public Class KidAdd
 
     ' Variables para el calculo de edad
     Dim today As Date = Date.Today 'Establece la fecha del dia actual
@@ -10,6 +10,7 @@ Public Class ScreenRegister
 
     Private Sub ScreenRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadCalendar()
+        RoundAllButtons(Me) ' Redondea los bordes de los botones inferiores del formulario
     End Sub
 
     Private Sub btn_Save_Click(sender As Object, e As EventArgs) Handles btn_Save.Click
@@ -35,12 +36,13 @@ Public Class ScreenRegister
         End If
 
         If validation Then
+            Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
             confirmation = MessageBox.Show("¿Está seguro de que desea registrar los datos del infante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If confirmation = DialogResult.Yes Then
                 KidRegister()
 
                 ' Cierra esta pantalla de creacion
-                Dim frm As New MenuRegister()
+                Dim frm As New ScreenList()
                 frm.Show()
                 Me.Close()
             Else
@@ -129,15 +131,34 @@ Public Class ScreenRegister
 
     End Sub
 
+    Private Sub btn_Clean_Click(sender As Object, e As EventArgs) Handles btn_Clean.Click
+        Dim frm As New KidAdd()
+        frm.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btn_Back_Click(sender As Object, e As EventArgs) Handles btn_Back.Click
+        Dim confirmation As DialogResult
+
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere regresar?{Environment.NewLine}Esto no cerrará el sistema, pero el registro del infante no se guardará.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Dim frm As New ScreenList()
+            frm.Show
+            Close
+        End If
+    End Sub
+
     Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
         Dim confirmation As DialogResult
 
-        confirmation = MessageBox.Show($"¿Está seguro de que desea salir?{Environment.NewLine}{Environment.NewLine}El registro de los datos del infante no se guardará", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere cerrar el sistema?{Environment.NewLine}El registro del infante no se guardará.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmation = DialogResult.Yes Then
-            Dim frm As New MenuRegister()
-            frm.Show()
-            Me.Close()
+            Application.Exit()
         End If
     End Sub
+
 End Class

@@ -5,6 +5,7 @@ Public Class ScreenList
     Private Sub ScreenList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetListKidName()
         GetListAge()
+        RoundAllButtons(Me) ' Redondea los bordes de los botones inferiores del formulario
     End Sub
 
     Private Sub Cb_Name_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Name.SelectedIndexChanged
@@ -16,8 +17,27 @@ Public Class ScreenList
         End If
     End Sub
 
-    Private Sub Btn_Accept_Click(sender As Object, e As EventArgs) Handles Btn_Accept.Click
+    Private Sub Btn_Find_Click(sender As Object, e As EventArgs) Handles Btn_Find.Click
         FindKid()
+    End Sub
+
+    Private Sub Btn_New_Click(sender As Object, e As EventArgs) Handles Btn_New.Click
+        KidAdd.Show()
+        Me.Hide()
+    End Sub
+    Private Sub Btn_Edit_Click(sender As Object, e As EventArgs) Handles Btn_Edit.Click
+        Dim frm As New KidEdit(Nothing) ' Pasa el valor directamente a la pantalla de Edición de Infante
+        frm.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub Dgv_KidList_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dgv_KidList.CellDoubleClick
+        If e.RowIndex >= 0 Then
+            Dim nombre As String = Dgv_KidList.Rows(e.RowIndex).Cells("Nombre").Value.ToString()
+            Dim frm As New KidEdit(nombre)
+            frm.Show()
+            Me.Hide()
+        End If
     End Sub
 
     Private Sub GetListKidName()
@@ -54,8 +74,8 @@ Public Class ScreenList
 
         ' Verifica si el parámetro @weeksage tiene un valor mayor a 0 y añade la condición correspondiente
         If Not String.IsNullOrEmpty(Cb_Age.Text) Then
-            where.Add("WeeksAge = @weeksage")
-            parameters.Add("@weeksage", Cb_Age.Text)
+            where.Add("A.Age = @age")
+            parameters.Add("@age", Cb_Age.Text)
         End If
 
         ' Verifica si el parámetro @gender tiene un valor y añade la condición correspondiente
@@ -71,16 +91,7 @@ Public Class ScreenList
         dt = GetData(query, parameters)
 
         If dt IsNot Nothing Then
-            LoadDataListKid()
-        Else
-            MessageBox.Show("Error al consultar la vista")
-        End If
-    End Sub
-
-    Private Sub LoadDataListKid()
-        Dgv_KidList.DataSource = Nothing
-
-        If dt IsNot Nothing Then
+            Dgv_KidList.DataSource = Nothing
             Dgv_KidList.AutoGenerateColumns = False
             Dgv_KidList.DataSource = dt
         Else
@@ -120,16 +131,27 @@ Public Class ScreenList
         e.DrawFocusRectangle()
     End Sub
 
-    Private Sub btn_Clean_Click(sender As Object, e As EventArgs) Handles btn_Clean.Click
-        Dim frm As New ScreenList()
+    Private Sub btn_Clean_Click(sender As Object, e As EventArgs)
+        Dim frm As New ScreenList
+        frm.Show()
+        Close()
+    End Sub
+
+    Private Sub btn_Back_Click(sender As Object, e As EventArgs) Handles btn_Back.Click
+        Dim frm As New ScreenPrincipal()
         frm.Show()
         Me.Close()
     End Sub
 
     Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
-        Dim frm As New MenuRegister()
-        frm.Show()
-        Me.Close()
+        Dim confirmation As DialogResult
+
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere cerrar el sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Application.Exit()
+        End If
     End Sub
 
 End Class

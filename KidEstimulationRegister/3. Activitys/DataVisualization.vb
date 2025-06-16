@@ -33,6 +33,7 @@ Public Class DataVisualization
         FindKidEvaluationData() ' Busca si el infante ya cuenta con una evaluacion registrada
         GetListAge() ' Obtiene todas las edades que se han evaluado del infante
         Cb_Age.SelectedIndex = 0 ' Se inicia con TODOS las edades
+        RoundAllButtons(Me) ' Redondea los bordes de los botones inferiores del formulario
     End Sub
 
     Public Sub New(Name As String)
@@ -209,10 +210,20 @@ Public Class DataVisualization
         End If
     End Sub
 
-    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+    Private Sub btn_Back_Click(sender As Object, e As EventArgs) Handles btn_Back.Click
         Dim frm As New FindKidProgress()
         frm.Show()
         Me.Close()
     End Sub
 
+    Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click
+        Dim confirmation As DialogResult
+
+        Me.ActiveControl = Nothing ' Evita que se haga focus en el botón
+        confirmation = MessageBox.Show($"¿Está seguro de que quiere cerrar el sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Application.Exit()
+        End If
+    End Sub
 End Class

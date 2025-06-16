@@ -32,12 +32,13 @@ Partial Class KidEvaluation
         Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(KidEvaluation))
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
         Lbl_Age = New Label()
         Lbl_Allergy = New Label()
         Lbl_BloodType = New Label()
-        Btn_Save = New Button()
+        btn_Accept = New Button()
         Cb_Area = New ComboBox()
         Lbl_Name = New Label()
         Label2 = New Label()
@@ -62,8 +63,9 @@ Partial Class KidEvaluation
         ID_A = New DataGridViewTextBoxColumn()
         Conducta_A = New DataGridViewTextBoxColumn()
         Indicador_A = New DataGridViewCheckBoxColumn()
-        btn_Exit = New Button()
+        btn_Back = New Button()
         btn_Clean = New Button()
+        btn_Exit = New Button()
         TableLayoutPanel1.SuspendLayout()
         CType(Dgv_FineMotor, ComponentModel.ISupportInitialize).BeginInit()
         CType(Dgv_Language, ComponentModel.ISupportInitialize).BeginInit()
@@ -138,18 +140,20 @@ Partial Class KidEvaluation
         Lbl_BloodType.Text = "AB+"
         Lbl_BloodType.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Btn_Save
+        ' btn_Accept
         ' 
-        Btn_Save.BackgroundImage = My.Resources.Resources.guardar
-        Btn_Save.BackgroundImageLayout = ImageLayout.Stretch
-        Btn_Save.Cursor = Cursors.Hand
-        Btn_Save.FlatStyle = FlatStyle.Flat
-        Btn_Save.ForeColor = SystemColors.ControlText
-        Btn_Save.Location = New Point(677, 678)
-        Btn_Save.Name = "Btn_Save"
-        Btn_Save.Size = New Size(97, 35)
-        Btn_Save.TabIndex = 83
-        Btn_Save.UseVisualStyleBackColor = True
+        btn_Accept.BackColor = Color.Transparent
+        btn_Accept.BackgroundImage = My.Resources.Resources.aceptar
+        btn_Accept.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Accept.Cursor = Cursors.Hand
+        btn_Accept.FlatAppearance.BorderSize = 0
+        btn_Accept.FlatStyle = FlatStyle.Flat
+        btn_Accept.ForeColor = Color.Transparent
+        btn_Accept.Location = New Point(664, 674)
+        btn_Accept.Name = "btn_Accept"
+        btn_Accept.Size = New Size(118, 40)
+        btn_Accept.TabIndex = 83
+        btn_Accept.UseVisualStyleBackColor = False
         ' 
         ' Cb_Area
         ' 
@@ -570,31 +574,50 @@ Partial Class KidEvaluation
         Indicador_A.TrueValue = True
         Indicador_A.Width = 80
         ' 
-        ' btn_Exit
+        ' btn_Back
         ' 
-        btn_Exit.BackgroundImage = My.Resources.Resources.salir
-        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
-        btn_Exit.Cursor = Cursors.Hand
-        btn_Exit.FlatStyle = FlatStyle.Flat
-        btn_Exit.ForeColor = SystemColors.ControlText
-        btn_Exit.Location = New Point(12, 678)
-        btn_Exit.Name = "btn_Exit"
-        btn_Exit.Size = New Size(97, 35)
-        btn_Exit.TabIndex = 97
-        btn_Exit.UseVisualStyleBackColor = True
+        btn_Back.BackColor = Color.Transparent
+        btn_Back.BackgroundImage = My.Resources.Resources.regresar
+        btn_Back.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Back.Cursor = Cursors.Hand
+        btn_Back.FlatAppearance.BorderSize = 0
+        btn_Back.FlatStyle = FlatStyle.Flat
+        btn_Back.ForeColor = Color.Transparent
+        btn_Back.Location = New Point(5, 5)
+        btn_Back.Name = "btn_Back"
+        btn_Back.Size = New Size(118, 40)
+        btn_Back.TabIndex = 97
+        btn_Back.UseVisualStyleBackColor = False
         ' 
         ' btn_Clean
         ' 
+        btn_Clean.BackColor = Color.Transparent
         btn_Clean.BackgroundImage = My.Resources.Resources.limpiar
         btn_Clean.BackgroundImageLayout = ImageLayout.Stretch
         btn_Clean.Cursor = Cursors.Hand
+        btn_Clean.FlatAppearance.BorderSize = 0
         btn_Clean.FlatStyle = FlatStyle.Flat
-        btn_Clean.ForeColor = SystemColors.ControlText
-        btn_Clean.Location = New Point(574, 678)
+        btn_Clean.ForeColor = Color.Transparent
+        btn_Clean.Location = New Point(334, 674)
         btn_Clean.Name = "btn_Clean"
-        btn_Clean.Size = New Size(97, 35)
+        btn_Clean.Size = New Size(118, 40)
         btn_Clean.TabIndex = 98
-        btn_Clean.UseVisualStyleBackColor = True
+        btn_Clean.UseVisualStyleBackColor = False
+        ' 
+        ' btn_Exit
+        ' 
+        btn_Exit.BackColor = Color.Transparent
+        btn_Exit.BackgroundImage = My.Resources.Resources.salir
+        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Exit.Cursor = Cursors.Hand
+        btn_Exit.FlatAppearance.BorderSize = 0
+        btn_Exit.FlatStyle = FlatStyle.Flat
+        btn_Exit.ForeColor = Color.Transparent
+        btn_Exit.Location = New Point(5, 674)
+        btn_Exit.Name = "btn_Exit"
+        btn_Exit.Size = New Size(118, 40)
+        btn_Exit.TabIndex = 99
+        btn_Exit.UseVisualStyleBackColor = False
         ' 
         ' KidEvaluation
         ' 
@@ -602,14 +625,16 @@ Partial Class KidEvaluation
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
+        CancelButton = btn_Exit
         ClientSize = New Size(786, 719)
-        Controls.Add(btn_Clean)
         Controls.Add(btn_Exit)
+        Controls.Add(btn_Clean)
+        Controls.Add(btn_Back)
         Controls.Add(Dgv_Adaptative)
         Controls.Add(Tb_Comments)
         Controls.Add(Label2)
         Controls.Add(Lbl_Name)
-        Controls.Add(Btn_Save)
+        Controls.Add(btn_Accept)
         Controls.Add(Lbl_BloodType)
         Controls.Add(Lbl_Allergy)
         Controls.Add(TableLayoutPanel1)
@@ -619,10 +644,13 @@ Partial Class KidEvaluation
         Controls.Add(Dgv_SocialPerson)
         Controls.Add(Dgv_Language)
         Controls.Add(Dgv_FineMotor)
+        ForeColor = Color.SkyBlue
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         Name = "KidEvaluation"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Kid Stimulation Register"
+        Text = "Primeros Pasos"
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
         CType(Dgv_FineMotor, ComponentModel.ISupportInitialize).EndInit()
@@ -638,7 +666,7 @@ Partial Class KidEvaluation
     Friend WithEvents Lbl_Age As Label
     Friend WithEvents Lbl_Allergy As Label
     Friend WithEvents Lbl_BloodType As Label
-    Friend WithEvents Btn_Save As Button
+    Friend WithEvents btn_Accept As Button
     Friend WithEvents Cb_Area As ComboBox
     Friend WithEvents Lbl_Name As Label
     Friend WithEvents Label2 As Label
@@ -663,6 +691,7 @@ Partial Class KidEvaluation
     Friend WithEvents ID_F As DataGridViewTextBoxColumn
     Friend WithEvents Conducta_F As DataGridViewTextBoxColumn
     Friend WithEvents Indicador_F As DataGridViewCheckBoxColumn
-    Friend WithEvents btn_Exit As Button
+    Friend WithEvents btn_Back As Button
     Friend WithEvents btn_Clean As Button
+    Friend WithEvents btn_Exit As Button
 End Class

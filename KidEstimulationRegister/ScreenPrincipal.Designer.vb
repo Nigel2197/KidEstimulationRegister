@@ -22,6 +22,7 @@ Partial Class ScreenPrincipal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScreenPrincipal))
         Label2 = New Label()
         Btn_ScreenRegister = New Button()
         Btn_ScreenActivity = New Button()
@@ -42,6 +43,7 @@ Partial Class ScreenPrincipal
         Label2.Font = New Font("Baloo", 26.2499962F, FontStyle.Bold)
         Label2.ForeColor = Color.DodgerBlue
         Label2.Location = New Point(191, 0)
+        Label2.Margin = New Padding(4, 0, 4, 0)
         Label2.Name = "Label2"
         Label2.Size = New Size(380, 50)
         Label2.TabIndex = 1
@@ -50,24 +52,26 @@ Partial Class ScreenPrincipal
         ' 
         ' Btn_ScreenRegister
         ' 
-        Btn_ScreenRegister.BackColor = Color.SteelBlue
+        Btn_ScreenRegister.BackColor = Color.LightSkyBlue
         Btn_ScreenRegister.Cursor = Cursors.Hand
         Btn_ScreenRegister.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenRegister.ForeColor = Color.White
         Btn_ScreenRegister.Location = New Point(436, 382)
+        Btn_ScreenRegister.Margin = New Padding(4, 3, 4, 3)
         Btn_ScreenRegister.Name = "Btn_ScreenRegister"
         Btn_ScreenRegister.Size = New Size(160, 80)
         Btn_ScreenRegister.TabIndex = 3
-        Btn_ScreenRegister.Text = "Registro"
+        Btn_ScreenRegister.Text = "Infantes"
         Btn_ScreenRegister.UseVisualStyleBackColor = False
         ' 
         ' Btn_ScreenActivity
         ' 
-        Btn_ScreenActivity.BackColor = Color.SteelBlue
+        Btn_ScreenActivity.BackColor = Color.LightSkyBlue
         Btn_ScreenActivity.Cursor = Cursors.Hand
         Btn_ScreenActivity.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenActivity.ForeColor = Color.White
         Btn_ScreenActivity.Location = New Point(200, 382)
+        Btn_ScreenActivity.Margin = New Padding(4, 3, 4, 3)
         Btn_ScreenActivity.Name = "Btn_ScreenActivity"
         Btn_ScreenActivity.Size = New Size(160, 80)
         Btn_ScreenActivity.TabIndex = 4
@@ -82,6 +86,7 @@ Partial Class ScreenPrincipal
         Label1.Font = New Font("Baloo", 26.2499962F, FontStyle.Bold)
         Label1.ForeColor = Color.Orchid
         Label1.Location = New Point(196, 0)
+        Label1.Margin = New Padding(4, 0, 4, 0)
         Label1.Name = "Label1"
         Label1.Size = New Size(370, 50)
         Label1.TabIndex = 5
@@ -89,11 +94,12 @@ Partial Class ScreenPrincipal
         ' 
         ' Btn_ScreenEvaluation
         ' 
-        Btn_ScreenEvaluation.BackColor = Color.SteelBlue
+        Btn_ScreenEvaluation.BackColor = Color.LightSkyBlue
         Btn_ScreenEvaluation.Cursor = Cursors.Hand
         Btn_ScreenEvaluation.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
         Btn_ScreenEvaluation.ForeColor = Color.White
         Btn_ScreenEvaluation.Location = New Point(316, 246)
+        Btn_ScreenEvaluation.Margin = New Padding(4, 3, 4, 3)
         Btn_ScreenEvaluation.Name = "Btn_ScreenEvaluation"
         Btn_ScreenEvaluation.Size = New Size(160, 80)
         Btn_ScreenEvaluation.TabIndex = 2
@@ -102,16 +108,19 @@ Partial Class ScreenPrincipal
         ' 
         ' btn_Exit
         ' 
+        btn_Exit.BackColor = Color.Transparent
         btn_Exit.BackgroundImage = My.Resources.Resources.salir
         btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
         btn_Exit.Cursor = Cursors.Hand
+        btn_Exit.FlatAppearance.BorderSize = 0
         btn_Exit.FlatStyle = FlatStyle.Flat
-        btn_Exit.ForeColor = SystemColors.ControlText
-        btn_Exit.Location = New Point(681, 677)
+        btn_Exit.ForeColor = Color.Transparent
+        btn_Exit.Location = New Point(5, 674)
+        btn_Exit.Margin = New Padding(4, 3, 4, 3)
         btn_Exit.Name = "btn_Exit"
-        btn_Exit.Size = New Size(97, 35)
+        btn_Exit.Size = New Size(118, 40)
         btn_Exit.TabIndex = 6
-        btn_Exit.UseVisualStyleBackColor = True
+        btn_Exit.UseVisualStyleBackColor = False
         ' 
         ' TableLayoutPanel1
         ' 
@@ -120,10 +129,11 @@ Partial Class ScreenPrincipal
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.Controls.Add(Label2, 0, 0)
         TableLayoutPanel1.Location = New Point(12, 80)
+        TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 51F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 50F))
         TableLayoutPanel1.Size = New Size(762, 50)
         TableLayoutPanel1.TabIndex = 44
         ' 
@@ -134,10 +144,11 @@ Partial Class ScreenPrincipal
         TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel2.Controls.Add(Label1, 0, 0)
         TableLayoutPanel2.Location = New Point(12, 130)
+        TableLayoutPanel2.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel2.Name = "TableLayoutPanel2"
         TableLayoutPanel2.RowCount = 1
         TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 51F))
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 50F))
         TableLayoutPanel2.Size = New Size(762, 50)
         TableLayoutPanel2.TabIndex = 45
         ' 
@@ -147,6 +158,7 @@ Partial Class ScreenPrincipal
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
+        CancelButton = btn_Exit
         ClientSize = New Size(786, 719)
         Controls.Add(TableLayoutPanel2)
         Controls.Add(TableLayoutPanel1)
@@ -154,10 +166,13 @@ Partial Class ScreenPrincipal
         Controls.Add(Btn_ScreenActivity)
         Controls.Add(Btn_ScreenRegister)
         Controls.Add(Btn_ScreenEvaluation)
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Margin = New Padding(4, 3, 4, 3)
         MaximizeBox = False
         Name = "ScreenPrincipal"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Kid Stimulation Register"
+        Text = "Primeros Pasos"
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
         TableLayoutPanel2.ResumeLayout(False)

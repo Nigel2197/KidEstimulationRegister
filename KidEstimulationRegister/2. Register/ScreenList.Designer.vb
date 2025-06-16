@@ -22,9 +22,10 @@ Partial Class ScreenList
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScreenList))
         TableLayoutPanel1 = New TableLayoutPanel()
         Label8 = New Label()
         Label2 = New Label()
@@ -38,11 +39,13 @@ Partial Class ScreenList
         Años = New DataGridViewTextBoxColumn()
         Direccion = New DataGridViewTextBoxColumn()
         Sangre = New DataGridViewTextBoxColumn()
-        btn_Exit = New Button()
-        btn_Clean = New Button()
-        Btn_Accept = New Button()
+        btn_Back = New Button()
         Cb_Age = New ComboBox()
         Cb_Gender = New ComboBox()
+        Btn_New = New Button()
+        Btn_Find = New Button()
+        Btn_Edit = New Button()
+        btn_Exit = New Button()
         TableLayoutPanel1.SuspendLayout()
         TableLayoutPanel4.SuspendLayout()
         CType(Dgv_KidList, ComponentModel.ISupportInitialize).BeginInit()
@@ -68,11 +71,11 @@ Partial Class ScreenList
         Label8.BackColor = Color.Transparent
         Label8.Font = New Font("Baloo", 23.9999981F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = Color.White
-        Label8.Location = New Point(239, 0)
+        Label8.Location = New Point(303, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(284, 50)
+        Label8.Size = New Size(155, 50)
         Label8.TabIndex = 48
-        Label8.Text = "Lista de Infantes"
+        Label8.Text = "Infantes"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label2
@@ -147,33 +150,33 @@ Partial Class ScreenList
         Dgv_KidList.AllowUserToDeleteRows = False
         Dgv_KidList.BackgroundColor = Color.AliceBlue
         Dgv_KidList.BorderStyle = BorderStyle.Fixed3D
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = Color.LightSkyBlue
-        DataGridViewCellStyle4.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle4.ForeColor = SystemColors.Window
-        DataGridViewCellStyle4.SelectionBackColor = Color.LightSkyBlue
-        DataGridViewCellStyle4.SelectionForeColor = SystemColors.Window
-        Dgv_KidList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = Color.LightSkyBlue
+        DataGridViewCellStyle1.Font = New Font("Baloo", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = SystemColors.Window
+        DataGridViewCellStyle1.SelectionBackColor = Color.LightSkyBlue
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.Window
+        Dgv_KidList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Dgv_KidList.Columns.AddRange(New DataGridViewColumn() {Nombre, Sexo, Años, Direccion, Sangre})
-        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = Color.AliceBlue
-        DataGridViewCellStyle5.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle5.ForeColor = Color.SkyBlue
-        DataGridViewCellStyle5.SelectionBackColor = Color.AliceBlue
-        DataGridViewCellStyle5.SelectionForeColor = Color.SkyBlue
-        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
-        Dgv_KidList.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = Color.AliceBlue
+        DataGridViewCellStyle2.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = Color.SkyBlue
+        DataGridViewCellStyle2.SelectionBackColor = Color.AliceBlue
+        DataGridViewCellStyle2.SelectionForeColor = Color.SkyBlue
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
+        Dgv_KidList.DefaultCellStyle = DataGridViewCellStyle2
         Dgv_KidList.EnableHeadersVisualStyles = False
         Dgv_KidList.GridColor = Color.Black
         Dgv_KidList.Location = New Point(3, 3)
         Dgv_KidList.Name = "Dgv_KidList"
         Dgv_KidList.ReadOnly = True
-        DataGridViewCellStyle6.BackColor = SystemColors.Control
-        DataGridViewCellStyle6.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle6.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
-        Dgv_KidList.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.BackColor = SystemColors.Control
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle3.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
+        Dgv_KidList.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Dgv_KidList.RowHeadersVisible = False
         Dgv_KidList.ShowEditingIcon = False
         Dgv_KidList.Size = New Size(670, 302)
@@ -236,44 +239,20 @@ Partial Class ScreenList
         Sangre.ReadOnly = True
         Sangre.Width = 65
         ' 
-        ' btn_Exit
+        ' btn_Back
         ' 
-        btn_Exit.BackgroundImage = My.Resources.Resources.salir
-        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
-        btn_Exit.Cursor = Cursors.Hand
-        btn_Exit.FlatStyle = FlatStyle.Flat
-        btn_Exit.ForeColor = SystemColors.ControlText
-        btn_Exit.Location = New Point(12, 678)
-        btn_Exit.Name = "btn_Exit"
-        btn_Exit.Size = New Size(97, 35)
-        btn_Exit.TabIndex = 98
-        btn_Exit.UseVisualStyleBackColor = True
-        ' 
-        ' btn_Clean
-        ' 
-        btn_Clean.BackgroundImage = My.Resources.Resources.limpiar
-        btn_Clean.BackgroundImageLayout = ImageLayout.Stretch
-        btn_Clean.Cursor = Cursors.Hand
-        btn_Clean.FlatStyle = FlatStyle.Flat
-        btn_Clean.ForeColor = SystemColors.ControlText
-        btn_Clean.Location = New Point(574, 678)
-        btn_Clean.Name = "btn_Clean"
-        btn_Clean.Size = New Size(97, 35)
-        btn_Clean.TabIndex = 99
-        btn_Clean.UseVisualStyleBackColor = True
-        ' 
-        ' Btn_Accept
-        ' 
-        Btn_Accept.BackgroundImage = My.Resources.Resources.aceptar
-        Btn_Accept.BackgroundImageLayout = ImageLayout.Stretch
-        Btn_Accept.Cursor = Cursors.Hand
-        Btn_Accept.FlatStyle = FlatStyle.Flat
-        Btn_Accept.ForeColor = SystemColors.ControlText
-        Btn_Accept.Location = New Point(677, 678)
-        Btn_Accept.Name = "Btn_Accept"
-        Btn_Accept.Size = New Size(97, 35)
-        Btn_Accept.TabIndex = 100
-        Btn_Accept.UseVisualStyleBackColor = True
+        btn_Back.BackColor = Color.Transparent
+        btn_Back.BackgroundImage = My.Resources.Resources.regresar
+        btn_Back.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Back.Cursor = Cursors.Hand
+        btn_Back.FlatAppearance.BorderSize = 0
+        btn_Back.FlatStyle = FlatStyle.Flat
+        btn_Back.ForeColor = Color.Transparent
+        btn_Back.Location = New Point(5, 5)
+        btn_Back.Name = "btn_Back"
+        btn_Back.Size = New Size(118, 40)
+        btn_Back.TabIndex = 98
+        btn_Back.UseVisualStyleBackColor = False
         ' 
         ' Cb_Age
         ' 
@@ -305,28 +284,94 @@ Partial Class ScreenList
         Cb_Gender.Size = New Size(157, 29)
         Cb_Gender.TabIndex = 103
         ' 
+        ' Btn_New
+        ' 
+        Btn_New.BackColor = Color.Transparent
+        Btn_New.BackgroundImage = My.Resources.Resources.nuevo
+        Btn_New.BackgroundImageLayout = ImageLayout.Stretch
+        Btn_New.Cursor = Cursors.Hand
+        Btn_New.FlatAppearance.BorderSize = 0
+        Btn_New.FlatStyle = FlatStyle.Flat
+        Btn_New.ForeColor = Color.Transparent
+        Btn_New.Location = New Point(540, 674)
+        Btn_New.Name = "Btn_New"
+        Btn_New.Size = New Size(118, 40)
+        Btn_New.TabIndex = 104
+        Btn_New.UseVisualStyleBackColor = False
+        ' 
+        ' Btn_Find
+        ' 
+        Btn_Find.BackColor = Color.Transparent
+        Btn_Find.BackgroundImage = My.Resources.Resources.buscar
+        Btn_Find.BackgroundImageLayout = ImageLayout.Stretch
+        Btn_Find.Cursor = Cursors.Hand
+        Btn_Find.FlatAppearance.BorderSize = 0
+        Btn_Find.FlatStyle = FlatStyle.Flat
+        Btn_Find.ForeColor = Color.Transparent
+        Btn_Find.Location = New Point(664, 674)
+        Btn_Find.Name = "Btn_Find"
+        Btn_Find.Size = New Size(118, 40)
+        Btn_Find.TabIndex = 100
+        Btn_Find.UseVisualStyleBackColor = False
+        ' 
+        ' Btn_Edit
+        ' 
+        Btn_Edit.BackColor = Color.Transparent
+        Btn_Edit.BackgroundImage = My.Resources.Resources.editar
+        Btn_Edit.BackgroundImageLayout = ImageLayout.Stretch
+        Btn_Edit.Cursor = Cursors.Hand
+        Btn_Edit.FlatAppearance.BorderSize = 0
+        Btn_Edit.FlatStyle = FlatStyle.Flat
+        Btn_Edit.ForeColor = Color.Transparent
+        Btn_Edit.Location = New Point(416, 674)
+        Btn_Edit.Name = "Btn_Edit"
+        Btn_Edit.Size = New Size(118, 40)
+        Btn_Edit.TabIndex = 105
+        Btn_Edit.UseVisualStyleBackColor = False
+        ' 
+        ' btn_Exit
+        ' 
+        btn_Exit.BackColor = Color.Transparent
+        btn_Exit.BackgroundImage = My.Resources.Resources.salir
+        btn_Exit.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Exit.Cursor = Cursors.Hand
+        btn_Exit.FlatAppearance.BorderSize = 0
+        btn_Exit.FlatStyle = FlatStyle.Flat
+        btn_Exit.ForeColor = Color.Transparent
+        btn_Exit.Location = New Point(5, 674)
+        btn_Exit.Name = "btn_Exit"
+        btn_Exit.Size = New Size(118, 40)
+        btn_Exit.TabIndex = 106
+        btn_Exit.UseVisualStyleBackColor = False
+        ' 
         ' ScreenList
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch
+        CancelButton = btn_Exit
         ClientSize = New Size(786, 719)
+        Controls.Add(btn_Exit)
+        Controls.Add(Btn_Edit)
+        Controls.Add(Btn_New)
         Controls.Add(Cb_Gender)
         Controls.Add(Cb_Age)
-        Controls.Add(Btn_Accept)
-        Controls.Add(btn_Clean)
-        Controls.Add(btn_Exit)
+        Controls.Add(Btn_Find)
+        Controls.Add(btn_Back)
         Controls.Add(Cb_Name)
         Controls.Add(Label2)
         Controls.Add(TableLayoutPanel4)
         Controls.Add(Label3)
         Controls.Add(Label1)
         Controls.Add(TableLayoutPanel1)
+        ForeColor = Color.SkyBlue
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         Name = "ScreenList"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Kid Stimulation Register"
+        Text = "Primeros Pasos"
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
         TableLayoutPanel4.ResumeLayout(False)
@@ -347,9 +392,11 @@ Partial Class ScreenList
     Friend WithEvents Años As DataGridViewTextBoxColumn
     Friend WithEvents Direccion As DataGridViewTextBoxColumn
     Friend WithEvents Sangre As DataGridViewTextBoxColumn
-    Friend WithEvents btn_Exit As Button
-    Friend WithEvents btn_Clean As Button
-    Friend WithEvents Btn_Accept As Button
+    Friend WithEvents btn_Back As Button
     Friend WithEvents Cb_Age As ComboBox
     Friend WithEvents Cb_Gender As ComboBox
+    Friend WithEvents Btn_New As Button
+    Friend WithEvents Btn_Find As Button
+    Friend WithEvents Btn_Edit As Button
+    Friend WithEvents btn_Exit As Button
 End Class
