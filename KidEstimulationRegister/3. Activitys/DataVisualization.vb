@@ -71,7 +71,7 @@ Public Class DataVisualization
         dt = GetData(query, parameters)
 
         ' Muestra en pantalla los datos personales del infante
-        If dt IsNot Nothing Then
+        If dt.Rows.Count > 0 Then
             Lbl_Age.Text = dt.Rows(0)("Age").ToString().ToUpper
             Lbl_Name.Text = NameKid
             KidID = dt.Rows(0)("Kid_ID")

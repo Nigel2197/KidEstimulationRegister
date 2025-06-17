@@ -137,7 +137,7 @@ Public Class KidEdit
 
         dt = GetData(query, parameters)
 
-        If dt IsNot Nothing Then
+        If dt.Rows.Count > 0 Then
             Tb_Name.Text = Cb_Name.Text
             Cb_Gender.Text = dt.Rows(0)("Gender").ToString()
             Dtp_DayBirth.Value = DateTime.ParseExact(dt.Rows(0)("DayBirth").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture)

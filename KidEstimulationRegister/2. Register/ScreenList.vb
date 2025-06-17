@@ -90,7 +90,7 @@ Public Class ScreenList
 
         dt = GetData(query, parameters)
 
-        If dt IsNot Nothing Then
+        If dt.Rows.Count > 0 Then
             Dgv_KidList.DataSource = Nothing
             Dgv_KidList.AutoGenerateColumns = False
             Dgv_KidList.DataSource = dt

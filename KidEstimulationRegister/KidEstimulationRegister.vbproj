@@ -7,6 +7,11 @@
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <ApplicationIcon>Resources\icono.ico</ApplicationIcon>
+    <AssemblyName>Primeros Pasos</AssemblyName>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <Authors>Nigel Abrego</Authors>
+    <PackageIcon>icono.png</PackageIcon>
+    <Description>Este programa permite registrar y evaluar el desarrollo psicomotor de niños durante sus primeros años de vida. A través de una serie de conductas observadas en distintas áreas</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -88,12 +93,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="KERDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Update="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
+    </None>
+    <None Update="Resources\icono.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

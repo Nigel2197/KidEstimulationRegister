@@ -118,7 +118,7 @@ Public Class KidEvaluation
 
         dt = GetData(query, parameters)
 
-        If dt IsNot Nothing Then ' Muestra en pantalla los datos personales del infante
+        If dt.Rows.Count > 0 Then ' Muestra en pantalla los datos personales del infante
             Lbl_Age.Text = dt.Rows(0)("Age").ToString().ToUpper
             Lbl_Allergy.Text = "Alergias: " & dt.Rows(0)("WhatAllergy").ToString()
             Lbl_BloodType.Text = dt.Rows(0)("BloodType").ToString()
