@@ -8,17 +8,20 @@ Public Class ScreenPrincipal
     End Sub
 
     Private Sub btn_ScreenEvaluation_Click(sender As Object, e As EventArgs) Handles Btn_ScreenEvaluation.Click
-        ScreenEvaluation.Show()
+        Dim frm As New ScreenEvaluation()
+        frm.Show()
         Me.Hide()
     End Sub
 
     Private Sub btn_ScreenActivity_Click(sender As Object, e As EventArgs) Handles Btn_ScreenActivity.Click
-        FindKidProgress.Show()
+        Dim frm As New FindKidProgress()
+        frm.Show()
         Me.Hide()
     End Sub
 
-    Private Sub btn_ScreenRegister_Click(sender As Object, e As EventArgs) Handles Btn_ScreenRegister.Click
-        ScreenList.Show()
+    Private Sub btn_ScreenList_Click(sender As Object, e As EventArgs) Handles Btn_ScreenList.Click
+        Dim frm As New ScreenList()
+        frm.Show()
         Me.Hide()
     End Sub
 
@@ -29,13 +32,28 @@ Public Class ScreenPrincipal
         '                                    WHERE WeeksAge <= CAST((julianday(SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) - julianday('now')) / -7 AS INT)
         '                                    ORDER BY WeeksAge DESC
         '                                    LIMIT 1)")
+        'Dim success As Boolean = WriteData("UPDATE Kids
+        '                                    SET Age_ID = (SELECT ID
+        '                                                  FROM Ages
+        '                                                  WHERE MonthsAge <= ((CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) AS INTEGER)) * 12 +
+        '                                                                      (CAST(strftime('%m', 'now') AS INTEGER) - CAST(strftime('%m', SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) AS INTEGER)) )
+        '                                                  ORDER BY MonthsAge DESC
+        '                                                  LIMIT 1)")
         Dim success As Boolean = WriteData("UPDATE Kids
-                                            SET Age_ID = (SELECT ID
-                                                          FROM Ages
-                                                          WHERE MonthsAge <= ((CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) AS INTEGER)) * 12 +
-                                                                              (CAST(strftime('%m', 'now') AS INTEGER) - CAST(strftime('%m', SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) AS INTEGER)) )
-                                                          ORDER BY MonthsAge DESC
-                                                          LIMIT 1)")
+                                            SET Age_ID = (
+                                                SELECT ID
+                                                FROM Ages
+                                                WHERE MonthsAge <= (
+                                                    (CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) AS INTEGER)) * 12
+                                                    + (CAST(strftime('%m', 'now') AS INTEGER) - CAST(strftime('%m', SUBSTR(DayBirth, 7, 4) || '-' || SUBSTR(DayBirth, 4, 2) || '-' || SUBSTR(DayBirth, 1, 2)) AS INTEGER))
+                                                    - CASE
+                                                        WHEN CAST(strftime('%d', 'now') AS INTEGER) < CAST(SUBSTR(DayBirth, 1, 2) AS INTEGER) THEN 1
+                                                        ELSE 0
+                                                      END
+                                                )
+                                                ORDER BY MonthsAge DESC
+                                                LIMIT 1
+                                            )")
         If Not success Then
             MessageBox.Show($"Ocurrió un error al actualizar las edades de los infantes{Environment.NewLine}Favor contactarse con el soporte del sistema", "Error de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If

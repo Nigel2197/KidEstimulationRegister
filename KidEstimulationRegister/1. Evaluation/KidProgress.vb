@@ -3,7 +3,7 @@ Imports System.Windows.Forms.DataVisualization.Charting
 Imports DataAccess
 Imports System.Collections.Specialized.BitVector32
 
-Public Class DataVisualization
+Public Class KidProgress
     Private NameKid As String
     Private AgeKid As String
     Private KidID As Integer
@@ -16,7 +16,7 @@ Public Class DataVisualization
         Public BorderWidth As Integer
     End Structure
 
-    Private Sub DataVisualization_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub KidProgress_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' En el constructor o en el Load del formulario:
         AddHandler Ch_ProgressKid.MouseClick, AddressOf Chart_MouseClick
 

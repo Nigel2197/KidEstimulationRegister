@@ -64,6 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="1. Evaluation\KidProgress.vb" />
     <Compile Update="3. Activitys\FindKidProgress.vb">
       <SubType>Form</SubType>
     </Compile>

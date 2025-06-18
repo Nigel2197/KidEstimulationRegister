@@ -20,19 +20,16 @@ Public Class KidAdd
         If String.IsNullOrWhiteSpace(Tb_Name.Text) Then
             MessageBox.Show("Falta indicar el nombre del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             validation = False
-            Return
         End If
 
         If String.IsNullOrWhiteSpace(Dtp_DayBirth.Text) Then
             MessageBox.Show("Falta indicar la fecha de nacimiento del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             validation = False
-            Return
         End If
 
-        If String.IsNullOrWhiteSpace(Dtp_DayBirth.Text) Then
+        If String.IsNullOrWhiteSpace(Tb_Address.Text) Then
             MessageBox.Show("Falta indicar la dirección del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             validation = False
-            Return
         End If
 
         If validation Then
@@ -44,7 +41,7 @@ Public Class KidAdd
                 ' Cierra esta pantalla de creacion
                 Dim frm As New ScreenList()
                 frm.Show()
-                Me.Close()
+                Me.Dispose()
             Else
                 Return
             End If
@@ -97,15 +94,6 @@ Public Class KidAdd
 
         Tb_Age.Text = ExecuteScalar(query, parameters)
     End Sub
-
-    'Private Sub GetWeeksAgeKid()
-    '    selectedDate = Dtp_DayBirth.Value ' Toma la fecha seleccionada
-    '    totalDays = (today - selectedDate).TotalDays ' Trae el total de dias de nacimiento
-    '    weeksPassed = Math.Floor(totalDays / 7) ' Calcula las semanas de nacimiento
-
-    '    Tb_Age.Text = ExecuteScalar("SELECT Age FROM Ages WHERE WeeksAge <= @weeksage ORDER BY WeeksAge DESC LIMIT 1",
-    '                                       New Dictionary(Of String, Object) From {{"@weeksage", weeksPassed}})
-    'End Sub
 
     Private Sub KidRegister()
         Dim ageID As Integer = ExecuteScalar("SELECT ID FROM Ages WHERE Age = @weeksage",

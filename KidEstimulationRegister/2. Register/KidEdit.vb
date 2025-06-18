@@ -4,6 +4,7 @@ Imports DataAccess
 
 Public Class KidEdit
     Private isUserChange As Boolean = False
+    Private isDateChange As Boolean = False
 
     Private NameKid As String
     Private KidID As Integer
@@ -35,8 +36,8 @@ Public Class KidEdit
         ' Si el combobox fue seleccionado avanza con la busqueda
         If isUserChange Then
             NameKid = Cb_Name.Text
-            FindKidData() ' Busca la informacion personal del infante
             LoadCalendar() ' Carga la fecha minima y maxima del calendario de cumpleaños
+            FindKidData() ' Busca la informacion personal del infante
             WhatAllergy = Tb_WhatAllergy.Text
             Cb_Name.Visible = False
             Tb_Name.Visible = True
@@ -56,19 +57,16 @@ Public Class KidEdit
         If String.IsNullOrWhiteSpace(Tb_Name.Text) Then
             MessageBox.Show("Falta indicar el nombre del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             validation = False
-            Return
         End If
 
         If String.IsNullOrWhiteSpace(Dtp_DayBirth.Text) Then
             MessageBox.Show("Falta indicar la fecha de nacimiento del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             validation = False
-            Return
         End If
 
-        If String.IsNullOrWhiteSpace(Dtp_DayBirth.Text) Then
+        If String.IsNullOrWhiteSpace(Tb_Address.Text) Then
             MessageBox.Show("Falta indicar la dirección del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             validation = False
-            Return
         End If
 
         If validation Then
@@ -80,7 +78,7 @@ Public Class KidEdit
                 ' Cierra esta pantalla de edicion
                 Dim frm As New ScreenList()
                 frm.Show()
-                Me.Close()
+                Me.Dispose()
             Else
                 Return
             End If
@@ -158,7 +156,7 @@ Public Class KidEdit
 
     Private Sub GetMonthsAgeKid()
         selectedDate = Dtp_DayBirth.Value
-        today = Date.Today
+        'today = Date.Today
 
         ' Calcular meses calendario exactos
         Dim monthsPassed As Integer = (today.Year - selectedDate.Year) * 12 + (today.Month - selectedDate.Month)

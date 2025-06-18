@@ -51,6 +51,12 @@ Public Class KidEvaluation
         Me.ActiveControl = Nothing ' Le quita el focus al ComboBox
     End Sub
 
+    Private Sub btn_Progress_Click(sender As Object, e As EventArgs) Handles btn_Progress.Click
+        Dim frm As New KidProgress(NameKid) ' Pasa el valor directamente a la pantalla de Progreso de Infante
+        frm.Show()
+        Me.Hide()
+    End Sub
+
     Private Sub btn_Accept_Click(sender As Object, e As EventArgs) Handles btn_Accept.Click
         Dim confirmation As DialogResult
 
@@ -476,7 +482,7 @@ Public Class KidEvaluation
         If confirmation = DialogResult.Yes Then
             Dim frm As New ScreenEvaluation()
             frm.Show()
-            Me.Close()
+            Me.Dispose()
         End If
     End Sub
 
@@ -490,4 +496,5 @@ Public Class KidEvaluation
             Application.Exit()
         End If
     End Sub
+
 End Class

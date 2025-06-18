@@ -24,7 +24,7 @@ Partial Class ScreenPrincipal
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScreenPrincipal))
         Label2 = New Label()
-        Btn_ScreenRegister = New Button()
+        Btn_ScreenList = New Button()
         Btn_ScreenActivity = New Button()
         Label1 = New Label()
         Btn_ScreenEvaluation = New Button()
@@ -50,19 +50,19 @@ Partial Class ScreenPrincipal
         Label2.Text = "Evaluación Temprana"
         Label2.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Btn_ScreenRegister
+        ' Btn_ScreenList
         ' 
-        Btn_ScreenRegister.BackColor = Color.LightSkyBlue
-        Btn_ScreenRegister.Cursor = Cursors.Hand
-        Btn_ScreenRegister.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
-        Btn_ScreenRegister.ForeColor = Color.White
-        Btn_ScreenRegister.Location = New Point(436, 382)
-        Btn_ScreenRegister.Margin = New Padding(4, 3, 4, 3)
-        Btn_ScreenRegister.Name = "Btn_ScreenRegister"
-        Btn_ScreenRegister.Size = New Size(160, 80)
-        Btn_ScreenRegister.TabIndex = 3
-        Btn_ScreenRegister.Text = "Infantes"
-        Btn_ScreenRegister.UseVisualStyleBackColor = False
+        Btn_ScreenList.BackColor = Color.LightSkyBlue
+        Btn_ScreenList.Cursor = Cursors.Hand
+        Btn_ScreenList.Font = New Font("Baloo", 11.999999F, FontStyle.Bold)
+        Btn_ScreenList.ForeColor = Color.White
+        Btn_ScreenList.Location = New Point(436, 382)
+        Btn_ScreenList.Margin = New Padding(4, 3, 4, 3)
+        Btn_ScreenList.Name = "Btn_ScreenList"
+        Btn_ScreenList.Size = New Size(160, 80)
+        Btn_ScreenList.TabIndex = 3
+        Btn_ScreenList.Text = "Infantes"
+        Btn_ScreenList.UseVisualStyleBackColor = False
         ' 
         ' Btn_ScreenActivity
         ' 
@@ -164,7 +164,7 @@ Partial Class ScreenPrincipal
         Controls.Add(TableLayoutPanel1)
         Controls.Add(btn_Exit)
         Controls.Add(Btn_ScreenActivity)
-        Controls.Add(Btn_ScreenRegister)
+        Controls.Add(Btn_ScreenList)
         Controls.Add(Btn_ScreenEvaluation)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -180,7 +180,7 @@ Partial Class ScreenPrincipal
         ResumeLayout(False)
     End Sub
     Friend WithEvents Label2 As Label
-    Friend WithEvents Btn_ScreenRegister As Button
+    Friend WithEvents Btn_ScreenList As Button
     Friend WithEvents Btn_ScreenActivity As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Btn_ScreenEvaluation As Button

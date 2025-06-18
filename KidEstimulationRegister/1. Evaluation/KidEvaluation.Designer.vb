@@ -66,6 +66,7 @@ Partial Class KidEvaluation
         btn_Back = New Button()
         btn_Clean = New Button()
         btn_Exit = New Button()
+        btn_Progress = New Button()
         TableLayoutPanel1.SuspendLayout()
         CType(Dgv_FineMotor, ComponentModel.ISupportInitialize).BeginInit()
         CType(Dgv_Language, ComponentModel.ISupportInitialize).BeginInit()
@@ -619,6 +620,21 @@ Partial Class KidEvaluation
         btn_Exit.TabIndex = 99
         btn_Exit.UseVisualStyleBackColor = False
         ' 
+        ' btn_Progress
+        ' 
+        btn_Progress.BackColor = Color.Transparent
+        btn_Progress.BackgroundImage = My.Resources.Resources.progreso
+        btn_Progress.BackgroundImageLayout = ImageLayout.Stretch
+        btn_Progress.Cursor = Cursors.Hand
+        btn_Progress.FlatAppearance.BorderSize = 0
+        btn_Progress.FlatStyle = FlatStyle.Flat
+        btn_Progress.ForeColor = Color.Transparent
+        btn_Progress.Location = New Point(540, 674)
+        btn_Progress.Name = "btn_Progress"
+        btn_Progress.Size = New Size(118, 40)
+        btn_Progress.TabIndex = 100
+        btn_Progress.UseVisualStyleBackColor = False
+        ' 
         ' KidEvaluation
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -627,6 +643,7 @@ Partial Class KidEvaluation
         BackgroundImageLayout = ImageLayout.Stretch
         CancelButton = btn_Exit
         ClientSize = New Size(786, 719)
+        Controls.Add(btn_Progress)
         Controls.Add(btn_Exit)
         Controls.Add(btn_Clean)
         Controls.Add(btn_Back)
@@ -694,4 +711,5 @@ Partial Class KidEvaluation
     Friend WithEvents btn_Back As Button
     Friend WithEvents btn_Clean As Button
     Friend WithEvents btn_Exit As Button
+    Friend WithEvents btn_Progress As Button
 End Class

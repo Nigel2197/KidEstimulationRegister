@@ -68,8 +68,8 @@ Public Class FindKidProgress
 
     Private Sub btn_Back_Click(sender As Object, e As EventArgs) Handles btn_Back.Click
         Dim frm As New ScreenPrincipal()
-        frm.Show()
-        Me.Close()
+        ScreenPrincipal.Show()
+        Me.Dispose()
     End Sub
 
     Private Sub btn_Exit_Click(sender As Object, e As EventArgs) Handles btn_Exit.Click

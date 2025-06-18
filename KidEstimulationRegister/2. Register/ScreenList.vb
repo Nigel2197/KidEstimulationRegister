@@ -22,23 +22,24 @@ Public Class ScreenList
     End Sub
 
     Private Sub Btn_New_Click(sender As Object, e As EventArgs) Handles Btn_New.Click
-        KidAdd.Show()
-        Me.Hide()
+        Dim frm As New KidAdd()
+        frm.Show()
+        Me.Dispose()
     End Sub
     Private Sub Btn_Edit_Click(sender As Object, e As EventArgs) Handles Btn_Edit.Click
         Dim frm As New KidEdit(Nothing) ' Pasa el valor directamente a la pantalla de Edición de Infante
         frm.Show()
-        Me.Hide()
+        Me.Dispose()
     End Sub
 
-    Private Sub Dgv_KidList_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dgv_KidList.CellDoubleClick
-        If e.RowIndex >= 0 Then
-            Dim nombre As String = Dgv_KidList.Rows(e.RowIndex).Cells("Nombre").Value.ToString()
-            Dim frm As New KidEdit(nombre)
-            frm.Show()
-            Me.Hide()
-        End If
-    End Sub
+    'Private Sub Dgv_KidList_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dgv_KidList.CellDoubleClick
+    '    If e.RowIndex >= 0 Then
+    '        Dim nombre As String = Dgv_KidList.Rows(e.RowIndex).Cells("Nombre").Value.ToString()
+    '        Dim frm As New KidEdit(nombre)
+    '        frm.Show()
+    '        Me.Hide()
+    '    End If
+    'End Sub
 
     Private Sub GetListKidName()
         query = "SELECT Name FROM Kids"
@@ -139,7 +140,7 @@ Public Class ScreenList
 
     Private Sub btn_Back_Click(sender As Object, e As EventArgs) Handles btn_Back.Click
         Dim frm As New ScreenPrincipal()
-        frm.Show()
+        ScreenPrincipal.Show()
         Me.Close()
     End Sub
 

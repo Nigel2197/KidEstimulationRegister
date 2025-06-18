@@ -263,7 +263,6 @@ Partial Class ScreenList
         Cb_Age.Font = New Font("Baloo", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Cb_Age.ForeColor = SystemColors.Window
         Cb_Age.FormattingEnabled = True
-        Cb_Age.Items.AddRange(New Object() {"Masculino", "Femenino"})
         Cb_Age.Location = New Point(383, 186)
         Cb_Age.Name = "Cb_Age"
         Cb_Age.Size = New Size(159, 29)

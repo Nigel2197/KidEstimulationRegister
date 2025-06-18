@@ -68,7 +68,7 @@ Public Class ScreenEvaluation
 
     Private Sub btn_Back_Click(sender As Object, e As EventArgs) Handles btn_Back.Click
         Dim frm As New ScreenPrincipal
-        frm.Show()
+        ScreenPrincipal.Show()
         Me.Dispose()
     End Sub
 
