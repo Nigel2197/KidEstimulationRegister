@@ -126,14 +126,14 @@ Partial Class ScreenPrincipal
         ' 
         TableLayoutPanel1.BackColor = Color.Transparent
         TableLayoutPanel1.ColumnCount = 1
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel1.Controls.Add(Label2, 0, 0)
         TableLayoutPanel1.Location = New Point(12, 80)
         TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 51F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 50F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 51.0F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 50.0F))
         TableLayoutPanel1.Size = New Size(762, 50)
         TableLayoutPanel1.TabIndex = 44
         ' 
@@ -141,20 +141,20 @@ Partial Class ScreenPrincipal
         ' 
         TableLayoutPanel2.BackColor = Color.Transparent
         TableLayoutPanel2.ColumnCount = 1
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel2.Controls.Add(Label1, 0, 0)
         TableLayoutPanel2.Location = New Point(12, 130)
         TableLayoutPanel2.Margin = New Padding(4, 3, 4, 3)
         TableLayoutPanel2.Name = "TableLayoutPanel2"
         TableLayoutPanel2.RowCount = 1
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 51F))
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 50F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 51.0F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 50.0F))
         TableLayoutPanel2.Size = New Size(762, 50)
         TableLayoutPanel2.TabIndex = 45
         ' 
         ' ScreenPrincipal
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch

@@ -8,10 +8,11 @@
     <MyType>WindowsForms</MyType>
     <ApplicationIcon>Resources\icono.ico</ApplicationIcon>
     <AssemblyName>Primeros Pasos</AssemblyName>
-    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <ApplicationManifest>MyProject\app.manifest</ApplicationManifest>
     <Authors>Nigel Abrego</Authors>
     <PackageIcon>icono.png</PackageIcon>
     <Description>Este programa permite registrar y evaluar el desarrollo psicomotor de niños durante sus primeros años de vida. A través de una serie de conductas observadas en distintas áreas</Description>
+    <AppDesignerFolder>MyProject</AppDesignerFolder>
   </PropertyGroup>
 
   <ItemGroup>
@@ -72,21 +73,26 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="2. Register\KidEdit.vb" />
-    <Compile Update="My Project\Application.Designer.vb">
+    <Compile Update="MyProject\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
-    <Compile Update="My Project\Resources.Designer.vb">
+    <Compile Update="MyProject\Resources.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Update="2. Register\ScreenList.vb" />
+    <Compile Update="MyProject\Settings.Designer.vb">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="My Project\Resources.resx">
+    <EmbeddedResource Update="MyProject\Resources.resx">
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -97,12 +103,13 @@
     <None Update="KERDB.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="My Project\Application.myapp">
+    <None Update="MyProject\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Update="My Project\Settings.settings">
+    <None Update="MyProject\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Update="Resources\icono.png">
       <Pack>True</Pack>

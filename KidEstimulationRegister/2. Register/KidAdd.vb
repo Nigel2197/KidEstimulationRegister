@@ -22,7 +22,7 @@ Public Class KidAdd
             validation = False
         End If
 
-        If String.IsNullOrWhiteSpace(Dtp_DayBirth.Text) Then
+        If String.IsNullOrWhiteSpace(Dtp_DayBirth.Text) Or String.IsNullOrWhiteSpace(Tb_Age.Text) Then
             MessageBox.Show("Falta indicar la fecha de nacimiento del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             validation = False
         End If
@@ -30,6 +30,13 @@ Public Class KidAdd
         If String.IsNullOrWhiteSpace(Tb_Address.Text) Then
             MessageBox.Show("Falta indicar la dirección del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             validation = False
+        End If
+
+        If Ckb_Allergic.Checked Then
+            If String.IsNullOrWhiteSpace(Tb_WhatAllergy.Text) Then
+                MessageBox.Show("Falta indicar la alergia del infante", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                validation = False
+            End If
         End If
 
         If validation Then
