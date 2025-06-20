@@ -41,6 +41,13 @@ Public Class KidEdit
             WhatAllergy = Tb_WhatAllergy.Text
             Cb_Name.Visible = False
             Tb_Name.Visible = True
+            Cb_Gender.Enabled = True
+            Dtp_DayBirth.Enabled = True
+            Tb_Age.Enabled = True
+            Tb_Address.Enabled = True
+            Cb_BloodType.Enabled = True
+            Ckb_Allergic.Enabled = True
+            btn_Save.Visible = True
         Else
             Exit Sub
         End If

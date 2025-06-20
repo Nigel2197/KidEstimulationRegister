@@ -167,6 +167,7 @@ Partial Class KidEdit
         Cb_Gender.BackColor = Color.LightSteelBlue
         Cb_Gender.Cursor = Cursors.Hand
         Cb_Gender.DropDownStyle = ComboBoxStyle.DropDownList
+        Cb_Gender.Enabled = False
         Cb_Gender.FlatStyle = FlatStyle.Flat
         Cb_Gender.Font = New Font("Baloo", 11.999999F)
         Cb_Gender.ForeColor = SystemColors.Window
@@ -182,6 +183,7 @@ Partial Class KidEdit
         ' 
         Tb_Address.BackColor = Color.LightSteelBlue
         Tb_Address.Cursor = Cursors.Hand
+        Tb_Address.Enabled = False
         Tb_Address.Font = New Font("Baloo", 11.999999F)
         Tb_Address.ForeColor = SystemColors.Window
         Tb_Address.Location = New Point(167, 384)
@@ -206,6 +208,7 @@ Partial Class KidEdit
         Cb_BloodType.BackColor = Color.LightSteelBlue
         Cb_BloodType.Cursor = Cursors.Hand
         Cb_BloodType.DropDownStyle = ComboBoxStyle.DropDownList
+        Cb_BloodType.Enabled = False
         Cb_BloodType.FlatStyle = FlatStyle.Flat
         Cb_BloodType.Font = New Font("Baloo", 11.999999F)
         Cb_BloodType.ForeColor = SystemColors.Window
@@ -266,12 +269,14 @@ Partial Class KidEdit
         btn_Save.Size = New Size(118, 40)
         btn_Save.TabIndex = 9
         btn_Save.UseVisualStyleBackColor = False
+        btn_Save.Visible = False
         ' 
         ' Ckb_Allergic
         ' 
         Ckb_Allergic.BackColor = Color.LightSteelBlue
         Ckb_Allergic.CheckAlign = ContentAlignment.MiddleCenter
         Ckb_Allergic.Cursor = Cursors.Hand
+        Ckb_Allergic.Enabled = False
         Ckb_Allergic.Font = New Font("Baloo", 11.999999F)
         Ckb_Allergic.ForeColor = SystemColors.Window
         Ckb_Allergic.Location = New Point(330, 474)
@@ -289,6 +294,7 @@ Partial Class KidEdit
         Dtp_DayBirth.Checked = False
         Dtp_DayBirth.Cursor = Cursors.Hand
         Dtp_DayBirth.CustomFormat = " "
+        Dtp_DayBirth.Enabled = False
         Dtp_DayBirth.Font = New Font("Baloo", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, CByte(0), True)
         Dtp_DayBirth.Format = DateTimePickerFormat.Custom
         Dtp_DayBirth.Location = New Point(167, 295)
@@ -301,6 +307,7 @@ Partial Class KidEdit
         ' Tb_Age
         ' 
         Tb_Age.BackColor = SystemColors.Window
+        Tb_Age.Enabled = False
         Tb_Age.Font = New Font("Baloo", 11.999999F)
         Tb_Age.ForeColor = SystemColors.ActiveCaptionText
         Tb_Age.Location = New Point(450, 295)
@@ -339,7 +346,7 @@ Partial Class KidEdit
         ' 
         ' KidEdit
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.fondo_de_pantalla
         BackgroundImageLayout = ImageLayout.Stretch

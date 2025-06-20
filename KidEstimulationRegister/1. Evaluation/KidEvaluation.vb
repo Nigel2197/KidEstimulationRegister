@@ -52,9 +52,14 @@ Public Class KidEvaluation
     End Sub
 
     Private Sub btn_Progress_Click(sender As Object, e As EventArgs) Handles btn_Progress.Click
-        Dim frm As New KidProgress(NameKid) ' Pasa el valor directamente a la pantalla de Progreso de Infante
-        frm.Show()
-        Me.Hide()
+        If FoundKidRegister Then
+            Dim frm As New KidProgress(NameKid) ' Pasa el valor directamente a la pantalla de Progreso de Infante
+            frm.Show()
+            Me.Hide()
+        Else
+            MessageBox.Show("No se encontró evaluaciones realizadas al infante", "Sin Datos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
     End Sub
 
     Private Sub btn_Accept_Click(sender As Object, e As EventArgs) Handles btn_Accept.Click
