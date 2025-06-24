@@ -75,6 +75,7 @@ Public Class KidAdd
             Tb_WhatAllergy.Enabled = True
         Else
             Tb_WhatAllergy.Enabled = False
+            Tb_WhatAllergy.Text = Nothing
         End If
     End Sub
 
